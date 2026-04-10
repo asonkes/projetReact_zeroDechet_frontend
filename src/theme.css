@@ -1,0 +1,25 @@
+@font-face {
+  font-family: Borel;
+  src: url("/fonts/Borel/Borel-Regular.ttf") format("truetype");
+}
+
+@theme {
+  /* Font */
+  --font-borel: "Borel";
+
+  /* Color */
+  --color-primary-50: #f3f8ed;
+  --color-primary-100: #e4f0d7;
+  --color-primary-200: #cce2b4;
+  --color-primary-300: #abcf87;
+  --color-primary-400: #8cba61;
+  --color-primary-500: #6e9f43;
+  --color-primary-600: #547e32;
+  --color-primary-700: #42612a;
+  --color-primary-800: #374e26;
+  --color-primary-900: #304324;
+  --color-primary-950: #17240f;
+
+  /* Shadow */
+  --shadow: 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
