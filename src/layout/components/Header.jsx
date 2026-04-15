@@ -2,7 +2,7 @@ import { NavItem } from "../../shared/NavItem";
 
 export const Header = () => {
   return (
-    <header className="w-full border border-primary-600 shadow-primary-400 shadow fixed z-9999999">
+    <header className="w-full border border-primary-600 shadow-primary-400 shadow fixed bg-white z-50">
       <nav className="w-full">
         <ul className="flex justify-center p-1">
           <NavItem to="/" text="Home" />

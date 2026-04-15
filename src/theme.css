@@ -47,6 +47,19 @@
   --color-secondary-900: #7b2121;
   --color-secondary-950: #420d0d;
 
+  /* Tertiary color */
+  --color-tertiary-50: #f9f6ed;
+  --color-tertiary-100: #f2eacf;
+  --color-tertiary-200: #e6d5a2;
+  --color-tertiary-300: #d7b86d;
+  --color-tertiary-400: #ca9d45;
+  --color-tertiary-500: #c38f3a;
+  --color-tertiary-600: #a06c2e;
+  --color-tertiary-700: #815027;
+  --color-tertiary-800: #6c4227;
+  --color-tertiary-900: #5d3926;
+  --color-tertiary-950: #351d13;
+
   /* Shadow */
   --shadow: 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
