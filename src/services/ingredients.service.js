@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "redaxios";
 
 const ingredientService = {
   getAll: async () => {

@@ -16,3 +16,7 @@ body,
   display: flex;
   flex-direction: column;
 }
+
+.container {
+  @apply w-full mx-auto;
+}

@@ -3,24 +3,49 @@
   src: url("/fonts/Borel/Borel-Regular.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: Montserrat;
+  src: url("/fonts/Montserrat/Montserrat-VariableFont_wght.ttf")
+    format("truetype");
+}
+
+@font-face {
+  font-family: Quicksand;
+  src: url("/fonts/Quicksand/Quicksand-VariableFont_wght.ttf")
+    format("truetype");
+}
+
 @theme {
   /* Font */
   --font-borel: "Borel";
+  --font-montserrat: "Montserrat";
+  --font-quicksand: "Quicksand";
 
-  /* Color */
-  --color-primary-50: #f3f8ed;
-  --color-primary-100: #e4f0d7;
-  --color-primary-200: #cce2b4;
-  --color-primary-300: #abcf87;
-  --color-primary-400: #8cba61;
-  --color-primary-500: #6e9f43;
-  --color-primary-600: #547e32;
-  --color-primary-700: #42612a;
-  --color-primary-800: #374e26;
-  --color-primary-900: #304324;
-  --color-primary-950: #17240f;
+  /* Primary Color */
+  --color-primary-50: #f6f9ec;
+  --color-primary-100: #eaf1d6;
+  --color-primary-200: #d5e3b3;
+  --color-primary-300: #b9d185;
+  --color-primary-400: #9ebd5e;
+  --color-primary-500: #77963c;
+  --color-primary-600: #638030;
+  --color-primary-700: #4d6328;
+  --color-primary-800: #3f4f25;
+  --color-primary-900: #364423;
+  --color-primary-950: #1b240f;
 
-  /* 809445 */
+  /* Secondary color */
+  --color-secondary-50: #fdf3f3;
+  --color-secondary-100: #fde3e3;
+  --color-secondary-200: #fccccc;
+  --color-secondary-300: #f8a9a9;
+  --color-secondary-400: #f06262;
+  --color-secondary-500: #e74c4c;
+  --color-secondary-600: #d42e2e;
+  --color-secondary-700: #b22323;
+  --color-secondary-800: #932121;
+  --color-secondary-900: #7b2121;
+  --color-secondary-950: #420d0d;
 
   /* Shadow */
   --shadow: 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
