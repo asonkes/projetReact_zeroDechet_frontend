@@ -37,6 +37,14 @@
   background-image: var(--bg_about_mobile);
 }
 
+@utility bg_ingredient1 {
+  background-image: var(--bg_ingredient1);
+}
+
+@utility bg_ingredient2 {
+  background-image: var(--bg_ingredient2);
+}
+
 @theme {
   /* Font */
   --font-borel: "Borel";
@@ -94,4 +102,8 @@
   /* Pour 'About' */
   --bg_about: url("/images/background/about/bg_about.webp");
   --bg_about_mobile: url("/images/background/about/bg_about_mobile.webp");
+
+  /* Pour ingredient */
+  --bg_ingredient1: url("/images/background/ingredient/bg_ingredient1.webp");
+  --bg_ingredient2: url("/images/background/ingredient/bg_ingredient2.webp");
 }
