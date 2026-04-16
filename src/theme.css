@@ -15,6 +15,15 @@
     format("truetype");
 }
 
+/* Création de classe Tailwind personnalisée */
+@utility bg_home {
+  background-image: var(--bg_home);
+}
+
+@utility bg_home_mobile {
+  background-image: var(--bg_home_mobile);
+}
+
 @theme {
   /* Font */
   --font-borel: "Borel";
@@ -62,4 +71,8 @@
 
   /* Shadow */
   --shadow: 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+
+  /* BackgroundImage */
+  --bg_home: url("/images/background/home/bg_home.webp");
+  --bg_home_mobile: url("/images/background/home/bg_home_mobile.webp");
 }

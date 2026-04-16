@@ -3,6 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Pour éviter coupure entre chargement image dekstop et mobile dans Home
+    Prévcharger les images dans 'Head' -->
+    <link rel="preload" src="/images/background/home/bg_home.webp" as="image" />
+    <link
+      rel="preload"
+      src="/images/background/home/bg_home_mobile.webp"
+      as="image"
+    />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>frontend</title>
   </head>
