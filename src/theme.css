@@ -24,6 +24,14 @@
   background-image: var(--bg_home_mobile);
 }
 
+@utility bg_about {
+  background-image: var(--bg_about);
+}
+
+@utility bg_about_mobile {
+  background-image: var(--bg_about_mobile);
+}
+
 @theme {
   /* Font */
   --font-borel: "Borel";
@@ -73,6 +81,11 @@
   --shadow: 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 
   /* BackgroundImage */
+  /* Pour 'Home' */
   --bg_home: url("/images/background/home/bg_home.webp");
   --bg_home_mobile: url("/images/background/home/bg_home_mobile.webp");
+
+  /* Pour 'About' */
+  --bg_about: url("/images/background/about/bg_about.webp");
+  --bg_about_mobile: url("/images/background/about/bg_about_mobile.webp");
 }

@@ -1,18 +1,17 @@
 import { FullScreen } from "../../shared/FullScreen";
-import BgImageAbout from "/images/background/about/bg_about.webp";
 import { Title } from "../../shared/Title";
 
 export const About = () => {
   return (
-    <section className="w-full min-h-[calc(100vh-106.5px)] flex border-2 border-amber-700">
+    <section className="w-fullflex">
       <FullScreen
-        className="flex-col bg-cover bg-center border-red-600"
-        bgImage={BgImageAbout}
+        height="min-h-[calc(100vh-106.5px)]"
+        className="flex-col bg_about_mobile lg:bg_about bg-cover bg-center"
       >
-        <div className="container flex flex-col border-green-700">
+        <div className="container flex flex-col">
           <Title text="About" />
 
-          <div className="flex flex-col font-borel font-bold text-2xl text-center mt-13 p-2 text-tertiary-500 border-4 border-amber-600">
+          <div className="flex flex-col font-borel font-bold text-xl lg:text-2xl text-center mt-13 px-4 text-tertiary-500 border-4 border-amber-600">
             <p className="py-2">
               Quel est notre objectif ? Vous avez des légumes dans votre
               potager?
@@ -20,7 +19,7 @@ export const About = () => {
             <p className="py-2">En 2 clicks, vous trouvez votre recette...</p>
           </div>
 
-          <div className="flex flex-col font-quicksand font-bold text-xl text-center italic mt-13 p-2 border-4 border-blue-600">
+          <div className="flex flex-col font-quicksand font-bold text-lg sm:text-xl text-center italic mt-13 mb-8 px-4 border-4 border-blue-600">
             <p className="py-2">
               <span className="underline underline-offset-4">
                 L’idée est simple :

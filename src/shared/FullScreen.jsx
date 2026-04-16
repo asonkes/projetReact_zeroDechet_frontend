@@ -1,6 +1,10 @@
 export const FullScreen = (props) => {
   // Mettre children permet que le composant 'FullScreen' ai des éléments qui s'affichent dans ce composant
-  const { children, className = "" } = props;
+  const {
+    children,
+    className = "",
+    height = "min-h-[calc(100vh-64.5px)]",
+  } = props;
 
   {
     /** Version à comparer avec Aurélien => demander
@@ -9,9 +13,7 @@ export const FullScreen = (props) => {
   }
 
   return (
-    <div
-      className={`w-full flex flex-1 min-h-[calc(100vh-64.5px)] ${className}`}
-    >
+    <div className={`w-full flex ${height} ${className}`}>
       {/** 
       * Version à comparer avec Aurelien => demander  
       *   <div
