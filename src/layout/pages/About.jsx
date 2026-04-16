@@ -11,7 +11,7 @@ export const About = () => {
         <div className="container flex flex-col">
           <Title text="About" />
 
-          <div className="flex flex-col font-borel font-bold text-xl lg:text-2xl text-center mt-13 px-4 text-tertiary-500 border-4 border-amber-600">
+          <div className="flex flex-col font-borel font-bold text-xl lg:text-2xl text-center mt-13 px-4 text-tertiary-500">
             <p className="py-2">
               Quel est notre objectif ? Vous avez des légumes dans votre
               potager?
@@ -19,7 +19,7 @@ export const About = () => {
             <p className="py-2">En 2 clicks, vous trouvez votre recette...</p>
           </div>
 
-          <div className="flex flex-col font-quicksand font-bold text-lg sm:text-xl text-center italic mt-13 mb-8 px-4 border-4 border-blue-600">
+          <div className="flex flex-col font-bree_Serif text-lg sm:text-xl text-center italic mt-13 mb-8 px-4">
             <p className="py-2">
               <span className="underline underline-offset-4">
                 L’idée est simple :

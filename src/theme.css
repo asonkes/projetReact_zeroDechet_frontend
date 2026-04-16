@@ -15,6 +15,11 @@
     format("truetype");
 }
 
+@font-face {
+  font-family: Bree_Serif;
+  src: url("/fonts/Bree_Serif/BreeSerif-Regular.ttf") format("truetype");
+}
+
 /* Création de classe Tailwind personnalisée */
 @utility bg_home {
   background-image: var(--bg_home);
@@ -37,6 +42,7 @@
   --font-borel: "Borel";
   --font-montserrat: "Montserrat";
   --font-quicksand: "Quicksand";
+  --font-bree_Serif: "bree_Serif";
 
   /* Primary Color */
   --color-primary-50: #f6f9ec;
