@@ -27,7 +27,7 @@ export const Ingredients = () => {
   }, []);
 
   return (
-    <div className="bg-primary-700 border-4 border-amber-600">
+    <div className="bg-primary-600 border-4 border-amber-600">
       <Title
         text="Ingrédients"
         className="text-white border-4 border-red-500"

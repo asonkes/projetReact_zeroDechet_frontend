@@ -53,17 +53,17 @@
   --font-bree_Serif: "bree_Serif";
 
   /* Primary Color */
-  --color-primary-50: #f6f9ec;
-  --color-primary-100: #eaf1d6;
-  --color-primary-200: #d5e3b3;
-  --color-primary-300: #b9d185;
-  --color-primary-400: #9ebd5e;
-  --color-primary-500: #77963c;
-  --color-primary-600: #638030;
-  --color-primary-700: #4d6328;
-  --color-primary-800: #3f4f25;
-  --color-primary-900: #364423;
-  --color-primary-950: #1b240f;
+  --color-primary-50: #f3f8ed;
+  --color-primary-100: #e4f0d7;
+  --color-primary-200: #cce2b4;
+  --color-primary-300: #abcf87;
+  --color-primary-400: #8cba61;
+  --color-primary-500: #6e9f43;
+  --color-primary-600: #547e32;
+  --color-primary-700: #42612a;
+  --color-primary-800: #374e26;
+  --color-primary-900: #304324;
+  --color-primary-950: #17240f;
 
   /* Secondary color */
   --color-secondary-50: #fdf3f3;
