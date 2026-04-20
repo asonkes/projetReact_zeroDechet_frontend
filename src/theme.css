@@ -91,6 +91,11 @@
   --color-tertiary-900: #5d3926;
   --color-tertiary-950: #351d13;
 
+  /* Spacing */
+  --spacing-175: 17.5rem;
+  --spacing-22: 22rem;
+  --spacing-55: 55rem;
+
   /* Shadow */
   --shadow: 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 
@@ -98,12 +103,14 @@
   /* Pour 'Home' */
   --bg_home: url("/images/background/home/bg_home.webp");
   --bg_home_mobile: url("/images/background/home/bg_home_mobile.webp");
-
   /* Pour 'About' */
   --bg_about: url("/images/background/about/bg_about.webp");
   --bg_about_mobile: url("/images/background/about/bg_about_mobile.webp");
-
   /* Pour ingredient */
   --bg_ingredient1: url("/images/background/ingredient/bg_ingredient1.webp");
   --bg_ingredient2: url("/images/background/ingredient/bg_ingredient2.webp");
+
+  /* Pour les breakpoint */
+  --breakpoint-xs: 25rem; /*400px*/
+  --breakpoint-xxs: 21.875rem; /*350px*/
 }
