@@ -1,4 +1,6 @@
+import { Link } from "react-router";
 import { NavItem } from "../../shared/NavItem";
+import { NavHashLink } from "react-router-hash-link";
 
 export const Header = () => {
   return (
@@ -6,7 +8,7 @@ export const Header = () => {
       <nav className="w-full">
         <ul className="flex justify-center p-1">
           <NavItem to="/" text="Home" />
-          <NavItem to="/about" text="About" />
+          <NavItem to="/#about" text="About" />
           <NavItem to="/ingredients" text="Ingrédients" />
           <NavItem to="/recipes" text="Recettes" />
           <NavItem to="/contact" text="Contact" />

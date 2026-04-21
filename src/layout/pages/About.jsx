@@ -1,9 +1,12 @@
 import { FullScreen } from "../../shared/FullScreen";
 import { Title } from "../../shared/Title";
 
-export const About = () => {
+export const About = (props) => {
+
+  const {id} = props;
+
   return (
-    <section className="w-fullflex">
+    <section id={id} className="w-fullflex">
       <FullScreen
         height="min-h-[calc(100vh-106.5px)]"
         className="flex-col bg_about_mobile lg:bg_about bg-cover bg-center"

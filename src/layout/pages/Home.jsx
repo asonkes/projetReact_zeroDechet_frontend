@@ -1,10 +1,11 @@
 import { FullScreen } from "../../shared/FullScreen";
 // import BgImageHome from "/images/background/home/bg_home.webp";
 import { SplitScreen } from "../../shared/SplitScreen";
-import { Button } from "../../shared/Button";
+import { Button } from "../../shared/button/Button";
 import { About } from "../pages/About";
 
 export const Home = () => {
+
   return (
     <>
       <section className="w-full flex">
@@ -44,7 +45,7 @@ export const Home = () => {
           </div>
         </FullScreen>
       </section>
-      <About />
+      <About id="about" />
     </>
   );
 };

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import ingredientService from "../../services/ingredients.service";
 import { Title } from "../../shared/Title";
-import { Button } from "../../shared/Button";
 import { Pagination } from "../../shared/Pagination";
+import { ButtonCard } from "../../shared/button/ButtonCard";
 
 export const Ingredients = () => {
   // Pk useState()
