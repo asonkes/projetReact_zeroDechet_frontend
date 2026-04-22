@@ -39,7 +39,7 @@ export const Home = () => {
               </p>
 
               <Button
-                to="/ingredients"
+                to="/ingredients_recoltes"
                 text="Je choisis mes ingrédients"
                 className="mt-2 sm:mt-8"
               />

@@ -9,7 +9,7 @@ export const About = (props) => {
     <section id={id} className="w-full">
       <FullScreen
         height="min-h-[calc(100vh-106.5px)]"
-        className="flex flex-col bg_about_mobile lg:bg_about bg-cover bg-center"
+        className="flex flex-col bg_about_mobile sm:bg_about_tablet lg:bg_about bg-cover bg-center"
       >
         <div className="container flex flex-col">
           <Title text="About" />
@@ -63,14 +63,14 @@ export const About = (props) => {
               </span>
               <span>☺️</span>
             </h4>
-            <div className="text-base lg:text-lg">
-              <p className="py-2">🩷 1. Je choisis mes ingrédients</p>
-              <p className="py-2">🩷 2. Je découvre mes recettes</p>
-              <p className="py-2">🩷 3. Je cuisine sans gaspiller</p>
+            <div className="text-base lg:text-lg mt-2">
+              <p className="py">🩷 1. Je choisis mes ingrédients</p>
+              <p className="py">🩷 2. Je découvre mes recettes</p>
+              <p className="py">🩷 3. Je cuisine sans gaspiller</p>
             </div>
           </div>
           <Button
-            to="/ingredients"
+            to="/ingredients_recoltes"
             text="Je sélectionne mes ingrédients"
             className="mt-2 mb-6 mx-auto sm:mt-8"
           />

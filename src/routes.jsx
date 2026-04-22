@@ -15,7 +15,7 @@ export const routes = [
         Component: Home,
       },
       {
-        path: "ingredients",
+        path: "ingredients_recoltes",
         Component: Ingredients,
       },
       {

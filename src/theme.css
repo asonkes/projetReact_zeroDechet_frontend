@@ -22,15 +22,23 @@
 
 /* Création de classe Tailwind personnalisée */
 @utility bg_home {
-  background-image: var(--bg_home);
+  @media (min-width: 1025px) {
+    background-image: var(--bg_home);
+  }
 }
 
 @utility bg_home_mobile {
-  background-image: var(--bg_home_mobile);
+  @media (max-width: 1024px) {
+    background-image: var(--bg_home_mobile);
+  }
 }
 
 @utility bg_about {
   background-image: var(--bg_about);
+}
+
+@utility bg_about_tablet {
+  background-image: var(--bg_about_tablet);
 }
 
 @utility bg_about_mobile {
@@ -96,8 +104,11 @@
   --color-special-black: rgba(0, 0, 0, 0.8);
 
   /* Spacing */
+  --spacing-9: 9rem;
+  --spacing-11: 11rem;
   --spacing-175: 17.5rem;
   --spacing-22: 22rem;
+  --spacing-24: 24rem;
   --spacing-55: 55rem;
 
   /* Shadow */
@@ -109,14 +120,16 @@
   --bg_home_mobile: url("/images/background/home/bg_home_mobile.webp");
   /* Pour 'About' */
   --bg_about: url("/images/background/about/bg_about.webp");
+  --bg_about_tablet: url("/images/background/about/bg_about_tablet.webp");
   --bg_about_mobile: url("/images/background/about/bg_about_mobile.webp");
+
   /* Pour ingredient */
   --bg_ingredient1: url("/images/background/ingredient/bg_ingredient1.webp");
   --bg_ingredient2: url("/images/background/ingredient/bg_ingredient2.webp");
 
   /* Pour les breakpoint */
-  --breakpoint-xs: 25rem;
   /*400px*/
-  --breakpoint-xxs: 21.875rem;
+  --breakpoint-xs: 25rem;
   /*350px*/
+  --breakpoint-xxs: 21.875rem;
 }

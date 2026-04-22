@@ -7,7 +7,7 @@ export const Header = () => {
         <ul className="flex justify-center p-1">
           <NavItem to="/" text="Home" />
           <NavItem to="/#about" text="About" />
-          <NavItem to="/ingredients" text="Ingrédients" />
+          <NavItem to="ingredients_recoltes" text="Ingrédients récoltés" />
           <NavItem to="/recipes" text="Recettes" />
           <NavItem to="/contact" text="Contact" />
         </ul>
