@@ -8,7 +8,9 @@ export const IngredientCard = (props) => {
   const [active, setActive] = useState(false);
 
   return (
-    <li className="relative flex flex-col w-[18rem] max-h-24 mx-auto odd:bg_ingredient1 even:bg_ingredient2 bg-no-repeat bg-cover bg-center rounded-lg z-1">
+    <li
+      className={`relative flex flex-col w-[18rem] max-h-24 mx-auto odd:bg_ingredient1 even:bg_ingredient2 bg-no-repeat bg-cover bg-center rounded-lg z-1 border-4 border-red-500 ${active ? `` : ``}`}
+    >
       <div className="flex flex-col flex-1 p-2 z-3">
         <div className="relative flex justify-center">
           <div className="w-9 absolute bottom-0 flex items-center pt-10 bg-linear-to-t from-special-black to-transparent">

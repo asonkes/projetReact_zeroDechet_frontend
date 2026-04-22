@@ -57,8 +57,9 @@ export const Ingredients = () => {
           text="Quels ingrédients as-tu récoltés ?"
           className="text-white"
         />
-        <div className="flex flex-col flex-1 w-full container py-4">
+        <div className="w-full flex flex-col flex-1 container py-4">
           <IngredientText
+            className="text-xl text-white text-center p-4"
             text="Sélectionne les ingrédients que tu as dans ton potager pour
             découvrir des recettes adaptées."
           />
