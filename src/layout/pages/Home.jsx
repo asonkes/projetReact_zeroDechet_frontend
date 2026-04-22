@@ -5,7 +5,6 @@ import { Button } from "../../shared/button/Button";
 import { About } from "../pages/About";
 
 export const Home = () => {
-
   return (
     <>
       <section className="w-full flex">
@@ -39,7 +38,11 @@ export const Home = () => {
                 Cuisiner frais, local et sans gaspiller.
               </p>
 
-              <Button className="mt-2 sm:mt-8" text="On commence" />
+              <Button
+                to="/ingredients"
+                text="Je choisis mes ingrédients"
+                className="mt-2 sm:mt-8"
+              />
             </SplitScreen>
             <SplitScreen></SplitScreen>
           </div>

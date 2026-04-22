@@ -48,7 +48,7 @@ export const Ingredients = () => {
   );
 
   return (
-    <div className="bg-primary-600">
+    <section className="bg-primary-600">
       <Title text="Ingrédients" className="text-white" />
       <div className="w-full container p-4 xxs:p-8">
         <ul className="w-fit m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
@@ -60,7 +60,7 @@ export const Ingredients = () => {
               <div className="flex flex-col flex-1 p-2 z-3">
                 <div className="relative flex justify-center">
                   <div className="w-[9rem] absolute bottom-0 flex items-center">
-                    <h3 className="w-[9rem] h-[4rem] font-montserrat font-semibold text-white text-lg text-center bg-gradient-to-t from-special-black to-transparent">
+                    <h3 className="w-[9rem] h-[4rem] font-montserrat font-semibold text-white text-lg text-center bg-linear-to-t from-special-black to-transparent">
                       {ingredient.name}
                     </h3>
                   </div>
@@ -108,6 +108,6 @@ export const Ingredients = () => {
           onPageChange={setCurrentPage}
         />
       </div>
-    </div>
+    </section>
   );
 };
