@@ -11,7 +11,7 @@ export const About = (props) => {
         height="min-h-[calc(100vh-106.5px)]"
         className="flex flex-col bg_about_mobile lg:bg_about bg-cover bg-center"
       >
-        <div className="container flex flex-col border-4 border-green-400">
+        <div className="container flex flex-col">
           <Title text="About" />
 
           <div className="flex flex-col font-borel font-bold text-lg lg:text-xl text-center mt-5 px-4 text-tertiary-500">
