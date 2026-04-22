@@ -3,7 +3,7 @@ import ingredientService from "../../services/ingredients.service";
 import { Title } from "../../shared/Title";
 import { Pagination } from "../../shared/Pagination";
 import { FullScreen } from "../../shared/FullScreen";
-import { IngredientCard } from "../../features/ingredients/ingredientCard";
+import { IngredientCard } from "../../features/ingredients/IngredientCard";
 import { IngredientText } from "../../features/ingredients/IngredientText";
 
 export const Ingredients = () => {

@@ -9,7 +9,7 @@ export const IngredientCard = (props) => {
 
   return (
     <li
-      className={`relative flex flex-col w-[18rem] max-h-24 mx-auto odd:bg_ingredient1 even:bg_ingredient2 bg-no-repeat bg-cover bg-center rounded-lg z-1 border-4 border-red-500 ${active ? `` : ``}`}
+      className={`relative flex flex-col w-[18rem] h-[278px] mx-auto odd:bg_ingredient1 even:bg_ingredient2 bg-no-repeat bg-cover bg-center rounded-lg z-1 border-4 border-blue-500 transition-all duration-500 ${active ? `h-[348px]` : `h-[278px]`}`}
     >
       <div className="flex flex-col flex-1 p-2 z-3">
         <div className="relative flex justify-center">
