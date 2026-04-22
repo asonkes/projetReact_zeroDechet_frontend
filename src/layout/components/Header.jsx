@@ -1,6 +1,4 @@
-import { Link } from "react-router";
 import { NavItem } from "../../shared/NavItem";
-import { NavHashLink } from "react-router-hash-link";
 
 export const Header = () => {
   return (

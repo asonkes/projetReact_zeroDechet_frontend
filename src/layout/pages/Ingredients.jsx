@@ -51,17 +51,19 @@ export const Ingredients = () => {
     <div className="bg-primary-600">
       <Title text="Ingrédients" className="text-white" />
       <div className="w-full container p-4 xxs:p-8">
-        <ul className="w-fit m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 border-4 border-red-500">
+        <ul className="w-fit m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {currentData.map((ingredient) => (
             <li
-              className="relative flex flex-col w-[18rem] max-h-[24rem] mx-auto odd:bg_ingredient1 even:bg_ingredient2 bg-no-repeat bg-cover bg-center z-1 border-4 border-blue-600"
+              className="relative flex flex-col w-[18rem] max-h-[24rem] mx-auto odd:bg_ingredient1 even:bg_ingredient2 bg-no-repeat bg-cover bg-center rounded-lg z-1"
               key={ingredient._id}
             >
               <div className="flex flex-col flex-1 p-2 z-3">
                 <div className="relative flex justify-center">
-                  <h3 className="w-auto absolute top-[65%] font-montserrat font-semibold text-white text-lg text-center bg-special p-3 border-4 border-red-500">
-                    {ingredient.name}
-                  </h3>
+                  <div className="w-[9rem] absolute bottom-0 flex items-center">
+                    <h3 className="w-[9rem] h-[4rem] font-montserrat font-semibold text-white text-lg text-center bg-gradient-to-t from-special-black to-transparent">
+                      {ingredient.name}
+                    </h3>
+                  </div>
                   <img
                     width="220"
                     height="280"
@@ -72,32 +74,29 @@ export const Ingredients = () => {
                 </div>
 
                 <div className="absolute flex-1 w-full h-[62%] top-[40%] left-0 py-4 px-3 xs:px-8 lg:px-6 2xl:px-10 -z-2">
-                  <div className="h-full bg-white"></div>
+                  <div
+                    className={`h-full rounded-md ${active ? `bg-special-white` : `bg-none`}`}
+                  ></div>
                 </div>
 
-                <div 
-                  className={
-                    `flex-1 font-quicksand px-3 xs:px-8 lg:px-6 2xl:px-10 py-2 border-4 border-amber-500
-                    ${active ? `opacity-100 block` : `opacity-0 hidden` }
-                    `
-                    }>
+                <div
+                  className={`flex-1 font-quicksand font-medium px-3 xs:px-8 lg:px-6 2xl:px-10 py-2
+                    ${active ? `opacity-100 block` : `opacity-0 hidden`}
+                    `}
+                >
                   {ingredient.description}
                 </div>
-                <div className={`
-                  flex justify-around px-3 xs:px-8 lg:px-6 2xl:px-10 border-4 border-red-600
-                  ${active ? `py-2` : `py-4` }
-                  `}>
-                  <button 
-                  className="font-montserrat bg-primary-600 text-white cursor-pointer py-2 px-2 hover:scale-105"
-                  >
-                    Ajouter
-                  </button>
-                  <button 
-                    className="font-montserrat bg-primary-600 text-white cursor-pointer py-2 px-2 hover:scale-105"
+                <div
+                  className={`
+                  flex justify-around px-3 xs:px-8 lg:px-6 2xl:px-10
+                  ${active ? `py-2` : `py-4`}
+                  `}
+                >
+                  <ButtonCard text="Ajouter" />
+                  <ButtonCard
+                    text="Voir plus"
                     onClick={() => setActive(!active)}
-                  >
-                    Voir plus
-                  </button>
+                  />
                 </div>
               </div>
             </li>

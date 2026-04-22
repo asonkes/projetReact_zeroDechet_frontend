@@ -5,7 +5,7 @@ export const NavItem = ({ text, to, className = "" }) => {
   const isHash = to.includes("#");
   const Component = isHash ? NavHashLink : NavLink;
 
-   // Props supplémentaires uniquement pour NavHashLink
+  // Props supplémentaires uniquement pour NavHashLink
   const extraProps = isHash ? { smooth: true } : {};
 
   return (

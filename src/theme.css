@@ -5,12 +5,14 @@
 
 @font-face {
   font-family: Montserrat;
-  src: url("/fonts/Montserrat/Montserrat-VariableFont_wght.ttf") format("truetype");
+  src: url("/fonts/Montserrat/Montserrat-VariableFont_wght.ttf")
+    format("truetype");
 }
 
 @font-face {
   font-family: Quicksand;
-  src: url("/fonts/Quicksand/Quicksand-VariableFont_wght.ttf") format("truetype");
+  src: url("/fonts/Quicksand/Quicksand-VariableFont_wght.ttf")
+    format("truetype");
 }
 
 @font-face {
@@ -90,7 +92,8 @@
   --color-tertiary-950: #351d13;
 
   /* Special color */
-  --color-special: rgba(212, 220, 140, 0.6);
+  --color-special-white: rgba(255, 255, 255, 0.8);
+  --color-special-black: rgba(0, 0, 0, 0.8);
 
   /* Spacing */
   --spacing-175: 17.5rem;
