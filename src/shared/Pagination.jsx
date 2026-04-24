@@ -1,7 +1,8 @@
-import { ButtonCard } from "../shared/button/ButtonCard";
+import { IngredientButton } from "../features/ingredients/IngredientButton";
 
-export const Pagination = ({ totalPages, currentPage, onPageChange }) => {
-  const maxVisiblePages = 4;
+export const Pagination = (props) => {
+  const { totalPages, currentPage, onPageChange } = props;
+  const maxVisiblePages = 6;
 
   let pages = [];
 
@@ -35,40 +36,36 @@ export const Pagination = ({ totalPages, currentPage, onPageChange }) => {
   }
 
   return (
-    <div className="flex justify-center text-white border-4 border-amber-500">
-      <button
+    <div className="max-w-full flex justify-center font-montserrat text-base text-white pt-4 px-2">
+      <IngredientButton
+        text="Prev"
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className="bg-secondary-400 cursor-pointer m-2 p-2 disabled:opacity-10"
-      >
-        Prev
-      </button>
+        className="bg-secondary-400 disabled:opacity-10"
+      />
 
       {pages.map((p, index) =>
         p === "..." ? (
-          <span key={index} className="m-2 p-2 opacity-60">
+          <span key={index} className="m-1 xs:m-2 p-1 xs:p-2 opacity-60">
             ...
           </span>
         ) : (
-          <ButtonCard
+          <IngredientButton
             key={index}
             onClick={() => onPageChange(p)}
-            className={`cursor-pointer m-2 p-2 ${
-              currentPage === p ? "bg-secondary-400" : "bg-green-400"
-            }`}
+            className={` ${currentPage === p && "bg-secondary-400"}`}
           >
             {p}
-          </ButtonCard>
+          </IngredientButton>
         ),
       )}
 
-      <button
+      <IngredientButton
+        text="Next"
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="bg-secondary-400 cursor-pointer m-2 p-2 disabled:opacity-10"
-      >
-        Next
-      </button>
+        className="bg-secondary-400 disabled:opacity-10"
+      />
     </div>
   );
 };
