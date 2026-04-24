@@ -9,9 +9,9 @@ export const IngredientCard = (props) => {
 
   return (
     <li
-      className={`relative flex flex-col w-[18rem] h-17-375 mx-auto odd:bg_ingredient1 even:bg_ingredient2 bg-no-repeat bg-cover bg-center rounded-lg z-1 border-4 border-blue-500 transition-all duration-500 ${active ? `h-21-75` : `h-17-375`}`}
+      className={`relative flex flex-col w-[18rem] h-17-375 mx-auto odd:bg_ingredient1 even:bg_ingredient2 bg-no-repeat bg-cover bg-center rounded-lg z-1 transition-all duration-500 ease-in-out ${active ? `h-[24rem]` : `h-17-375`}`}
     >
-      <div className="flex flex-col flex-1 p-2 z-3">
+      <div className="flex flex-col flex-1 px-5 py-2 z-3">
         <div className="relative flex justify-center">
           <div className="w-9 absolute bottom-0 flex items-center pt-10 bg-linear-to-t from-special-black to-transparent">
             <h3 className="w-9 h-16 font-montserrat font-semibold text-white text-lg text-center">
@@ -27,14 +27,14 @@ export const IngredientCard = (props) => {
           />
         </div>
 
-        <div className="absolute flex-1 w-full h-[62%] top-[40%] left-0 py-4 px-3 xs:px-8 lg:px-6 2xl:px-10 -z-2">
+        <div className="absolute w-full h-[62%] top-[40%] left-0 py-4 px-3 xs:px-8 lg:px-6 2xl:px-10 -z-2">
           <div
-            className={`h-full rounded-md ${active ? `bg-special-white` : `bg-none`}`}
+            className={`h-full rounded-md origin-top transition-all duration-800 ease-out bg-special-white ${active ? `opacity-100 scale-y-100` : `opacity-0 scale-y-0`}`}
           ></div>
         </div>
 
         <IngredientText
-          className={`flex-1 px-3 xs:px-8 lg:px-6 2xl:px-10 py-2 ${active ? `opacity-100 block` : `opacity-0 hidden`}`}
+          className={`flex-1 px-3 xs:px-8 lg:px-6 2xl:px-10 pt-2 transition-all duration-500 ease-out overflow-hidden ${active ? `opacity-100 max-h-45` : `opacity-0 max-h-0`}`}
         >
           {ingredient.description}
         </IngredientText>
