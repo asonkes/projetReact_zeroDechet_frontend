@@ -17,35 +17,30 @@ export const Ingredients = () => {
 
   // Pour la pagination
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const itemsPerPage = 8;
 
   useEffect(() => {
     const response = async () => {
       try {
-        const data = await ingredientService.getAll();
-
-        /** On fait une copie du tableau de base, au sinon 'sort()' copie le tableau de base */
-        const sortedWords = [...data.ingredients].sort((a, b) =>
-          a.name.localeCompare(b.name),
+        // Appel backend paginé
+        const data = await ingredientService.getPaginated(
+          currentPage,
+          itemsPerPage,
         );
 
-        setIngredients(sortedWords);
+        console.log("FRONT → données reçues :", data);
+
+        /* Backend renvoie déjà items, page, limit, totalItems, total Pages => plus besoin */
+        setIngredients(data.items);
+        setTotalPages(data.totalPages);
       } catch (error) {
         console.log(error);
       }
     };
 
     response();
-  }, []);
-
-  /* Va renvoyer le nombre de pages totales, ici 59/8 => 8pages */
-  const totalPages = Math.ceil(ingredients.length / itemsPerPage);
-
-  /*  */
-  const currentData = ingredients.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage,
-  );
+  }, [currentPage]);
 
   return (
     <section className="w-full bg-primary-600 border-4 border-red-400">
@@ -65,7 +60,7 @@ export const Ingredients = () => {
           />
 
           <ul className="w-fit m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {currentData.map((ingredient) => (
+            {ingredients.map((ingredient) => (
               <IngredientCard key={ingredient._id} ingredient={ingredient} />
             ))}
           </ul>
