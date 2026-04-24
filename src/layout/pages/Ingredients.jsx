@@ -20,14 +20,23 @@ export const Ingredients = () => {
   const [totalPages, setTotalPages] = useState(1);
   const itemsPerPage = 8;
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const response = async () => {
+      /** On met le 'setLoading' dans la fonction asynchrone
+       * Au sinon, react voit le setLoading => donc re-render
+       * Avant que le 'useEffect' soit lancé
+       */
+      setLoading(true);
       try {
         // Appel backend paginé
         const data = await ingredientService.getPaginated(
           currentPage,
           itemsPerPage,
         );
+
+        setLoading(false);
 
         console.log("FRONT → données reçues :", data);
 
@@ -42,7 +51,9 @@ export const Ingredients = () => {
     response();
   }, [currentPage]);
 
-  return (
+  return loading ? (
+    <p>Loading</p>
+  ) : (
     <section className="w-full min-h-[calc(100vh-102px)] bg-primary-600">
       <FullScreen
         height="min-h-[calc(100vh-106.5px)]"
