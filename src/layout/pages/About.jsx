@@ -8,7 +8,7 @@ export const About = (props) => {
   return (
     <section id={id} className="w-full">
       <FullScreen
-        height="min-h-[calc(100vh-106.5px)]"
+        height="min-h-[calc(100vh-102px)]"
         className="flex flex-col bg_about_mobile sm:bg_about_tablet lg:bg_about bg-cover bg-center"
       >
         <div className="container flex flex-col">

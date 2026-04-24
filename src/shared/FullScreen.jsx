@@ -3,7 +3,7 @@ export const FullScreen = (props) => {
   const {
     children,
     className = "",
-    height = "min-h-[calc(100vh-64.5px)]",
+    height = "min-h-[calc(100vh-60px)]",
   } = props;
 
   {
