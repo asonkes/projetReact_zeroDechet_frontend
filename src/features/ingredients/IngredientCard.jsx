@@ -9,9 +9,9 @@ export const IngredientCard = (props) => {
 
   return (
     <li
-      className={`relative flex flex-col w-[18rem] h-17-375 mx-auto odd:bg_ingredient1 even:bg_ingredient2 bg-no-repeat bg-cover bg-center rounded-lg z-1 transition-all duration-500 ease-in-out ${active ? `h-[24rem]` : `h-17-375`}`}
+      className={`relative flex flex-col w-[18rem] h-17-375 mx-auto odd:bg_ingredient1 even:bg_ingredient2 bg-no-repeat bg-cover bg-center rounded-lg z-1 transition-all duration-500 ease-in-out ${active ? `h-24` : `h-17-375`}`}
     >
-      <div className="flex flex-col flex-1 px-5 py-2 z-3">
+      <div className="h-full flex flex-col flex-1 px-3 py-2 z-3">
         <div className="relative flex justify-center">
           <div className="w-9 absolute bottom-0 flex items-center pt-10 bg-linear-to-t from-special-black to-transparent">
             <h3 className="w-9 h-16 font-montserrat font-semibold text-white text-lg text-center">
@@ -40,7 +40,7 @@ export const IngredientCard = (props) => {
         </IngredientText>
 
         <div
-          className={`flex justify-around px-3 xs:px-8 lg:px-6 2xl:px-10 ${active ? `py-2` : `py-4`}`}
+          className={`flex justify-around px-3 xs:px-8 lg:px-6 ${active ? `py-4` : `py-4`}`}
         >
           <ButtonCard text="Ajouter" />
           <ButtonCard text="Voir plus" onClick={() => setActive(!active)} />

@@ -5,6 +5,7 @@ import { Pagination } from "../../shared/Pagination";
 import { FullScreen } from "../../shared/FullScreen";
 import { IngredientCard } from "../../features/ingredients/IngredientCard";
 import { IngredientText } from "../../features/ingredients/IngredientText";
+import { Loader } from "../../shared/Loader";
 
 export const Ingredients = () => {
   // Pk useState()
@@ -52,7 +53,14 @@ export const Ingredients = () => {
   }, [currentPage]);
 
   return loading ? (
-    <p>Loading</p>
+    <section className="w-full min-h-[calc(100vh-102px)] bg-primary-600">
+      <FullScreen
+        height="min-h-[calc(100vh-106.5px)]"
+        className="flex justify-center items-center"
+      >
+        <Loader />
+      </FullScreen>
+    </section>
   ) : (
     <section className="w-full min-h-[calc(100vh-102px)] bg-primary-600">
       <FullScreen

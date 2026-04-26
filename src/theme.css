@@ -104,6 +104,7 @@
   --color-special-black: rgba(0, 0, 0, 0.8);
 
   /* Spacing */
+  --spacing-5: 5rem;
   --spacing-9: 9rem;
   --spacing-11: 11rem;
   --spacing-11-25: 11.25rem;
@@ -111,6 +112,7 @@
   --spacing-17-5: 17.5rem;
   --spacing-22: 22rem;
   --spacing-24: 24rem;
+  --spacing-45: 45rem;
   --spacing-55: 55rem;
 
   /* Shadow */
