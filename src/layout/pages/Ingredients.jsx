@@ -6,6 +6,7 @@ import { FullScreen } from "../../shared/FullScreen";
 import { IngredientCard } from "../../features/ingredients/IngredientCard";
 import { IngredientText } from "../../features/ingredients/IngredientText";
 import { Loader } from "../../shared/Loader";
+import { SkeletonCard } from "../../shared/skeleton/SkeletonCard";
 
 export const Ingredients = () => {
   // Pk useState()
@@ -19,31 +20,33 @@ export const Ingredients = () => {
   // Pour la pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const itemsPerPage = 8;
 
+  const [firstLoad, setFirstLoad] = useState(true);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const response = async () => {
+      setLoading(true);
+
       /** On met le 'setLoading' dans la fonction asynchrone
        * Au sinon, react voit le setLoading => donc re-render
        * Avant que le 'useEffect' soit lancé
        */
-      setLoading(true);
-      try {
-        // Appel backend paginé
-        const data = await ingredientService.getPaginated(
-          currentPage,
-          itemsPerPage,
-        );
 
-        setLoading(false);
+      try {
+        // Appel backend pagination
+        // CurrentPage ==> num de la page que laquelle on se trouve
+        const data = await ingredientService.getPaginated(currentPage);
 
         console.log("FRONT → données reçues :", data);
 
         /* Backend renvoie déjà items, page, limit, totalItems, total Pages => plus besoin */
         setIngredients(data.items);
         setTotalPages(data.totalPages);
+
+        setLoading(false);
+
+        setFirstLoad(false);
       } catch (error) {
         console.log(error);
       }
@@ -52,16 +55,20 @@ export const Ingredients = () => {
     response();
   }, [currentPage]);
 
-  return loading ? (
-    <section className="w-full min-h-[calc(100vh-102px)] bg-primary-600">
-      <FullScreen
-        height="min-h-[calc(100vh-106.5px)]"
-        className="flex justify-center items-center"
-      >
-        <Loader />
-      </FullScreen>
-    </section>
-  ) : (
+  if (firstLoad && loading) {
+    return (
+      <section className="w-full min-h-[calc(100vh-102px)] bg-primary-600">
+        <FullScreen
+          height="min-h-[calc(100vh-106.5px)]"
+          className="flex justify-center items-center"
+        >
+          <Loader />
+        </FullScreen>
+      </section>
+    );
+  }
+
+  return (
     <section className="w-full min-h-[calc(100vh-102px)] bg-primary-600">
       <FullScreen
         height="min-h-[calc(100vh-106.5px)]"
@@ -79,9 +86,14 @@ export const Ingredients = () => {
           />
 
           <ul className="w-fit m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {ingredients.map((ingredient) => (
-              <IngredientCard key={ingredient._id} ingredient={ingredient} />
-            ))}
+            {loading
+              ? [...Array(8)].map((_, i) => <SkeletonCard key={i} />)
+              : ingredients.map((ingredient) => (
+                  <IngredientCard
+                    key={ingredient._id}
+                    ingredient={ingredient}
+                  />
+                ))}
           </ul>
 
           <Pagination
