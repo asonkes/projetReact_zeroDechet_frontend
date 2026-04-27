@@ -1,3 +1,7 @@
+/***************************************/
+/** Composant pour la page Ingrédient  */
+/***************************************/
+
 import { useEffect, useState } from "react";
 import ingredientService from "../../services/ingredients.service";
 import { Title } from "../../shared/Title";
@@ -21,17 +25,17 @@ export const Ingredients = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
+  /* UseState pour le 'loader' */
+  /* On le met en true => reste actif */
   const [firstLoad, setFirstLoad] = useState(true);
+  /* UseState pour activer le skeleton */
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const response = async () => {
+      /* Ici agit pour le skeleton, donc doit se remettre à true avec chaque re-render */
+      /* Avant chaque appel à l'API */
       setLoading(true);
-
-      /** On met le 'setLoading' dans la fonction asynchrone
-       * Au sinon, react voit le setLoading => donc re-render
-       * Avant que le 'useEffect' soit lancé
-       */
 
       try {
         // Appel backend pagination
@@ -44,9 +48,11 @@ export const Ingredients = () => {
         setIngredients(data.items);
         setTotalPages(data.totalPages);
 
-        setLoading(false);
-
+        /* Ici passe à 'false' pour le loader => car on a reçu la réponse de l'API (les 8ers éléments) */
+        /* Et donc le loader ne doit plus fonctionner */
         setFirstLoad(false);
+
+        setLoading(false);
       } catch (error) {
         console.log(error);
       }

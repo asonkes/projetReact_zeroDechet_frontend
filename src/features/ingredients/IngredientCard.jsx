@@ -1,3 +1,7 @@
+/********************************************/
+/** Composant pour la card des ingrédients  */
+/********************************************/
+
 import { useState } from "react";
 import { ButtonCard } from "../../shared/button/ButtonCard";
 import { IngredientImage } from "./IngredientImage";
@@ -23,22 +27,23 @@ export const IngredientCard = (props) => {
             </h3>
           </div>
 
-          {/** Si image pas téléchargé, on affiche le skeleton */}
-          {!imgLoaded && <SkeletonImage />}
+          <div className="relative w-9 h-11 min-h-11-25 overflow-hidden">
+            {!imgLoaded && (
+              <SkeletonImage className="absolute inset-0 w-full h-full border-4 border-gray-300 rounded-t-[9.5rem] z-10" />
+            )}
 
-          {/** Ici image pas chargée => opacity 0 */}
-          <IngredientImage
-            width="220"
-            height="280"
-            src={`/images/ingredients/${ingredient.slug}.webp`}
-            alt={`Image représentant l'ingrédient '${ingredient.name}' sur fond en bois foncé`}
-            onLoad={() => {
-              setImgLoaded(true);
-            }}
-            className={`transition-opacity duration-100 ${
-              imgLoaded ? "opacity-100" : "opacity-0"
-            }`}
-          />
+            <IngredientImage
+              width="220"
+              height="280"
+              src={`/images/ingredients/${ingredient.slug}.webp`}
+              alt={`Image représentant l'ingrédient '${ingredient.name}' sur fond en bois foncé`}
+              onLoad={() => setImgLoaded(true)}
+              className={`absolute inset-0 w-full h-full transition-opacity duration-200 ${
+                imgLoaded ? "opacity-100" : "opacity-0"
+              }`}
+            />
+          </div>
+          {/** Si image pas téléchargé, on affiche le skeleton */}
         </div>
 
         <div className="absolute w-full h-[62%] top-[40%] left-0 py-4 px-3 xs:px-8 lg:px-6 2xl:px-10 -z-2">

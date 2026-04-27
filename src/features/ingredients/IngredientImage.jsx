@@ -1,3 +1,8 @@
+/********************************************/
+/** Composant pour l'image des ingrédients  */
+/********************************************/
+
+/* On rajoute '...props' ==> comme ça dans le composant parent, si on ajoute une prop, elle sera activée */
 export const IngredientImage = ({
   width,
   height,

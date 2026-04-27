@@ -1,3 +1,7 @@
+/************************************/
+/** Composant pour la page Contact  */
+/************************************/
+
 import { FullScreen } from "../../shared/FullScreen";
 import { Loader } from "../../shared/Loader";
 

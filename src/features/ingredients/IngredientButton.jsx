@@ -1,3 +1,6 @@
+/**********************************************/
+/** Composant pour le bouton des ingrédients  */
+/**********************************************/
 export const IngredientButton = (props) => {
   const { children, text, onClick, disabled, className = "" } = props;
   return (
