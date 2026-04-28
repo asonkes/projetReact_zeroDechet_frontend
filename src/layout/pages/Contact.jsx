@@ -12,7 +12,7 @@ export const Contact = () => {
         height="min-h-[calc(100vh-106.5px)]"
         className="flex justify-center items-center"
       >
-        <Loader />
+        <p>Page Contact</p>
       </FullScreen>
     </section>
   );

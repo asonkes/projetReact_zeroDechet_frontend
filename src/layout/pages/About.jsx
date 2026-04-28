@@ -13,7 +13,7 @@ export const About = (props) => {
     <section id={id} className="w-full">
       <FullScreen
         height="min-h-[calc(100vh-102px)]"
-        className="flex flex-col bg_about_mobile sm:bg_about_tablet lg:bg_about bg-cover bg-center"
+        className="flex flex-col bg_about_mobile sm:bg_about_tablet lg:bg_about bg-no-repeat bg-cover bg-center"
       >
         <div className="container flex flex-col">
           <Title text="About" />
@@ -26,7 +26,7 @@ export const About = (props) => {
             <p className="py-2">En 2 clicks, vous trouvez votre recette...</p>
           </div>
 
-          <div className="flex flex-col font-bree_Serif text-base lg:text-lg text-center italic mt-5 px-4">
+          <div className="flex flex-col font-bree_Serif text-base lg:text-lg text-center italic mt-4 px-4">
             <p className="py-2">
               <span className="underline underline-offset-4">
                 L’idée est simple :
@@ -60,7 +60,7 @@ export const About = (props) => {
             </p>
           </div>
 
-          <div className="font-bree_Serif text-center mt-5">
+          <div className="font-bree_Serif text-center mt-4">
             <h4 className="text-lg lg:text-xl py-2">
               <span className="underline underline-offset-4">
                 Le principe est simple :
