@@ -13,7 +13,9 @@ export const NavItem = ({ text, to, className = "" }) => {
   const extraProps = isHash ? { smooth: true } : {};
 
   return (
-    <li className={`p-3 font-borel text-xl ${className}`}>
+    <li
+      className={`p-3 mx-2 font-borel text-xl hover:scale-105 transition-transform duration-200 ease-out ${className}`}
+    >
       <Component
         to={to}
         {...extraProps}
