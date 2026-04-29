@@ -1,7 +1,7 @@
 import { NavLink, useLocation } from "react-router-dom";
 import { NavHashLink } from "react-router-hash-link";
 
-export const NavItem = ({ text, to, className = "" }) => {
+export const NavItem = ({ children, text, to, className = "" }) => {
   const location = useLocation();
   const isHash = to.includes("#");
   const Component = isHash ? NavHashLink : NavLink;
@@ -14,7 +14,7 @@ export const NavItem = ({ text, to, className = "" }) => {
 
   return (
     <li
-      className={`p-3 mx-2 font-borel text-xl hover:scale-105 transition-transform duration-200 ease-out ${className}`}
+      className={`border-b-primary-600 px-3 py-4 mx-2 font-borel text-xl hover:scale-105 transition-transform duration-200 ease-out border-b-2 lg:flex lg:items-center lg:py-0 lg:border-none ${className}`}
     >
       <Component
         to={to}
@@ -30,7 +30,7 @@ export const NavItem = ({ text, to, className = "" }) => {
             return `${
               location.pathname === "/" && location.hash === ""
                 ? "text-secondary-500"
-                : "text-primary-600"
+                : "text-primary-600 flex items-center hover:text-secondary-500"
             }`;
           }
 
@@ -39,15 +39,15 @@ export const NavItem = ({ text, to, className = "" }) => {
             return `${
               location.hash === "#about"
                 ? "text-secondary-500"
-                : "text-primary-600"
+                : "text-primary-600 flex items-center hover:text-secondary-500"
             }`;
           }
 
           /* Pour le reste */
-          return `${isActive ? "text-secondary-500" : "text-primary-600"}`;
+          return `${isActive ? "text-secondary-500" : "text-primary-600 flex items-center hover:text-secondary-500"}`;
         }}
       >
-        {text}
+        {children || text}
       </Component>
     </li>
   );
