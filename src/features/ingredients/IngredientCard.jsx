@@ -3,6 +3,8 @@
 /********************************************/
 
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlassPlus } from "@fortawesome/free-solid-svg-icons";
 import { ButtonCard } from "../../shared/button/ButtonCard";
 import { IngredientImage } from "./IngredientImage";
 import { IngredientText } from "./IngredientText";
@@ -28,7 +30,24 @@ export const IngredientCard = (props) => {
             </h3>
           </div>
 
-          <div className="relative w-9 h-11 min-h-11-25 overflow-hidden">
+          {/** On met 'group' sur l'élément parent qui doit déclencher qqchose */}
+          {/** et group:hover sur l'enfant qui doit */}
+          <div className="relative w-9 h-11 min-h-11-25 overflow-hidden group">
+            {/** Icone + */}
+            <div
+              onClick={() =>
+                onClick(`/images/ingredients/${ingredient.slug}.webp`)
+              }
+              className="absolute bottom-[50%] right-1 rounded-md p-0.5 bg-special-white z-40
+               opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out"
+            >
+              <FontAwesomeIcon
+                icon={faMagnifyingGlassPlus}
+                className="text-xl text-primary-600 cursor-pointer"
+              />
+            </div>
+
+            {/** Skeleton de l'image */}
             {!imgLoaded && (
               <SkeletonImage className="absolute inset-0 w-full h-full border-4 border-gray-300 rounded-t-[9.5rem] z-10" />
             )}
@@ -39,9 +58,6 @@ export const IngredientCard = (props) => {
               src={`/images/ingredients/${ingredient.slug}.webp`}
               alt={`Image représentant l'ingrédient '${ingredient.name}' sur fond en bois foncé`}
               onLoad={() => setImgLoaded(true)}
-              onClick={() =>
-                onClick(`/images/ingredients/${ingredient.slug}.webp`)
-              }
               className={`absolute inset-0 w-full h-full transition-opacity duration-200 ${
                 imgLoaded ? "opacity-100" : "opacity-0"
               }

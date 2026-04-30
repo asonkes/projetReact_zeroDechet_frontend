@@ -79,28 +79,33 @@ export const Ingredients = () => {
   }
 
   return (
-    <section className="w-full min-h-[calc(100vh-102px)] bg-primary-600">
+    <section
+      className={`w-full min-h-[calc(100vh-102px)] bg-primary-600 ${lightBoxImage ? `h-[calc(100vh-102px)]` : `min-h-[calc(100vh-102px)]`}`}
+    >
       <FullScreen
-        height="min-h-[calc(100vh-106.5px)]"
+        height={`${lightBoxImage ? `h-[calc(100vh-102px)]` : `min-h-[calc(100vh-102px)]`}`}
         className="flex flex-col"
       >
         <Title
           text="Quels ingrédients as-tu récoltés ?"
-          className="text-white"
+          className={`text-white ${lightBoxImage ? "opacity-0 invisible" : "opacity-100 visible"}`}
         />
-        <div className="w-full flex flex-col flex-1 container py-4">
+
+        {lightBoxImage && (
+          <IngredientLightBox
+            src={lightBoxImage}
+            onClose={() => setLightBoxImage(null)}
+          />
+        )}
+
+        <div
+          className={`w-full h-auto flex flex-col flex-1 container py-4 ${lightBoxImage ? "opacity-0 invisible" : "opacity-100 visible"}`}
+        >
           <IngredientText
             className="text-xl text-white text-center p-4"
             text="Sélectionne les ingrédients que tu as dans ton potager pour
             découvrir des recettes adaptées."
           />
-
-          {lightBoxImage && (
-            <IngredientLightBox
-              src={lightBoxImage}
-              onClose={() => setLightBoxImage(null)}
-            />
-          )}
 
           <ul className="w-fit m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {loading

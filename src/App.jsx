@@ -8,7 +8,7 @@ function App() {
     <>
       <Header />
 
-      <main className="max-w-full flex flex-col flex-1 mt-16">
+      <main className="max-w-full flex flex-col flex-1 mt-3-75">
         <Outlet />
       </main>
 
