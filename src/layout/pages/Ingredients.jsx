@@ -11,6 +11,7 @@ import { IngredientCard } from "../../features/ingredients/IngredientCard";
 import { IngredientText } from "../../features/ingredients/IngredientText";
 import { Loader } from "../../shared/Loader";
 import { SkeletonCard } from "../../shared/skeleton/SkeletonCard";
+import { IngredientLightBox } from "../../features/ingredients/IngredientLightBox";
 
 export const Ingredients = () => {
   // Pk useState()
@@ -24,6 +25,9 @@ export const Ingredients = () => {
   // Pour la pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+
+  // Pour la lightbox
+  const [lightBoxImage, setLightBoxImage] = useState(null);
 
   /* UseState pour le 'loader' */
   /* On le met en true => reste actif */
@@ -91,6 +95,13 @@ export const Ingredients = () => {
             découvrir des recettes adaptées."
           />
 
+          {lightBoxImage && (
+            <IngredientLightBox
+              src={lightBoxImage}
+              onClose={() => setLightBoxImage(null)}
+            />
+          )}
+
           <ul className="w-fit m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {loading
               ? [...Array(8)].map((_, i) => <SkeletonCard key={i} />)
@@ -98,6 +109,7 @@ export const Ingredients = () => {
                   <IngredientCard
                     key={ingredient._id}
                     ingredient={ingredient}
+                    onClick={(src) => setLightBoxImage(src)}
                   />
                 ))}
           </ul>

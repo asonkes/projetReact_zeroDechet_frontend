@@ -7,9 +7,10 @@ import { ButtonCard } from "../../shared/button/ButtonCard";
 import { IngredientImage } from "./IngredientImage";
 import { IngredientText } from "./IngredientText";
 import { SkeletonImage } from "../../shared/skeleton/SkeletonImage";
+import { IngredientLightBox } from "./IngredientLightBox";
 
 export const IngredientCard = (props) => {
-  const { ingredient } = props;
+  const { ingredient, onClick } = props;
   /** Ici active/setActive ==> pour click sur le bouton */
   const [active, setActive] = useState(false);
   /** Permet de savoir si image est téléchargée */
@@ -38,8 +39,12 @@ export const IngredientCard = (props) => {
               src={`/images/ingredients/${ingredient.slug}.webp`}
               alt={`Image représentant l'ingrédient '${ingredient.name}' sur fond en bois foncé`}
               onLoad={() => setImgLoaded(true)}
+              onClick={() =>
+                onClick(`/images/ingredients/${ingredient.slug}.webp`)
+              }
               className={`absolute inset-0 w-full h-full transition-opacity duration-200 ${
                 imgLoaded ? "opacity-100" : "opacity-0"
+              }
               }`}
             />
           </div>

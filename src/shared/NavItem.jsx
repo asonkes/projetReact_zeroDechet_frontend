@@ -44,7 +44,7 @@ export const NavItem = ({ children, text, to, className = "" }) => {
           }
 
           /* Pour le reste */
-          return `${isActive ? "text-secondary-500" : "text-primary-600 flex items-center hover:text-secondary-500"}`;
+          return `${isActive ? "text-secondary-500" : "text-primary-600 hover:text-secondary-500"}`;
         }}
       >
         {children || text}

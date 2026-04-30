@@ -4,6 +4,7 @@ import { Ingredients } from "./layout/pages/Ingredients";
 import { Recipes } from "./layout/pages/Recipes";
 import { Contact } from "./layout/pages/Contact";
 import { NotFound } from "./layout/pages/NotFound";
+import { Login } from "./layout/pages/Login";
 
 export const routes = [
   {
@@ -25,6 +26,10 @@ export const routes = [
       {
         path: "contact",
         Component: Contact,
+      },
+      {
+        path: "login",
+        Component: Login,
       },
       {
         path: "*",
