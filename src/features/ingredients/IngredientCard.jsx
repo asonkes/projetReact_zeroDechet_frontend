@@ -17,6 +17,8 @@ export const IngredientCard = (props) => {
   const [active, setActive] = useState(false);
   /** Permet de savoir si image est téléchargée */
   const [imgLoaded, setImgLoaded] = useState(false);
+  /** Pour les media-queries */
+  const desktop = window.matchMedia("(min-width: 769px)").matches;
 
   return (
     <li
@@ -35,15 +37,17 @@ export const IngredientCard = (props) => {
           <div className="relative w-9 h-11 min-h-11-25 overflow-hidden group">
             {/** Icone + */}
             <div
-              onClick={() =>
-                onClick(`/images/ingredients/${ingredient.slug}.webp`)
-              }
+              onClick={() => {
+                if (desktop) {
+                  onClick(`/images/ingredients/${ingredient.slug}.webp`);
+                }
+              }}
               className="absolute bottom-[50%] right-1 rounded-md p-0.5 bg-special-white z-40
-               opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out"
+              opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 ease-in-out"
             >
               <FontAwesomeIcon
                 icon={faMagnifyingGlassPlus}
-                className="text-xl text-primary-600 cursor-pointer"
+                className="text-xl text-primary-600 sm:cursor-pointer"
               />
             </div>
 

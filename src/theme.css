@@ -134,6 +134,7 @@
   --spacing-17-5: 17.5rem;
   --spacing-22: 22rem;
   --spacing-24: 24rem;
+  --spacing-36: 36rem;
   --spacing-45: 45rem;
   --spacing-55: 55rem;
 
@@ -159,10 +160,12 @@
   --bg_notFound_mobile: url("/images/background/notFound/bg_notFound_mobile.webp");
 
   /* Pour les breakpoint */
-  /*400px*/
+  /* 400px */
   --breakpoint-xs: 25rem;
-  /*350px*/
+  /* 350px */
   --breakpoint-xxs: 21.875rem;
+  /* 640px */
+  --breakpoint-sm: 40rem;
 
   /* Pour les animations */
   /* 1.6s => temps que l'on veut que ça dure */

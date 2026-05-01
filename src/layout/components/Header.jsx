@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { faCircleUser } from "@fortawesome/free-regular-svg-icons";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 export const Header = () => {
   const [isActive, setIsActive] = useState(false);
@@ -54,10 +55,12 @@ export const Header = () => {
             to="ingredients_recoltes"
             text="Ingrédients récoltés"
           />
-          <NavItem to="/recipes" text="Recettes" />
           <NavItem to="/contact" text="Contact" />
           <NavItem to="/login">
             <FontAwesomeIcon icon={faCircleUser} />
+          </NavItem>
+          <NavItem to="/recipes">
+            <FontAwesomeIcon icon={faMagnifyingGlass} />
           </NavItem>
         </ul>
         <div
