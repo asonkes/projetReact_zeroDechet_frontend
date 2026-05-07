@@ -1,7 +1,7 @@
 import { NavLink, useLocation } from "react-router-dom";
 import { NavHashLink } from "react-router-hash-link";
 
-export const NavItem = ({ children, text, to, className = "" }) => {
+export const NavItem = ({ children, text, to, state, className = "" }) => {
   const location = useLocation();
   const isHash = to.includes("#");
   const Component = isHash ? NavHashLink : NavLink;
@@ -18,6 +18,7 @@ export const NavItem = ({ children, text, to, className = "" }) => {
     >
       <Component
         to={to}
+        state={state}
         {...extraProps}
         onClick={() => {
           if (!isHash) {

@@ -3,6 +3,7 @@
 /***************************************/
 
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import ingredientService from "../../services/ingredients.service";
 import { Title } from "../../shared/Title";
 import { Pagination } from "../../shared/Pagination";
@@ -12,6 +13,7 @@ import { IngredientText } from "../../features/ingredients/IngredientText";
 import { Loader } from "../../shared/Loader";
 import { SkeletonCard } from "../../shared/skeleton/SkeletonCard";
 import { IngredientLightBox } from "../../features/ingredients/IngredientLightBox";
+import { SearchBar } from "../../shared/SearchBar";
 
 export const Ingredients = () => {
   // Pk useState()
@@ -34,6 +36,9 @@ export const Ingredients = () => {
   const [firstLoad, setFirstLoad] = useState(true);
   /* UseState pour activer le skeleton */
   const [loading, setLoading] = useState(true);
+  /* Rendre la barre de recherche visible */
+  const location = useLocation();
+  const [isVisibleSearch, setIsVisibleSearch] = useState(false);
 
   useEffect(() => {
     const response = async () => {
@@ -45,8 +50,6 @@ export const Ingredients = () => {
         // Appel backend pagination
         // CurrentPage ==> num de la page que laquelle on se trouve
         const data = await ingredientService.getPaginated(currentPage);
-
-        console.log("FRONT → données reçues :", data);
 
         /* Backend renvoie déjà items, page, limit, totalItems, total Pages => plus besoin */
         setIngredients(data.items);
@@ -64,6 +67,10 @@ export const Ingredients = () => {
 
     response();
   }, [currentPage]);
+
+  useEffect(() => {
+    setIsVisibleSearch(location.state?.openSearch === true);
+  }, [location]);
 
   if (firstLoad && loading) {
     return (
@@ -86,6 +93,14 @@ export const Ingredients = () => {
         height={`${lightBoxImage ? `h-[calc(100vh-102px)]` : `min-h-[calc(100vh-102px)]`}`}
         className="flex flex-col"
       >
+
+      {isVisibleSearch && (
+        <SearchBar 
+          onClose={() => setIsVisibleSearch(false)} 
+          className={`${isVisibleSearch ? `opacity-100 visible` : `opacity-0 invisible`}`}
+        />
+      )}
+
         <Title
           text="Quels ingrédients as-tu récoltés ?"
           className={`text-white ${lightBoxImage ? "opacity-0 invisible" : "opacity-100 visible"}`}

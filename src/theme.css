@@ -5,14 +5,12 @@
 
 @font-face {
   font-family: Montserrat;
-  src: url("/fonts/Montserrat/Montserrat-VariableFont_wght.ttf")
-    format("truetype");
+  src: url("/fonts/Montserrat/Montserrat-VariableFont_wght.ttf") format("truetype");
 }
 
 @font-face {
   font-family: Quicksand;
-  src: url("/fonts/Quicksand/Quicksand-VariableFont_wght.ttf")
-    format("truetype");
+  src: url("/fonts/Quicksand/Quicksand-VariableFont_wght.ttf") format("truetype");
 }
 
 @font-face {
@@ -78,7 +76,7 @@
   --font-quicksand: "Quicksand";
   --font-bree_Serif: "bree_Serif";
 
-  /* Primary Color */
+  /* Primary Color - green */
   --color-primary-50: #f3f8ed;
   --color-primary-100: #e4f0d7;
   --color-primary-200: #cce2b4;
@@ -91,7 +89,7 @@
   --color-primary-900: #304324;
   --color-primary-950: #17240f;
 
-  /* Secondary color */
+  /* Secondary color - rouge */
   --color-secondary-50: #fdf3f3;
   --color-secondary-100: #fde3e3;
   --color-secondary-200: #fccccc;
@@ -104,7 +102,7 @@
   --color-secondary-900: #7b2121;
   --color-secondary-950: #420d0d;
 
-  /* Tertiary color */
+  /* Tertiary color - brun */
   --color-tertiary-50: #f9f6ed;
   --color-tertiary-100: #f2eacf;
   --color-tertiary-200: #e6d5a2;
@@ -120,6 +118,7 @@
   /* Special color */
   --color-special-white: rgba(255, 255, 255, 0.8);
   --color-special-black: rgba(0, 0, 0, 0.3);
+  --color-special-greenLight: rgba(212, 220, 140, 0.8);
 
   /* Spacing */
   --spacing-2-625: 2.65rem;
@@ -176,9 +175,11 @@
     0% {
       transform: translateX(-100%);
     }
+
     60% {
       transform: translateX(100%);
     }
+
     100% {
       transform: translateX(100%);
     }
