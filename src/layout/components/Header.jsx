@@ -78,21 +78,18 @@ export const Header = () => {
             text="Ingrédients récoltés"
           />
           <NavItem to="/contact" text="Contact" />
-          <NavItem to="/login">
+          <NavItem to="/login" className="lg:pt-[14px]">
             <FontAwesomeIcon icon={faCircleUser} />
           </NavItem>
 
           {/** On envoie l'information, je viens sur cette page via la loupe ==> ouvre la barre de recherche */}
           <li
             onClick={handleSearchClick}
-            className="text-primary-600 flex items-center hover:text-secondary-500 border-b-primary-600 px-3 py-4 mx-2 font-borel text-xl cursor-pointer hover:scale-105 transition-transform duration-200 ease-out border-b-2 lg:flex lg:items-center lg:py-0 lg:border-none"
+            className="text-primary-600 flex items-center hover:text-secondary-500 border-b-primary-600 px-3 py-4 mx-2 font-borel text-xl cursor-pointer hover:scale-105 transition-transform duration-200 ease-out border-b-2 lg:flex lg:items-center lg:py-0 -lg:mt-[2px] lg:border-none"
           >
             <FontAwesomeIcon icon={isSearchOpen ? faXmark : faMagnifyingGlass} />
           </li>
 
-          <li className="text-primary-600 flex items-center hover:text-secondary-500 border-b-primary-600 px-3 py-4 mx-2 font-borel text-xl cursor-pointer hover:scale-105 transition-transform duration-200 ease-out border-b-2 lg:flex lg:items-center lg:py-0 lg:border-none">
-            <Button to="/recipes" text="Voir mes recettes" className="px-4 py-2" />
-          </li>
           <li className="text-primary-600 flex items-center hover:text-secondary-500 border-b-primary-600 px-3 py-4 mx-2 font-borel text-xl cursor-pointer hover:scale-105 transition-transform duration-200 ease-out border-b-2 lg:flex lg:items-center lg:py-0 lg:border-none">
             <Button
               to="/recipes"

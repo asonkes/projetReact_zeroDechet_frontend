@@ -14,7 +14,7 @@ export const NavItem = ({ children, text, to, state, className = "" }) => {
 
   return (
     <li
-      className={`border-b-primary-600 px-3 py-4 mx-2 font-borel text-xl hover:scale-105 transition-transform duration-200 ease-out border-b-2 lg:flex lg:items-center lg:py-0 lg:border-none ${className}`}
+      className={`border-b-primary-600 px-3 py-4 mx-2 font-borel text-xl hover:scale-105 transition-transform duration-200 ease-out border-b-2 lg:py-4 lg:border-none ${className}`}
     >
       <Component
         to={to}
