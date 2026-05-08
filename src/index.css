@@ -20,3 +20,8 @@ body,
 .container {
   @apply w-full mx-auto;
 }
+
+.h-fill {
+  height: -webkit-fill-available;
+  height: fill-available;
+}

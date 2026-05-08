@@ -68,6 +68,7 @@ export const Ingredients = () => {
     response();
   }, [currentPage]);
 
+  /* Use Effcet sert à récupérer l'état envoyé par le header et à ouvrir la searchBar qd on arrive sur la loupe */
   useEffect(() => {
     setIsVisibleSearch(location.state?.openSearch === true);
   }, [location]);
@@ -93,13 +94,9 @@ export const Ingredients = () => {
         height={`${lightBoxImage ? `h-[calc(100vh-102px)]` : `min-h-[calc(100vh-102px)]`}`}
         className="flex flex-col"
       >
-
-      {isVisibleSearch && (
-        <SearchBar 
-          onClose={() => setIsVisibleSearch(false)} 
-          className={`${isVisibleSearch ? `opacity-100 visible` : `opacity-0 invisible`}`}
+        <SearchBar
+          className={`transition-opacity duration-500 ease-in-out ${isVisibleSearch ? "opacity-100 visible" : "opacity-0 invisible"}`}
         />
-      )}
 
         <Title
           text="Quels ingrédients as-tu récoltés ?"
