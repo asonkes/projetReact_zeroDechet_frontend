@@ -15,6 +15,9 @@ export const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  /* Pour le scroll avec le header */
+  const [isScroll, setIsScroll] = useState(false);
+
   // L'état réel de la search bar (vient de la page ingrédients)
   const isSearchOpen = location.state?.openSearch === true;
 
@@ -49,6 +52,39 @@ export const Header = () => {
     };
   }, [isActive]);
 
+  /* On doit fair eun useEffect car on scroll dans la fenêtre et c'ets le header qui est impacté */
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+
+      /* Hauteur totale de la page sur l'écran (rendu de ce que l'on voit sur l'ordi ==> grand écran +- 1080px) */
+      const windowHeight = window.innerHeight;
+
+      /* Hauteur totale du document => donc de ma section home + about (avec header et footer)  */
+      const pageHeight = document.body.offsetHeight;
+
+      /* Si partie visible de l'écran + position du scroll = la hauteur totale de la page - footer ==> header s'affiche */
+      if (windowHeight + scrollY >= pageHeight - 40) {
+        setIsScroll(false);
+        return;
+      }
+
+      /* Si scroll dépasse la taille du header => disparait */
+      if (scrollY > 60) {
+        setIsScroll(true);
+      } else {
+        /* Ausinon apparait */
+        setIsScroll(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   /* Gestion du clic sur la loupe */
   const handleSearchClick = () => {
     /* Si on n'est PAS sur la page ingrédients → redirection + ouverture*/
@@ -67,7 +103,7 @@ export const Header = () => {
 
   return (
     <header
-      className={`w-full min-h-3-75 flex items-center border border-primary-600 shadow-primary-400 shadow fixed bg-white z-50`}
+      className={`w-full min-h-3-75 flex items-center border border-primary-600 shadow-primary-400 shadow fixed bg-white z-50 transition-opacity duration-300 ease-in ${isScroll ? `opacity-0` : `opacity-100`}`}
     >
       <nav className="relative w-full h-3-75 inline-flex justify-center">
         <ul
