@@ -12,13 +12,13 @@ export const Contact = () => {
     <section className="w-full min-h-[calc(100vh-102px)]">
       <FullScreen
         height="min-h-[calc(100vh-102px)]"
-        className="bg_contact_mobile lg:bg_contact_tablet xl:bg_contact_xl 2xl:bg_contact bg-contain xl:bg-cover bg-no-repeat bg-top border-4 border-amber-500"
+        className="bg_contact_mobile lg:bg_contact_tablet xl:bg_contact_xl 2xl:bg_contact bg-contain xl:bg-cover bg-no-repeat bg-top"
       >
         <div className="container flex flex-col lg:flex-row justify-center items-center">
           <SplitScreen className="h-auto flex items-center">
             <div className="w-full flex justify-center p-3">
               <img
-                className="w-[18.75rem] h-[25rem] lg:w-[25rem] lg:h-[31.25rem] rounded-t-[13rem] object-cover py- border-4 border-primary-600"
+                className="w-18-75 h-25 lg:w-25 lg:h-31-25 rounded-t-[13rem] object-cover py- border-4 border-primary-600"
                 src="/images/contact/image1.jpg"
                 alt="Image d'une dame blonde qui tient des légumes dans ses mains"
               />

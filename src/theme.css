@@ -150,8 +150,11 @@
   --spacing-11-25: 11.25rem;
   --spacing-17-375: 17.375rem;
   --spacing-17-5: 17.5rem;
+  --spacing-18-75: 18.75rem;
   --spacing-22: 22rem;
   --spacing-24: 24rem;
+  --spacing-25: 25rem;
+  --spacing-31-25: 31.25rem;
   --spacing-36: 36rem;
   --spacing-45: 45rem;
   --spacing-55: 55rem;
@@ -185,6 +188,9 @@
   --bg_contact_xl: url("/images/background/contact/bg_contact_xl.webp");
   --bg_contact_tablet: url("/images/background/contact/bg_contact_tablet.webp");
   --bg_contact_mobile: url("/images/background/contact/bg_contact_mobile.webp");
+
+  /* Pour les width */
+  --width-25: 25rem;
 
   /* Pour les breakpoint */
   /* 400px */
