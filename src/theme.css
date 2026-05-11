@@ -177,6 +177,9 @@
   --bg_notFound_tablet: url("/images/background/notFound/bg_notFound_tablet.webp");
   --bg_notFound_mobile: url("/images/background/notFound/bg_notFound_mobile.webp");
 
+  /* Pour les height */
+  --h-31-25: 500px;
+
   /* Pour la page contact */
   --bg_contact: url("/images/background/contact/bg_contact.webp");
   --bg_contact_xl: url("/images/background/contact/bg_contact_xl.webp");
