@@ -1,3 +1,7 @@
+/******************************/
+/** Composant pour le Footer  */
+/******************************/
+
 export const Footer = () => {
   return (
     <footer className="flex justify-center text-sm text-center text-primary-600 border border-primary-600 font-borel shadow-primary-400 shadow">

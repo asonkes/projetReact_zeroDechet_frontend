@@ -1,3 +1,7 @@
+/**************************************/
+/** Composant pour la NavBar(header)  */
+/**************************************/
+
 import { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { NavItem } from "../../shared/NavItem";
@@ -7,6 +11,7 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { faCircleUser } from "@fortawesome/free-regular-svg-icons";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "../../shared/button/Button";
+import { useSelectedIngredients } from "../../hook/useSelectedIngredients";
 
 export const Header = () => {
   const [isActive, setIsActive] = useState(false);
@@ -18,8 +23,11 @@ export const Header = () => {
   /* Pour le scroll avec le header */
   const [isScroll, setIsScroll] = useState(false);
 
-  // L'état réel de la search bar (vient de la page ingrédients)
+  /* L'état réel de la search bar (vient de la page ingrédients) */
   const isSearchOpen = location.state?.openSearch === true;
+
+  /* variable pour pouvoir mettre bouton 'voir mes recettes' visible ou pas => jootai */
+  const { hasIngredient } = useSelectedIngredients();
 
   /* On utilise un useEffect pour agir en dehors du composant */
   useEffect(() => {
@@ -132,7 +140,9 @@ export const Header = () => {
             />
           </li>
 
-          <li className="text-primary-600 flex items-center hover:text-secondary-500 border-b-primary-600 px-3 py-4 mx-2 font-borel text-xl cursor-pointer hover:scale-105 transition-transform duration-200 ease-out border-b-2 lg:flex lg:items-center lg:py-0 lg:border-none">
+          <li
+            className={`flex items-center border-b-2 border-b-primary-600 py-4 mx-2 lg:py-0 lg:border-none origin-top transition-all duration-500 ease-in ${hasIngredient ? `opacity-100 scale-y-100 visible` : `opacity-0 scale-y-0 invisible`}`}
+          >
             <Button
               to="/recipes"
               text="Voir mes recettes"

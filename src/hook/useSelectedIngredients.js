@@ -9,6 +9,9 @@ export const useSelectedIngredients = () => {
     selectedIngredientsAtom,
   );
 
+  /** Voir si la tableau est composé au moins d'1 élément */
+  const hasIngredient = selectedIngredient.length > 0;
+
   /** On doit d'abord voir s'il l'ingredient existe */
   const isSelected = (ingredient) =>
     selectedIngredient.some((item) => item._id === ingredient._id);
@@ -21,7 +24,6 @@ export const useSelectedIngredients = () => {
         {
           _id: ingredient._id,
           name: ingredient.name,
-          slug: ingredient.slug,
         },
       ];
 
@@ -40,5 +42,19 @@ export const useSelectedIngredients = () => {
     });
   };
 
-  return { selectedIngredient, isSelected, addIngredient, removeIngredient };
+  /** Ici on filtre les recettes en fonctions des ingrédients sélectionnés */
+  // const useFilteredRecipes = ...
+  // On arrive à récupérer les recettes via LAPI MONGO
+
+  // Pour chaque recettes => on regarde les ingrédients
+
+  // Et on met le filtre ==> car doit contenir les légumes (avec some)
+
+  return {
+    hasIngredient,
+    selectedIngredient,
+    isSelected,
+    addIngredient,
+    removeIngredient,
+  };
 };

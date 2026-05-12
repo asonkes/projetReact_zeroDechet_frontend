@@ -1,7 +1,7 @@
 import { IngredientButton } from "../features/ingredients/IngredientButton";
 
 export const Pagination = (props) => {
-  const { totalPages, currentPage, onPageChange } = props;
+  const { totalPages, currentPage, onPageChange, className = "" } = props;
   const maxVisiblePages = 6;
 
   let pages = [];
@@ -36,7 +36,9 @@ export const Pagination = (props) => {
   }
 
   return (
-    <div className="max-w-full flex justify-center font-montserrat text-base text-white pt-4 px-2">
+    <div
+      className={`max-w-full flex justify-center font-montserrat text-base text-white pt-4 px-2 ${className}`}
+    >
       <IngredientButton
         text="Prev"
         onClick={() => onPageChange(currentPage - 1)}

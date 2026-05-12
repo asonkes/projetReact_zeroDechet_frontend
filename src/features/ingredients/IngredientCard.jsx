@@ -75,7 +75,7 @@ export const IngredientCard = (props) => {
           {/** Si image pas téléchargé, on affiche le skeleton */}
         </div>
 
-        <div className="absolute w-full h-[62%] top-[40%] left-0 py-4 px-3 xs:px-8 lg:px-6 2xl:px-10 -z-2">
+        <div className="absolute w-full h-[72%] top-[30%] left-0 py-4 px-3 xs:px-8 lg:px-6 2xl:px-10 -z-2">
           <div
             className={`h-full rounded-md origin-top transition-all duration-800 ease-out bg-special-white ${active ? `opacity-100 scale-y-100` : `opacity-0 scale-y-0`}`}
           ></div>

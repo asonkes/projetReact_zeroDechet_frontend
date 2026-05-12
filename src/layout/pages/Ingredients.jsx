@@ -14,6 +14,8 @@ import { Loader } from "../../shared/Loader";
 import { SkeletonCard } from "../../shared/skeleton/SkeletonCard";
 import { IngredientLightBox } from "../../features/ingredients/IngredientLightBox";
 import { SearchBar } from "../../shared/SearchBar";
+import { Button } from "../../shared/button/Button";
+import { useSelectedIngredients } from "../../hook/useSelectedIngredients";
 
 export const Ingredients = () => {
   // Pk useState()
@@ -39,6 +41,9 @@ export const Ingredients = () => {
   /* Rendre la barre de recherche visible */
   const location = useLocation();
   const [isVisibleSearch, setIsVisibleSearch] = useState(false);
+
+  /** on reprend hasIngredient pour apparition du bouton => voir mes recettes  */
+  const { hasIngredient } = useSelectedIngredients();
 
   useEffect(() => {
     const response = async () => {
@@ -118,7 +123,6 @@ export const Ingredients = () => {
             text="Sélectionne les ingrédients que tu as dans ton potager pour
             découvrir des recettes adaptées."
           />
-
           <ul className="w-fit m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {loading
               ? [...Array(8)].map((_, i) => <SkeletonCard key={i} />)
@@ -130,6 +134,11 @@ export const Ingredients = () => {
                   />
                 ))}
           </ul>
+          <Button
+            to="/recipes"
+            text="Voir mes recettes"
+            className={`w-[200px] self-center mt-[2rem] py-3 origin-top transition-all duration-500 ease-in ${hasIngredient ? `h-auto opacity-100 scale-y-100 visible` : `h-0 opacity-0 scale-y-0 invisible`}`}
+          />
 
           <Pagination
             totalPages={totalPages}
