@@ -10,6 +10,7 @@ import { IngredientImage } from "./IngredientImage";
 import { IngredientText } from "./IngredientText";
 import { SkeletonImage } from "../../shared/skeleton/SkeletonImage";
 import { IngredientLightBox } from "./IngredientLightBox";
+import { useSelectedIngredients } from "../../hook/useSelectedIngredients";
 
 export const IngredientCard = (props) => {
   const { ingredient, onClick } = props;
@@ -19,6 +20,9 @@ export const IngredientCard = (props) => {
   const [imgLoaded, setImgLoaded] = useState(false);
   /** Pour les media-queries */
   const desktop = window.matchMedia("(min-width: 769px)").matches;
+  /** On récupère les informations JS pour ajout/suppression des éléments */
+  const { isSelected, addIngredient, removeIngredient } =
+    useSelectedIngredients();
 
   return (
     <li
@@ -26,8 +30,8 @@ export const IngredientCard = (props) => {
     >
       <div className="h-full flex flex-col flex-1 px-3 py-2 z-3">
         <div className="relative flex justify-center">
-          <div className="w-9 absolute bottom-0 flex items-center pt-10 bg-linear-to-t from-special-black to-transparent">
-            <h3 className="w-9 h-16 font-montserrat font-semibold text-white text-lg text-center z-10">
+          <div className="w-9 absolute bottom-0 flex items-center pt-10">
+            <h3 className="w-9 h-16 font-montserrat font-semibold text-white text-lg text-center bg-linear-to-t from-special-black to-transparent z-10">
               {ingredient.name}
             </h3>
           </div>
@@ -84,7 +88,19 @@ export const IngredientCard = (props) => {
         </IngredientText>
 
         <div className={`flex justify-around px-3 xs:px-8 lg:px-6 py-4`}>
-          <ButtonCard text="Ajouter" />
+          <ButtonCard
+            onClick={() => {
+              isSelected(ingredient)
+                ? removeIngredient(ingredient)
+                : addIngredient(ingredient);
+            }}
+            text={isSelected(ingredient) ? `Supprimer` : `Ajouter`}
+            className={
+              isSelected(ingredient)
+                ? `bg-secondary-400 hover:bg-secondary-400`
+                : `bg-primary-800`
+            }
+          />
           <ButtonCard text="Voir plus" onClick={() => setActive(!active)} />
         </div>
       </div>
