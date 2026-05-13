@@ -48,7 +48,7 @@
   --color-special-white: rgba(255, 255, 255, 0.8);
   --color-special-black: rgba(0, 0, 0, 0.3);
   --color-special-gray: rgba(0, 0, 0, 0.3);
-  --color-special-greenLight: rgba(212, 220, 140, 0.8);
+  --color-special-greenLight: rgba(212, 220, 140, 0.5);
 
   /* Spacing */
   --spacing-2-625: 2.65rem;
@@ -71,8 +71,8 @@
   --spacing-55: 55rem;
 
   /* Shadow */
-  /* --shadow: 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; */
-  --shadow: 0px 2px 5px -1px rgba(0, 0, 0, 0.3), 0px 1px 3px -1px rgba(0, 0, 0, 0.3);
+  --shadow:
+    0px 2px 5px -1px rgba(0, 0, 0, 0.3), 0px 1px 3px -1px rgba(0, 0, 0, 0.3);
 
   /* BackgroundImage */
   /* Pour 'Home' */
@@ -139,12 +139,14 @@
 
 @font-face {
   font-family: Montserrat;
-  src: url("/fonts/Montserrat/Montserrat-VariableFont_wght.ttf") format("truetype");
+  src: url("/fonts/Montserrat/Montserrat-VariableFont_wght.ttf")
+    format("truetype");
 }
 
 @font-face {
   font-family: Quicksand;
-  src: url("/fonts/Quicksand/Quicksand-VariableFont_wght.ttf") format("truetype");
+  src: url("/fonts/Quicksand/Quicksand-VariableFont_wght.ttf")
+    format("truetype");
 }
 
 @font-face {

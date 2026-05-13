@@ -12,13 +12,13 @@ export const Contact = () => {
     <section className="w-full min-h-[calc(100vh-102px)]">
       <FullScreen
         height="min-h-[calc(100vh-102px)]"
-        className="bg_contact bg-contain xl:bg-cover bg-no-repeat bg-top"
+        className="bg_contact bg-contain xl:bg-cover bg-no-repeat bg-top bg-special-greenLight"
       >
         <div className="container flex flex-col lg:flex-row justify-center items-center">
-          <SplitScreen className="h-auto flex items-center">
+          <SplitScreen className="hidden h-auto lg:block items-center">
             <div className="w-full flex justify-center p-3">
               <img
-                className="w-18-75 h-25 lg:w-25 lg:h-31-25 rounded-t-[13rem] object-cover py- border-4 border-primary-600"
+                className="w-18-75 h-25 lg:w-25 lg:h-31-25 rounded-t-[13rem] object-cover border-4 border-primary-600"
                 src="/images/contact/image1.jpg"
                 alt="Image d'une dame blonde qui tient des légumes dans ses mains"
               />
@@ -32,7 +32,7 @@ export const Contact = () => {
                   Nom:
                 </label>
                 <input
-                  className="w-full placeholder:text-special-gray bg-special-greenLight p-1.5 rounded-lg focus:outline-none border border-primary-600 shadow-primary-400 shadow sm:w-1/2"
+                  className="w-full bg-white placeholder:text-primary-700 p-2 mt-2 lg:mt-0 rounded-lg focus:outline-none border border-primary-600 shadow-primary-400 shadow sm:w-1/2"
                   type="text"
                   name="lastname"
                   placeholder="Veuillez indiquer votre nom..."
@@ -44,7 +44,7 @@ export const Contact = () => {
                   Prénom:
                 </label>
                 <input
-                  className="w-full placeholder:text-special-gray bg-special-greenLight p-1.5 rounded-lg focus:outline-none border border-primary-600 shadow-primary-400 shadow sm:w-1/2"
+                  className="w-full bg-white placeholder:text-primary-600 p-2 mt-2 lg:mt-0 rounded-lg focus:outline-none border border-primary-600 shadow-primary-400 shadow sm:w-1/2"
                   type="text"
                   name="firstname"
                   placeholder="Veuillez indiquer votre prénom..."
@@ -56,7 +56,7 @@ export const Contact = () => {
                   E-mail:
                 </label>
                 <input
-                  className="w-full placeholder:text-special-gray bg-special-greenLight p-2 rounded-lg focus:outline-none border border-primary-700 shadow-primary-400 shadow sm:w-1/2"
+                  className="w-full bg-white placeholder:text-primary-600 p-2 mt-2 lg:mt-0 rounded-lg focus:outline-none border border-primary-700 shadow-primary-400 shadow sm:w-1/2"
                   type="text"
                   name="email"
                   placeholder="Veuillez indiquer votre e-mail..."
@@ -68,7 +68,7 @@ export const Contact = () => {
                   Message:
                 </label>
                 <textarea
-                  className="w-full h-40 placeholder:text-special-gray bg-special-greenLight p-3 mt-4 rounded-lg border border-green-700 shadow-primary-400 shadow resize-none sm:w-1/2 lg:w-2/3 focus:outline-none"
+                  className="w-full h-40 bg-white placeholder:text-primary-600 p-3 mt-4 rounded-lg border border-green-700 shadow-primary-400 shadow resize-none sm:w-1/2 lg:w-2/3 focus:outline-none"
                   type="text"
                   name="message"
                   placeholder="Veuillez indiquer votre message..."

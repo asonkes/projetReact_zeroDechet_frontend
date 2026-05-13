@@ -27,18 +27,18 @@ export const Ingredients = () => {
   const [ingredients, setIngredients] = useState([]);
 
   // Utilisation de l'url comme stockage de donnée (Remplace le state)
-  const [searchParams, setSearchParams] = useSearchParams({ page: '1' })
+  const [searchParams, setSearchParams] = useSearchParams({ page: "1" });
 
   // Pour la pagination
   // Remplace : const [currentPage, setCurrentPage] = useState(1);
   /* Permet que si on clique sur la page 2 d ela pagination => on voit 2 dans l'url */
-  const currentPage = parseInt(searchParams.get('page'))
+  const currentPage = parseInt(searchParams.get("page"));
   const setCurrentPage = (targetPage) => {
-    setSearchParams(params => {
-      params.set('page', targetPage);
+    setSearchParams((params) => {
+      params.set("page", targetPage);
       return params;
-    })
-  }
+    });
+  };
   const [totalPages, setTotalPages] = useState(1);
 
   // Pour la lightbox
@@ -148,7 +148,7 @@ export const Ingredients = () => {
           <Button
             to="/recipes"
             text="Voir mes recettes"
-            className={`w-[200px] self-center mt-[2rem] py-3 origin-top transition-all duration-500 ease-in ${hasIngredient ? `h-auto opacity-100 scale-y-100 visible` : `h-0 opacity-0 scale-y-0 invisible`}`}
+            className={`w-[200px] self-center mt-[2rem] py-3 transition-opacity duration-500 ease-in ${hasIngredient ? `w-auto opacity-100 visible` : `w-0 opacity-0 invisible`}`}
           />
 
           <Pagination

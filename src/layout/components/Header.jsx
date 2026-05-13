@@ -141,7 +141,7 @@ export const Header = () => {
           </li>
 
           <li
-            className={`flex items-center border-b-2 border-b-primary-600 py-4 mx-2 lg:py-0 lg:border-none origin-top transition-all duration-500 ease-in ${hasIngredient ? `opacity-100 scale-y-100 visible` : `opacity-0 scale-y-0 invisible`}`}
+            className={`flex items-center border-b-2 border-b-primary-600 py-4 mx-2 lg:py-0 lg:border-none transition-opacity duration-500 ease-in ${hasIngredient ? `opacity-100 visible w-auto` : `opacity-0 w-0 invisible`}`}
           >
             <Button
               to="/recipes"
