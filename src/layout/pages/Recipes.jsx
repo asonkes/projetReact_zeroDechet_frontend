@@ -11,7 +11,7 @@ export const Recipes = () => {
   const { selectedIngredient } = useSelectedIngredients();
 
    return (
-      <>
+     <>
         <section className="w-full flex bg-primary-700">
           <FullScreen>
            <div className="container border-4 border-red-500">
