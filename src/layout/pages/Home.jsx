@@ -1,7 +1,6 @@
 /*********************************/
 /** Composant pour la page Home  */
 /*********************************/
-
 import { FullScreen } from "../../shared/FullScreen";
 // import BgImageHome from "/images/background/home/bg_home.webp";
 import { SplitScreen } from "../../shared/SplitScreen";
