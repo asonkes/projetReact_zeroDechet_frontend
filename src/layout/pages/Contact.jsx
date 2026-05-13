@@ -12,7 +12,7 @@ export const Contact = () => {
     <section className="w-full min-h-[calc(100vh-102px)]">
       <FullScreen
         height="min-h-[calc(100vh-102px)]"
-        className="bg_contact_mobile lg:bg_contact_tablet xl:bg_contact_xl 2xl:bg_contact bg-contain xl:bg-cover bg-no-repeat bg-top"
+        className="bg_contact bg-contain xl:bg-cover bg-no-repeat bg-top"
       >
         <div className="container flex flex-col lg:flex-row justify-center items-center">
           <SplitScreen className="h-auto flex items-center">

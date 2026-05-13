@@ -12,7 +12,7 @@ export const Home = () => {
   return (
     <>
       <section className="w-full flex">
-        <FullScreen className="bg_home_mobile lg:bg_home bg-no-repeat bg-cover bg-center">
+        <FullScreen className="bg_home bg-no-repeat bg-cover bg-center">
           {/** Version à comparer avec Aurélien
            * <FullScreen
               className="bg-cover bg-center border-4 border-red-800"

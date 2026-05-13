@@ -3,7 +3,7 @@
 /***************************************/
 
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import ingredientService from "../../services/ingredients.service";
 import { Title } from "../../shared/Title";
 import { Pagination } from "../../shared/Pagination";
@@ -26,8 +26,19 @@ export const Ingredients = () => {
   // Si Cross-origin-request => installer npm cors dans backend
   const [ingredients, setIngredients] = useState([]);
 
+  // Utilisation de l'url comme stockage de donnée (Remplace le state)
+  const [searchParams, setSearchParams] = useSearchParams({ page: '1' })
+
   // Pour la pagination
-  const [currentPage, setCurrentPage] = useState(1);
+  // Remplace : const [currentPage, setCurrentPage] = useState(1);
+  /* Permet que si on clique sur la page 2 d ela pagination => on voit 2 dans l'url */
+  const currentPage = parseInt(searchParams.get('page'))
+  const setCurrentPage = (targetPage) => {
+    setSearchParams(params => {
+      params.set('page', targetPage);
+      return params;
+    })
+  }
   const [totalPages, setTotalPages] = useState(1);
 
   // Pour la lightbox
@@ -73,7 +84,7 @@ export const Ingredients = () => {
     response();
   }, [currentPage]);
 
-  /* Use Effcet sert à récupérer l'état envoyé par le header et à ouvrir la searchBar qd on arrive sur la loupe */
+  /* Use Effect sert à récupérer l'état envoyé par le header et à ouvrir la searchBar qd on arrive sur la loupe */
   useEffect(() => {
     setIsVisibleSearch(location.state?.openSearch === true);
   }, [location]);

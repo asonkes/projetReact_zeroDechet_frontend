@@ -5,86 +5,17 @@
 
 @font-face {
   font-family: Montserrat;
-  src: url("/fonts/Montserrat/Montserrat-VariableFont_wght.ttf")
-    format("truetype");
+  src: url("/fonts/Montserrat/Montserrat-VariableFont_wght.ttf") format("truetype");
 }
 
 @font-face {
   font-family: Quicksand;
-  src: url("/fonts/Quicksand/Quicksand-VariableFont_wght.ttf")
-    format("truetype");
+  src: url("/fonts/Quicksand/Quicksand-VariableFont_wght.ttf") format("truetype");
 }
 
 @font-face {
   font-family: Bree_Serif;
   src: url("/fonts/Bree_Serif/BreeSerif-Regular.ttf") format("truetype");
-}
-
-/* Création de classe Tailwind personnalisée */
-@utility bg_home {
-  @media (min-width: 1025px) {
-    background-image: var(--bg_home);
-  }
-}
-
-@utility bg_home_mobile {
-  @media (max-width: 1024px) {
-    background-image: var(--bg_home_mobile);
-  }
-}
-
-@utility bg_about {
-  background-image: var(--bg_about);
-}
-
-@utility bg_about_tablet {
-  background-image: var(--bg_about_tablet);
-}
-
-@utility bg_about_mobile {
-  background-image: var(--bg_about_mobile);
-}
-
-@utility bg_ingredient1 {
-  background-image: var(--bg_ingredient1);
-}
-
-@utility bg_ingredient2 {
-  background-image: var(--bg_ingredient2);
-}
-
-@utility bg_notFound {
-  @media (min-width: 1025px) {
-    background-image: var(--bg_notFound);
-  }
-}
-
-@utility bg_notFound_tablet {
-  @media (min-width: 641px) and (max-width: 1024px) {
-    background-image: var(--bg_notFound_tablet);
-  }
-}
-
-@utility bg_notFound_mobile {
-  @media (max-width: 640px) {
-    background-image: var(--bg_notFound_mobile);
-  }
-}
-
-@utility bg_contact {
-  background-image: var(--bg_contact);
-}
-
-@utility bg_contact_xl {
-  background-image: var(--bg_contact_xl);
-}
-
-@utility bg_contact_tablet {
-  background-image: var(--bg_contact_tablet);
-}
-
-@utility bg_contact_mobile {
-  background-image: var(--bg_contact_mobile);
 }
 
 @theme {
@@ -198,6 +129,12 @@
   --breakpoint-xxs: 21.875rem;
   /* 640px */
   --breakpoint-sm: 40rem;
+  /* 1024px */
+  --breakpoint-lg: 1024px;
+  /* 1280px */
+  --breakpoint-xl: 1280px;
+  /* 1536px */
+  --breakpoint-2xl: 1536px;
 
   /* Pour les animations */
   /* 1.6s => temps que l'on veut que ça dure */
@@ -217,4 +154,31 @@
       transform: translateX(100%);
     }
   }
+}
+
+/* Création de classe Tailwind personnalisée */
+/* Permet ici avec @apply de ne pas faire de flash avec responsive pour les images */
+
+@utility bg_home {
+  @apply bg-[image: var(--bg_home_mobile)] lg:bg-[image: var(--bg_home)];
+}
+
+@utility bg_about {
+  @apply bg[image: var(--bg_about_mobile)] sm:bg-[image: var(--bg_about_tablet)] lg:bg-[image: var(--bg_about)]
+}
+
+@utility bg_ingredient1 {
+  background-image: var(--bg_ingredient1);
+}
+
+@utility bg_ingredient2 {
+  background-image: var(--bg_ingredient2);
+}
+
+@utility bg_notFound {
+  @apply bg[image: var(--bg_notFound_mobile)] sm:bg[image: var(--bg_notFound_tablet)] lg:bg[image: var(--bg_notFound)]
+}
+
+@utility bg_contact {
+  @apply bg[image: var(--bg_contact_mobile)] lg:bg[image: var(--bg_contact_tablet)] xl:bg[image: var(--bg_contact_xl)] 2xl:bg[image: var(--bg_contact)]
 }

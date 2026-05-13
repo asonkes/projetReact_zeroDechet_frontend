@@ -13,7 +13,7 @@ export const About = (props) => {
     <section id={id} className="w-full">
       <FullScreen
         height="min-h-[calc(100vh-102px)]"
-        className="flex flex-col bg_about_mobile sm:bg_about_tablet lg:bg_about bg-no-repeat bg-cover bg-center"
+        className="flex flex-col bg_about bg-no-repeat bg-cover bg-center"
       >
         <div className="container flex flex-col">
           <Title text="About" />
