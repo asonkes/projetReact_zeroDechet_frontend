@@ -1,8 +1,8 @@
 /*********************************/
 /** Composant pour la page Home  */
 /*********************************/
+import { Helmet } from "react-helmet-async";
 import { FullScreen } from "../../shared/FullScreen";
-// import BgImageHome from "/images/background/home/bg_home.webp";
 import { SplitScreen } from "../../shared/SplitScreen";
 import { Button } from "../../shared/button/Button";
 import { About } from "../pages/About";
@@ -10,14 +10,15 @@ import { About } from "../pages/About";
 export const Home = () => {
   return (
     <>
+      <Helmet>
+        <title>Accueil - Potager zéro déchet</title>
+        <meta
+          name="description"
+          content="Découvrez votre potager zéro déchet : choisissez vos légumes et trouvez des recettes adaptées"
+        />
+      </Helmet>
       <section className="w-full flex">
         <FullScreen className="bg_home bg-no-repeat bg-cover bg-center">
-          {/** Version à comparer avec Aurélien
-           * <FullScreen
-              className="bg-cover bg-center border-4 border-red-800"
-              bgImage={BgImageHome}>
-        >
-           */}
           <div className="container flex flex-col justify-center items-center lg:flex-row">
             <SplitScreen className="flex flex-col justify-center items-center text-center text-primary-600">
               <h1 className="flex flex-col font-montserrat text-4xl font-extrabold uppercase px-4 mt-8">

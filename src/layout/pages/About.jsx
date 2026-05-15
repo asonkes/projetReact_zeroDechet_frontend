@@ -1,7 +1,6 @@
 /**********************************/
 /** Composant pour la page About  */
 /**********************************/
-
 import { FullScreen } from "../../shared/FullScreen";
 import { Title } from "../../shared/Title";
 import { Button } from "../../shared/button/Button";

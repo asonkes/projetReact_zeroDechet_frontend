@@ -1,7 +1,7 @@
 /***************************************/
 /** Composant pour la page Ingrédient  */
 /***************************************/
-
+import { Helmet } from "react-helmet-async";
 import { useEffect, useState } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
 import ingredientService from "../../services/ingredients.service";
@@ -103,61 +103,70 @@ export const Ingredients = () => {
   }
 
   return (
-    <section
-      className={`w-full min-h-[calc(100vh-102px)] bg-primary-600 ${lightBoxImage ? `h-[calc(100vh-102px)]` : `min-h-[calc(100vh-102px)]`}`}
-    >
-      <FullScreen
-        height={`${lightBoxImage ? `h-[calc(100vh-102px)]` : `min-h-[calc(100vh-102px)]`}`}
-        className="flex flex-col"
+    <>
+      <Helmet>
+        <title>Ingrédients – Potager zéro déchet</title>
+        <meta
+          name="description"
+          content="Explorez les légumes de saison, leurs bienfaits et ajoutez-les à votre sélection pour créer des recettes zéro déchet."
+        />
+      </Helmet>
+      <section
+        className={`w-full min-h-[calc(100vh-102px)] bg-primary-600 ${lightBoxImage ? `h-[calc(100vh-102px)]` : `min-h-[calc(100vh-102px)]`}`}
       >
-        <SearchBar
-          className={`transition-opacity duration-500 ease-in-out ${isVisibleSearch ? "opacity-100 visible" : "opacity-0 invisible"}`}
-        />
-
-        <Title
-          text="Quels ingrédients as-tu récoltés ?"
-          className={`text-white ${lightBoxImage ? "opacity-0 invisible" : "opacity-100 visible"}`}
-        />
-
-        {lightBoxImage && (
-          <IngredientLightBox
-            src={lightBoxImage}
-            onClose={() => setLightBoxImage(null)}
-          />
-        )}
-
-        <div
-          className={`w-full h-auto flex flex-col flex-1 container py-4 ${lightBoxImage ? "opacity-0 invisible" : "opacity-100 visible"}`}
+        <FullScreen
+          height={`${lightBoxImage ? `h-[calc(100vh-102px)]` : `min-h-[calc(100vh-102px)]`}`}
+          className="flex flex-col"
         >
-          <IngredientText
-            className="text-xl text-white text-center p-4"
-            text="Sélectionne les ingrédients que tu as dans ton potager pour
-            découvrir des recettes adaptées."
-          />
-          <ul className="w-fit m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {loading
-              ? [...Array(8)].map((_, i) => <SkeletonCard key={i} />)
-              : ingredients.map((ingredient) => (
-                  <IngredientCard
-                    key={ingredient._id}
-                    ingredient={ingredient}
-                    onClick={(src) => setLightBoxImage(src)}
-                  />
-                ))}
-          </ul>
-          <Button
-            to="/recipes"
-            text="Voir mes recettes"
-            className={`w-50 self-center mt-8 py-3 transition-opacity duration-500 ease-in ${hasIngredient ? `w-auto opacity-100 visible` : `w-0 opacity-0 invisible`}`}
+          <SearchBar
+            className={`transition-opacity duration-500 ease-in-out ${isVisibleSearch ? "opacity-100 visible" : "opacity-0 invisible"}`}
           />
 
-          <Pagination
-            totalPages={totalPages}
-            currentPage={currentPage}
-            onPageChange={setCurrentPage}
+          <Title
+            text="Quels ingrédients as-tu récoltés ?"
+            className={`text-white ${lightBoxImage ? "opacity-0 invisible" : "opacity-100 visible"}`}
           />
-        </div>
-      </FullScreen>
-    </section>
+
+          {lightBoxImage && (
+            <IngredientLightBox
+              src={lightBoxImage}
+              onClose={() => setLightBoxImage(null)}
+            />
+          )}
+
+          <div
+            className={`w-full h-auto flex flex-col flex-1 container py-4 ${lightBoxImage ? "opacity-0 invisible" : "opacity-100 visible"}`}
+          >
+            <IngredientText
+              className="text-xl text-white text-center p-4"
+              text="Sélectionne les ingrédients que tu as dans ton potager pour
+            découvrir des recettes adaptées."
+            />
+            <ul className="w-fit m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              {loading
+                ? [...Array(8)].map((_, i) => <SkeletonCard key={i} />)
+                : ingredients.map((ingredient) => (
+                    <IngredientCard
+                      key={ingredient._id}
+                      ingredient={ingredient}
+                      onClick={(src) => setLightBoxImage(src)}
+                    />
+                  ))}
+            </ul>
+            <Button
+              to="/recipes"
+              text="Voir mes recettes"
+              className={`w-50 self-center mt-8 py-3 transition-opacity duration-500 ease-in ${hasIngredient ? `w-auto opacity-100 visible` : `w-0 opacity-0 invisible`}`}
+            />
+
+            <Pagination
+              totalPages={totalPages}
+              currentPage={currentPage}
+              onPageChange={setCurrentPage}
+            />
+          </div>
+        </FullScreen>
+      </section>
+    </>
   );
 };
