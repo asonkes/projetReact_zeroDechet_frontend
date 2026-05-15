@@ -148,7 +148,7 @@ export const Ingredients = () => {
           <Button
             to="/recipes"
             text="Voir mes recettes"
-            className={`w-[200px] self-center mt-[2rem] py-3 transition-opacity duration-500 ease-in ${hasIngredient ? `w-auto opacity-100 visible` : `w-0 opacity-0 invisible`}`}
+            className={`w-50 self-center mt-8 py-3 transition-opacity duration-500 ease-in ${hasIngredient ? `w-auto opacity-100 visible` : `w-0 opacity-0 invisible`}`}
           />
 
           <Pagination

@@ -18,7 +18,8 @@ body,
 }
 
 .container {
-  @apply w-full mx-auto;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .h-fill {
