@@ -1,3 +1,7 @@
+/*************************************************/
+/** Composant pour JS dans composant ingredients */
+/*************************************************/
+
 /** On va importer l'atome */
 import { useAtom } from "jotai";
 /** On va importer le plan global (la boîte) */
@@ -41,14 +45,6 @@ export const useSelectedIngredients = () => {
       return array;
     });
   };
-
-  /** Ici on filtre les recettes en fonctions des ingrédients sélectionnés */
-  // const useFilteredRecipes = ...
-  // On arrive à récupérer les recettes via LAPI MONGO
-
-  // Pour chaque recettes => on regarde les ingrédients
-
-  // Et on met le filtre ==> car doit contenir les légumes (avec some)
 
   return {
     hasIngredient,

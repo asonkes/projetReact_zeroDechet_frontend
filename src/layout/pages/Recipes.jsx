@@ -1,16 +1,37 @@
 /************************************/
 /** Composant pour la page Recettes */
 /************************************/
+import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { FullScreen } from "../../shared/FullScreen";
-import { useSelectedIngredients } from "../../hook/useSelectedIngredients";
 import { Title } from "../../shared/Title";
 import { IngredientMiniCard } from "../../features/ingredients/IngredientMiniCard";
 import { Button } from "../../shared/button/Button";
+import { useEffect } from "react";
+import recipeService from "../../services/recipes.service";
+import { useSelectedIngredients } from "../../hook/useSelectedIngredients";
+import { useFilteredRecipes } from "../../hook/useFilteredRecipes";
 
 export const Recipes = () => {
-  /* variable pour pouvoir afficher les ingrédients via 'jootai' */
+  /* set qui permettra d'afficher les recettes */
+  const [recipes, setRecipes] = useState([]);
   const { selectedIngredient } = useSelectedIngredients();
+  const filteredRecipes = useFilteredRecipes(recipes, selectedIngredient);
+
+  useEffect(() => {
+    const response = async () => {
+      try {
+        const data = await recipeService.getAll();
+        console.log("DATA REÇUE :", data);
+        console.log("RECIPES DANS DATA :", data.recipes);
+        setRecipes(data.recipes);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    response();
+  }, []);
 
   return (
     <>
@@ -44,7 +65,9 @@ export const Recipes = () => {
 
             <div className="mt-4-219 border-4 border-red-400">
               <ul className="border-4 border-orange-300">
-                <p>Ici liste des recettes</p>
+                {filteredRecipes.map((recipe) => (
+                  <li key={recipe._id}>{recipe.name}</li>
+                ))}
               </ul>
             </div>
           </div>
