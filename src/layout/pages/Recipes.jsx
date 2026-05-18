@@ -11,19 +11,20 @@ import { useEffect } from "react";
 import recipeService from "../../services/recipes.service";
 import { useSelectedIngredients } from "../../hook/useSelectedIngredients";
 import { useFilteredRecipes } from "../../hook/useFilteredRecipes";
+import { RecipeCard } from "../../features/recipes/RecipeCard";
 
 export const Recipes = () => {
   /* set qui permettra d'afficher les recettes */
   const [recipes, setRecipes] = useState([]);
+  /* Permet d'avoir les ingrédients sélectionnés sur page ingrédients */
   const { selectedIngredient } = useSelectedIngredients();
+  /* Filtre des recettes(voir si ingrédients sélectionnés sont dedans) */
   const filteredRecipes = useFilteredRecipes(recipes, selectedIngredient);
 
   useEffect(() => {
     const response = async () => {
       try {
         const data = await recipeService.getAll();
-        console.log("DATA REÇUE :", data);
-        console.log("RECIPES DANS DATA :", data.recipes);
         setRecipes(data.recipes);
       } catch (error) {
         console.log(error);
@@ -64,9 +65,9 @@ export const Recipes = () => {
             </div>
 
             <div className="mt-4-219 border-4 border-red-400">
-              <ul className="border-4 border-orange-300">
+              <ul className="w-fit m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                 {filteredRecipes.map((recipe) => (
-                  <li key={recipe._id}>{recipe.name}</li>
+                  <RecipeCard key={recipe._id} recipe={recipe} />
                 ))}
               </ul>
             </div>
