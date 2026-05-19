@@ -88,6 +88,7 @@ export const IngredientCard = (props) => {
         </IngredientText>
 
         <div className={`flex justify-around px-3 xs:px-8 lg:px-6 py-4`}>
+          <ButtonCard text="Voir plus" onClick={() => setActive(!active)} />
           <ButtonCard
             onClick={() => {
               isSelected(ingredient)
@@ -101,7 +102,6 @@ export const IngredientCard = (props) => {
                 : `bg-primary-800`
             }
           />
-          <ButtonCard text="Voir plus" onClick={() => setActive(!active)} />
         </div>
       </div>
     </li>

@@ -48,6 +48,7 @@
   --color-special-white: rgba(255, 255, 255, 0.8);
   --color-special-black: rgba(0, 0, 0, 0.8);
   --color-special-gray: rgba(0, 0, 0, 0.3);
+  --color-special-green: rgb(212, 220, 140);
   --color-special-greenLight: rgba(212, 220, 140, 0.5);
 
   /* Spacing */

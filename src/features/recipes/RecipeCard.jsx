@@ -17,28 +17,28 @@ export const RecipeCard = (props) => {
 
   return (
     <li
-      className={`relative flex flex-col w-[18rem] h-17-375 mx-auto odd:bg_ingredient1 even:bg_ingredient2 bg-no-repeat bg-cover bg-center rounded-lg z-1 transition-all duration-500 ease-in-out ${active ? `h-24` : `h-17-375`}`}
+      className={`relative flex flex-col w-[18rem] h-auto mx-auto bg-special-green rounded-lg z-1 transition-all duration-500 ease-in-out ${active ? `h-24` : `h-17-375`}`}
     >
-      <div className="h-full flex flex-col flex-1 pb-2 z-3">
+      <div className="h-full flex flex-col flex-1 p-4 z-3">
         <div className="relative flex justify-center">
-          <div className="w-full absolute bottom-0 flex items-center pt-10 px-0.5">
-            <h3 className="w-full h-16 font-montserrat font-semibold text-white text-base text-center bg-linear-to-t from-special-black to-transparent px-1 z-10">
+          <div className="w-full absolute bottom-0 flex items-center pt-10">
+            <h3 className="w-full flex justify-center items-center h-16 font-montserrat font-semibold text-white text-base text-center bg-linear-to-t from-special-black to-transparent z-10">
               {recipe.name}
             </h3>
           </div>
 
           {/** On met 'group' sur l'élément parent qui doit déclencher qqchose */}
           {/** et group:hover sur l'enfant qui doit */}
-          <div className="relative w-full h-11 min-h-11-25 overflow-hidden group">
+          <div className="relative w-full aspect-square overflow-hidden group">
             {/** Icone + */}
             <div
               onClick={() => {
                 if (desktop) {
-                  onClick(`/images/ingredients/${recipe.slug}.webp`);
+                  onClick(`/images/recipes/${recipe.slug}.webp`);
                 }
               }}
               className="absolute bottom-[50%] right-1 rounded-md p-0.5 bg-special-white z-40
-                  opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 ease-in-out"
+                 opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 ease-in-out"
             >
               <FontAwesomeIcon
                 icon={faMagnifyingGlassPlus}
@@ -52,35 +52,35 @@ export const RecipeCard = (props) => {
             )}
 
             <RecipeImage
-              width="220"
-              height="280"
+              width="256"
+              height="256"
               src={`/images/recipes/${recipe.slug}.webp`}
-              alt={`Image représentant la recette '${recipe.name}' sur fond en bois foncé`}
+              alt={`Image représentant l'ingrédient '${recipe.name}' sur fond en bois foncé`}
               onLoad={() => setImgLoaded(true)}
-              className={`absolute inset-0 w-full h-full transition-opacity duration-200 ${
+              className={`absolute inset-0 w-full h-full transition-opacity duration-200 rounded-lg ${
                 imgLoaded ? "opacity-100" : "opacity-0"
               }
-                  }`}
+                 }`}
             />
           </div>
           {/** Si image pas téléchargé, on affiche le skeleton */}
         </div>
 
-        <div className="absolute w-full h-[72%] top-[30%] left-0 py-4 px-3 xs:px-8 lg:px-6 2xl:px-10 -z-2">
+        <div className="absolute w-full h-[70%] top-[30%] left-0 py-4 px-2 -z-2">
           <div
             className={`h-full rounded-md origin-top transition-all duration-800 ease-out bg-special-white ${active ? `opacity-100 scale-y-100` : `opacity-0 scale-y-0`}`}
           ></div>
         </div>
 
         <RecipeText
-          className={`flex-1 px-3 xs:px-8 lg:px-6 2xl:px-10 pt-2 transition-all duration-500 ease-out overflow-hidden ${active ? `opacity-100 max-h-45 ` : `opacity-0 max-h-0`}`}
+          className={`flex-1 px-3 xs:px-8 lg:px-6 2xl:px-10 pt-2 transition-all duration-500 ease-out overflow-hidden ${active ? `opacity-100 max-h-45` : `opacity-0 max-h-0`}`}
         >
           {recipe.description}
         </RecipeText>
 
         <div className={`flex justify-around px-3 xs:px-8 lg:px-6 py-4`}>
           <ButtonCard text="Voir plus" onClick={() => setActive(!active)} />
-          <ButtonCard text="Voir recette" />
+          <ButtonCard text="Recette" />
         </div>
       </div>
     </li>

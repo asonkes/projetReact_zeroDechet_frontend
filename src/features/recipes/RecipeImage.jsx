@@ -7,7 +7,7 @@ export const RecipeImage = ({ src, alt, className = "", ...props }) => {
   return (
     <img
       loading="eager"
-      className={`w-full h-full object-cover m-auto border-4 border-white ${className}`}
+      className={`w-full h-full object-cover m-auto border-4 border-primary-600 ${className}`}
       src={src}
       alt={alt}
       {...props}
