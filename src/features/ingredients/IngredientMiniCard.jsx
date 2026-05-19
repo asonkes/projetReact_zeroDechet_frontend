@@ -15,11 +15,11 @@ export const IngredientMiniCard = (props) => {
       </p>
       <div
         onClick={() => removeIngredient(ingredient)}
-        className="w-auto h-full flex items-center rounded-md ml-2 bg-secondary-800"
+        className="w-auto h-full flex items-center rounded-md ml-2"
       >
         <FontAwesomeIcon
           icon={faXmark}
-          className="text-white p-1 cursor-pointer"
+          className="text-secondary-400 p-1 cursor-pointer"
         />
       </div>
     </li>

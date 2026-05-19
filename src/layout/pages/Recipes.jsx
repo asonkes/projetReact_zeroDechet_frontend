@@ -49,6 +49,8 @@ export const Recipes = () => {
   /* UseState pour activer le skeleton */
   const [loading, setLoading] = useState(true);
 
+  const ITEMS_PER_PAGE = 8;
+
   useEffect(() => {
     const response = async () => {
       /* Ici agit pour le skeleton, donc doit se remettre à true avec chaque re-render */
@@ -58,11 +60,11 @@ export const Recipes = () => {
       try {
         // Appel backend pagination
         // CurrentPage ==> num de la page que laquelle on se trouve
-        const data = await recipeService.getPaginated(currentPage);
+        const data = await recipeService.getAll();
 
         /* Backend renvoie déjà items, page, limit, totalItems, total Pages => plus besoin */
-        setRecipes(data.items);
-        setTotalPages(data.totalPages);
+        setRecipes(data);
+        setTotalPages(false);
 
         /* Ici passe à 'false' pour le loader => car on a reçu la réponse de l'API (les 8ers éléments) */
         /* Et donc le loader ne doit plus fonctionner */
@@ -75,7 +77,17 @@ export const Recipes = () => {
     };
 
     response();
-  }, [currentPage]);
+  }, []);
+
+  // Calcul du nombre total de pages après filtrage
+  useEffect(() => {
+    setTotalPages(Math.ceil(filteredRecipes.length / ITEMS_PER_PAGE));
+  }, [filteredRecipes]);
+
+  // Pagination front
+  const start = (currentPage - 1) * ITEMS_PER_PAGE;
+  const end = start + ITEMS_PER_PAGE;
+  const paginatedRecipes = filteredRecipes.slice(start, end);
 
   if (firstLoad && loading) {
     return (
@@ -151,7 +163,7 @@ export const Recipes = () => {
               <ul className="w-fit m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                 {loading
                   ? [...Array(8)].map((_, i) => <SkeletonCard key={i} />)
-                  : filteredRecipes.map((recipe) => (
+                  : paginatedRecipes.map((recipe) => (
                       <RecipeCard
                         key={recipe._id}
                         recipe={recipe}
@@ -161,7 +173,7 @@ export const Recipes = () => {
               </ul>
 
               <Pagination
-                className={`${setLightBoxImage ? `block opacity-100` : `hidden opacity-0`}`}
+                className={`${lightBoxImage ? `hidden opacity-0` : `block opacity-100`}`}
                 totalPages={totalPages}
                 currentPage={currentPage}
                 onPageChange={setCurrentPage}
