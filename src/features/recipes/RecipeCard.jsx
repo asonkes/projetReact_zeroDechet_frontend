@@ -17,7 +17,7 @@ export const RecipeCard = (props) => {
 
   return (
     <li
-      className={`relative flex flex-col w-[18rem] h-auto mx-auto bg-special-green rounded-lg z-1 transition-all duration-500 ease-in-out ${active ? `h-24` : `h-17-375`}`}
+      className={`relative flex flex-col w-[18rem] h-23 mx-auto bg-special-green rounded-lg z-1 transition-all duration-500 ease-in-out ${active ? `h-29` : `h-23`}`}
     >
       <div className="h-full flex flex-col flex-1 p-4 z-3">
         <div className="relative flex justify-center">
