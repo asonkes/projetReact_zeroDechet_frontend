@@ -142,14 +142,12 @@
 
 @font-face {
   font-family: Montserrat;
-  src: url("/fonts/Montserrat/Montserrat-VariableFont_wght.ttf")
-    format("truetype");
+  src: url("/fonts/Montserrat/Montserrat-VariableFont_wght.ttf") format("truetype");
 }
 
 @font-face {
   font-family: Quicksand;
-  src: url("/fonts/Quicksand/Quicksand-VariableFont_wght.ttf")
-    format("truetype");
+  src: url("/fonts/Quicksand/Quicksand-VariableFont_wght.ttf") format("truetype");
 }
 
 @font-face {
