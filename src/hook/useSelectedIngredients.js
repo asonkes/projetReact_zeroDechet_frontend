@@ -8,6 +8,8 @@ import { useAtom } from "jotai";
 import { selectedIngredientsAtom } from "../store/ingredientStore";
 
 export const useSelectedIngredients = () => {
+  // FORMATEUR : Si fonctionnement backend, tout ceux-ci ne sera plus utile :o
+
   /** On va créer le tableau(selectedIngredient) et set... => fonction pour modifier le tableau */
   const [selectedIngredient, setSelectedIngredient] = useAtom(
     selectedIngredientsAtom,
@@ -27,6 +29,7 @@ export const useSelectedIngredients = () => {
         ...prev,
         {
           _id: ingredient._id,
+          slug: ingredient.slug,
           name: ingredient.name,
         },
       ];

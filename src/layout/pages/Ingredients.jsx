@@ -153,6 +153,8 @@ export const Ingredients = () => {
                     />
                   ))}
             </ul>
+
+            {/* Ajouter les ingrédiants dans l'url (optionnel -> UX partage ta recherche) */}
             <Button
               to="/recipes"
               text="Voir mes recettes"

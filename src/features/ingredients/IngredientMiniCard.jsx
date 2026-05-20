@@ -7,7 +7,7 @@ export const IngredientMiniCard = (props) => {
   const { removeIngredient } = useSelectedIngredients();
 
   return (
-    <li className="min-w-21 inline-flex items-center justify-between bg-special-white border border-white rounded-lg mx-2 p-1">
+    <li className="min-w-21 inline-flex items-center justify-between bg-special-white border border-white rounded-lg mx-1 p-1">
       <p
         className={`font-quicksand font-semibold text-base text-primary-700 ${className}`}
       >

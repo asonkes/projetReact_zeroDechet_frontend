@@ -2,7 +2,8 @@ import axios from "redaxios";
 
 const recipeService = {
   getAll: async () => {
-    const response = await axios.get("http://localhost:3000/api/recipes");
+    // FORMATEUR : Envoyer les données sous forme de parametre query
+    const response = await axios.get("http://localhost:3000/api/recipes", { params: {} });
 
     return response.data;
   },

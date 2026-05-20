@@ -15,14 +15,24 @@ import { RecipeCard } from "../../features/recipes/RecipeCard";
 import { RecipeLightBox } from "../../features/recipes/RecipeLightBox";
 import { Pagination } from "../../shared/Pagination";
 import { Loader } from "../../shared/Loader";
-import { SkeletonCard } from "../../shared/skeleton/SkeletonCard";
+import { SkeletonCardImageNoRound } from "../../shared/skeleton/SkeletonCardImageNoRound";
 
 export const Recipes = () => {
+
+  // FORMATEUR : Si ingre dans l'url -> les recup et ne plus utiliser jotai pour les stocker
+  // FORMATEUR : Pour un traitement back, le composant doit "juste" connaitre la liste des ingrédients (slug)
+
   /* set qui permettra d'afficher les recettes */
   const [recipes, setRecipes] = useState([]);
   /* Permet d'avoir les ingrédients sélectionnés sur page ingrédients */
   const { selectedIngredient } = useSelectedIngredients();
+
+  // FORMATEUR : Tips temporaire pour avoir a liste des ingrés (pour construire ton back)
+  // const ingres = selectedIngredient.map(ingredient => ingredient.slug);
+  // console.log(ingres);
+  
   /* Filtre des recettes(voir si ingrédients sélectionnés sont dedans) */
+  // FORMATEUR : Objectif, viré ça ↓
   const filteredRecipes = useFilteredRecipes(recipes, selectedIngredient);
 
   // Utilisation de l'url comme stockage de donnée (Remplace le state)
@@ -60,6 +70,8 @@ export const Recipes = () => {
       try {
         // Appel backend pagination
         // CurrentPage ==> num de la page que laquelle on se trouve
+
+        // FORMATEUR : Modification a faire, envoyer au service la page et les ingrédients
         const data = await recipeService.getAll();
 
         /* Backend renvoie déjà items, page, limit, totalItems, total Pages => plus besoin */
@@ -77,6 +89,8 @@ export const Recipes = () => {
     };
 
     response();
+
+    // FORMATEUR : Dépendence de l'effet : page et les ingrés
   }, []);
 
   // Calcul du nombre total de pages après filtrage
@@ -88,19 +102,6 @@ export const Recipes = () => {
   const start = (currentPage - 1) * ITEMS_PER_PAGE;
   const end = start + ITEMS_PER_PAGE;
   const paginatedRecipes = filteredRecipes.slice(start, end);
-
-  if (firstLoad && loading) {
-    return (
-      <section className="w-full min-h-[calc(100vh-102px)] bg-primary-600">
-        <FullScreen
-          height="min-h-[calc(100vh-106.5px)]"
-          className="flex justify-center items-center"
-        >
-          <Loader />
-        </FullScreen>
-      </section>
-    );
-  }
 
   if (firstLoad && loading) {
     return (
@@ -129,17 +130,16 @@ export const Recipes = () => {
       >
         <FullScreen
           height={`${lightBoxImage ? `h-[calc(100vh-102px)]` : `min-h-[calc(100vh-102px)]`}`}
-          className="border-4 border-red-400"
         >
-          <div className="container border-4 border-red-500">
+          <div className="container py-4">
             <Title
-              className={`text-white border-4 border-blue-500 ${lightBoxImage ? `hidden opacity-0 invisble` : `block opacity-100 visible`}`}
+              className={`text-white ${lightBoxImage ? `hidden opacity-0 invisble` : `block opacity-100 visible`}`}
               text="Mes Recettes"
             />
             <div
-              className={`w-full h-auto flex flex-col items-center border-4 border-amber-400 ${lightBoxImage ? `hidden opacity-0 invisible` : `block opacity-100 visible`}`}
+              className={`w-full h-auto flex flex-col items-center ${lightBoxImage ? `hidden opacity-0 invisible` : `block opacity-100 visible`}`}
             >
-              <ul className="w-2/3 p-2 border-4 border-blue-400">
+              <ul className="w-2/3 p-2">
                 {selectedIngredient.map((ingredient) => (
                   <IngredientMiniCard
                     key={ingredient._id}
@@ -148,8 +148,6 @@ export const Recipes = () => {
                   />
                 ))}
               </ul>
-
-              <Button className="mt-4" text="Réinitialiser" />
             </div>
 
             {lightBoxImage && (
@@ -162,7 +160,7 @@ export const Recipes = () => {
             <div className="w-full h-auto flex flex-col flex-1 container py-4">
               <ul className="w-fit m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                 {loading
-                  ? [...Array(8)].map((_, i) => <SkeletonCard key={i} />)
+                  ? [...Array(8)].map((_, i) => <SkeletonCardImageNoRound key={i} />)
                   : paginatedRecipes.map((recipe) => (
                       <RecipeCard
                         key={recipe._id}
@@ -171,14 +169,13 @@ export const Recipes = () => {
                       />
                     ))}
               </ul>
-
-              <Pagination
-                className={`${lightBoxImage ? `hidden opacity-0` : `block opacity-100`}`}
-                totalPages={totalPages}
-                currentPage={currentPage}
-                onPageChange={setCurrentPage}
-              />
             </div>
+            <Pagination
+              className={`${lightBoxImage ? `hidden opacity-0` : `block opacity-100`}`}
+              totalPages={totalPages}
+              currentPage={currentPage}
+              onPageChange={setCurrentPage}
+            />
           </div>
         </FullScreen>
       </section>
