@@ -26,7 +26,7 @@ export const IngredientCard = (props) => {
 
   return (
     <li
-      className={`relative flex flex-col w-[19rem] xs:w-24 md:w-18 md:h-17-375 mx-auto odd:bg_ingredient1 even:bg_ingredient2 bg-no-repeat bg-cover bg-center rounded-lg z-1 transition-all duration-500 ease-in-out ${active ? `h-18 md:h-24` : `h-10-5 md:h-17-375`}`}
+      className={`relative flex flex-col w-19 xs:w-24 md:w-18 md:h-17-375 mx-auto odd:bg_ingredient1 even:bg_ingredient2 bg-no-repeat bg-cover bg-center rounded-lg z-1 transition-all duration-500 ease-in-out ${active ? `h-18 md:h-24` : `h-10-5 md:h-17-375`}`}
     >
       <div className="h-full flex items-start md:flex-col md:[align-items:initial] flex-1 px-3 py-2 z-3">
         <div className="relative flex justify-center">
