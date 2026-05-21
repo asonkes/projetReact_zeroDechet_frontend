@@ -25,10 +25,10 @@ export const IngredientCard = (props) => {
     useSelectedIngredients();
 
   return (
-     <li
+    <li
       className={`relative flex flex-col w-[24rem] md:w-[18rem] md:h-17-375 mx-auto odd:bg_ingredient1 even:bg_ingredient2 bg-no-repeat bg-cover bg-center rounded-lg z-1 transition-all duration-500 ease-in-out ${active ? `h-[18rem] md:h-24` : `h-[14rem] md:h-17-375`}`}
     >
-      <div className="h-full flex items-center md:flex-col md:[align-items:initial] flex-1 px-3 py-2 z-3 border-4 border-blue-500">
+      <div className="h-full flex items-start md:flex-col md:[align-items:initial] flex-1 px-3 py-2 z-3 border-4 border-blue-500">
         <div className="relative flex justify-center border-4 border-red-500">
           <div className="w-9 absolute bottom-0 flex items-center pt-10">
             <h3 className="w-9 h-16 font-montserrat font-semibold text-white text-lg text-center bg-linear-to-t from-special-black to-transparent z-10">
@@ -75,7 +75,7 @@ export const IngredientCard = (props) => {
           {/** Si image pas téléchargé, on affiche le skeleton */}
         </div>
 
-        <div className="absolute w-full h-[73%] top-[30%] -right-[6%] md:left-0 py-4 px-3 xs:px-8 lg:px-6 2xl:px-10 -z-2 border-4 border-orange-400">
+        <div className="absolute w-full h-[71%] top-[30%] -right-[6%] md:left-0 py-4 px-3 xs:px-6 -z-2 border-4 border-orange-400">
           <div
             className={`h-full rounded-md origin-top transition-all duration-800 ease-out bg-special-white ${active ? `opacity-100 scale-y-100` : `opacity-0 scale-y-0`}`}
           ></div>
@@ -88,7 +88,11 @@ export const IngredientCard = (props) => {
         </IngredientText>
 
         <div className={`flex justify-around px-3 md:px-8 lg:px-6 py-4`}>
-          <ButtonCard text="Voir plus" onClick={() => setActive(!active)} className="mr-2"/>
+          <ButtonCard
+            text="Voir plus"
+            onClick={() => setActive(!active)}
+            className="h-0 opacity-0 invisible cursor-none md:h-full md:opacity-100 md:visible md:cursor-pointer mr-2"
+          />
           <ButtonCard
             onClick={() => {
               isSelected(ingredient)
