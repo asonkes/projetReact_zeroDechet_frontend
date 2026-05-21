@@ -26,7 +26,7 @@ export const IngredientCard = (props) => {
 
   return (
     <li
-      className={`relative flex flex-col w-24 md:w-18 md:h-17-375 mx-auto odd:bg_ingredient1 even:bg_ingredient2 bg-no-repeat bg-cover bg-center rounded-lg z-1 transition-all duration-500 ease-in-out ${active ? `h-18 md:h-24` : `h-10-5 md:h-17-375`}`}
+      className={`relative flex flex-col w-[19rem] xs:w-24 md:w-18 md:h-17-375 mx-auto odd:bg_ingredient1 even:bg_ingredient2 bg-no-repeat bg-cover bg-center rounded-lg z-1 transition-all duration-500 ease-in-out ${active ? `h-18 md:h-24` : `h-10-5 md:h-17-375`}`}
     >
       <div className="h-full flex items-start md:flex-col md:[align-items:initial] flex-1 px-3 py-2 z-3">
         <div className="relative flex justify-center">
@@ -75,14 +75,14 @@ export const IngredientCard = (props) => {
           {/** Si image pas téléchargé, on affiche le skeleton */}
         </div>
 
-        <div className="absolute w-full h-[65%] top-[20%] right-0 md:top-[30%] md:h-[71%] md:left-0 py-0 px-2.5 md:py-4 md:px-4 -z-2">
+        <div className="absolute w-full h-[77%] top-[15%] xs:h-[65%] xs:top-[20%] right-0 md:top-[30%] md:h-[71%] md:left-0 py-0 px-2.5 md:py-4 md:px-4 -z-2">
           <div
             className={`h-full rounded-md origin-top transition-all duration-800 ease-out bg-special-white ${active ? `md:opacity-100 md:scale-y-100` : `md:opacity-0 md:scale-y-0`}`}
           ></div>
         </div>
 
         <IngredientText
-          className={`flex-1 px-3 absolute top-[30%] left-[35%] md:relative md:top-0 md:left-0 md:px-10 pt-2 transition-all duration-500 ease-out overflow-hidden ${active ? `md:opacity-100 md:max-h-45` : `md:opacity-0 md:max-h-0`}`}
+          className={`flex-1 text-sm xs:text-base px-3 absolute top-[33%] left-[43%] xs:top-[30%] xs:left-[35%] md:relative md:top-0 md:left-0 md:px-10 pt-2 transition-all duration-500 ease-out overflow-hidden ${active ? `md:opacity-100 md:max-h-45` : `md:opacity-0 md:max-h-0`}`}
         >
           {ingredient.description}
         </IngredientText>
