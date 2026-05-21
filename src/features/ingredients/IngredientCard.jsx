@@ -26,19 +26,19 @@ export const IngredientCard = (props) => {
 
   return (
     <li
-      className={`relative flex flex-col w-[24rem] md:w-[18rem] md:h-17-375 mx-auto odd:bg_ingredient1 even:bg_ingredient2 bg-no-repeat bg-cover bg-center rounded-lg z-1 transition-all duration-500 ease-in-out ${active ? `h-[18rem] md:h-24` : `h-[14rem] md:h-17-375`}`}
+      className={`relative flex flex-col w-[24rem] md:w-[18rem] md:h-17-375 mx-auto odd:bg_ingredient1 even:bg_ingredient2 bg-no-repeat bg-cover bg-center rounded-lg z-1 transition-all duration-500 ease-in-out ${active ? `h-[18rem] md:h-24` : `h-[10.5rem] md:h-17-375`}`}
     >
       <div className="h-full flex items-start md:flex-col md:[align-items:initial] flex-1 px-3 py-2 z-3 border-4 border-blue-500">
-        <div className="relative flex justify-center border-4 border-red-500">
-          <div className="w-9 absolute bottom-0 flex items-center pt-10">
-            <h3 className="w-9 h-16 font-montserrat font-semibold text-white text-lg text-center bg-linear-to-t from-special-black to-transparent z-10">
+        <div className="relative flex justify-center">
+          <div className="w-7-5 md:w-9 absolute bottom-0 flex items-center pt-10">
+            <h3 className="w-7-5 md:w-9 h-16 font-montserrat font-semibold text-white text-lg text-center bg-linear-to-t from-special-black to-transparent z-10">
               {ingredient.name}
             </h3>
           </div>
 
           {/** On met 'group' sur l'élément parent qui doit déclencher qqchose */}
           {/** et group:hover sur l'enfant qui doit */}
-          <div className="relative w-9 h-11 min-h-11-25 overflow-hidden group border-4 border-red-400">
+          <div className="relative w-7-5 h-8-5 min-h-8-5 md:w-9 md:h-11 md:min-h-11-25 overflow-hidden group">
             {/** Icone + */}
             <div
               onClick={() => {
@@ -75,19 +75,21 @@ export const IngredientCard = (props) => {
           {/** Si image pas téléchargé, on affiche le skeleton */}
         </div>
 
-        <div className="absolute w-full h-[71%] top-[10%] right-0 md:top-[30%] md:left-0 py-0 md:py-4 px-1.5 md:px-4 -z-2 border-4 border-orange-400">
+        <div className="absolute w-full h-[72%] top-[20%] right-0 md:top-[30%] md:h-[71%] md:left-0 py-0 md:py-4 px-1.5 md:px-4 -z-2">
           <div
-            className={`h-full rounded-md origin-top transition-all duration-800 ease-out bg-special-white border-4 border-red-400 ${active ? `md:opacity-100 md:scale-y-100` : `md:opacity-0 md:scale-y-0`}`}
+            className={`h-full rounded-md origin-top transition-all duration-800 ease-out bg-special-white ${active ? `md:opacity-100 md:scale-y-100` : `md:opacity-0 md:scale-y-0`}`}
           ></div>
         </div>
 
         <IngredientText
-          className={`flex-1 px-3 absolute top-[30%] left-[43%] md:relative md:top-0 md:left-0 md:px-8 lg:px-6 2xl:px-10 pt-2 transition-all duration-500 ease-out overflow-hidden ${active ? `md:opacity-100 md:max-h-45` : `md:opacity-0 md:max-h-0`}`}
+          className={`flex-1 px-3 absolute top-[30%] left-[35%] md:relative md:top-0 md:left-0 md:px-10 pt-2 transition-all duration-500 ease-out overflow-hidden ${active ? `md:opacity-100 md:max-h-45` : `md:opacity-0 md:max-h-0`}`}
         >
           {ingredient.description}
         </IngredientText>
 
-        <div className={`flex justify-around px-3 py-4 md:px-6`}>
+        <div
+          className={`w-full flex justify-between md:justify-around pr-1 pt-1 md:px-6 md:py-4`}
+        >
           <ButtonCard
             text="Voir plus"
             onClick={() => setActive(!active)}

@@ -57,6 +57,9 @@
   --spacing-4-219: 4.219rem;
   --spacing-5: 5rem;
   --spacing-5-563: 5.563rem;
+  --spacing-7-5: 7.5rem;
+  --spacing-8: 8rem;
+  --spacing-8-5: 8.5rem;
   --spacing-9: 9rem;
   --spacing-11: 11rem;
   --spacing-11-25: 11.25rem;
@@ -142,12 +145,14 @@
 
 @font-face {
   font-family: Montserrat;
-  src: url("/fonts/Montserrat/Montserrat-VariableFont_wght.ttf") format("truetype");
+  src: url("/fonts/Montserrat/Montserrat-VariableFont_wght.ttf")
+    format("truetype");
 }
 
 @font-face {
   font-family: Quicksand;
-  src: url("/fonts/Quicksand/Quicksand-VariableFont_wght.ttf") format("truetype");
+  src: url("/fonts/Quicksand/Quicksand-VariableFont_wght.ttf")
+    format("truetype");
 }
 
 @font-face {
