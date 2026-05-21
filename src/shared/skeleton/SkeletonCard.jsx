@@ -15,7 +15,9 @@ export const SkeletonCard = () => {
           <SkeletonImage className="w-9 h-11 min-h-11-25 rounded-t-[9.5rem] m-auto border-4 border-gray-300" />
         </div>
 
-        <div className={`flex justify-around px-3 xs:px-8 lg:px-6 py-6`}>
+        <div
+          className={`w-full flex justify-between md:justify-around pr-1 pt-1 md:px-6 md:py-4`}
+        >
           <SkeletonText className="w-5-563 h-2-625 rounded-lg" />
           <SkeletonText className="w-5-563 h-2-625 rounded-lg" />
         </div>

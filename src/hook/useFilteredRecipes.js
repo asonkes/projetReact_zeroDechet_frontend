@@ -1,25 +1,23 @@
 /********************************************/
 /** Composant pour JS dans composant Recipe */
 /********************************************/
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
 export const useFilteredRecipes = (recipes, selectedIngredients) => {
   const navigate = useNavigate();
 
-  const filteredRecipes = useMemo(() => {
-    setTimeout(() => {
-      if (selectedIngredients.length === 0) {
-        setTimeout(() => {
-          const textError = document.createElement("div");
-          textError.innerHTML =
-            "Veuillez choisir un ingrédient, s'il vous plaît...";
-          document.body.appendChild(textError);
-          navigate("/ingredients_recoltes");
-        }, [1000]);
-      }
-    });
+  useEffect(() => {
+    if (selectedIngredients.length === 0) {
+      const timer = setTimeout(() => {
+        navigate("/ingredients_recoltes");
+      }, 1500);
 
+      return () => clearTimeout(timer);
+    }
+  }, [selectedIngredients, navigate]);
+
+  const filteredRecipes = useMemo(() => {
     /* On filtre les recettes */
     return recipes.filter((recipe) =>
       /* On reprend les ingrédients sélectionnés */

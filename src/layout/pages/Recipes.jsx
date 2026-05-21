@@ -16,9 +16,9 @@ import { RecipeLightBox } from "../../features/recipes/RecipeLightBox";
 import { Pagination } from "../../shared/Pagination";
 import { Loader } from "../../shared/Loader";
 import { SkeletonCardImageNoRound } from "../../shared/skeleton/SkeletonCardImageNoRound";
+import { IngredientText } from "../../features/ingredients/IngredientText";
 
 export const Recipes = () => {
-
   // FORMATEUR : Si ingre dans l'url -> les recup et ne plus utiliser jotai pour les stocker
   // FORMATEUR : Pour un traitement back, le composant doit "juste" connaitre la liste des ingrédients (slug)
 
@@ -30,7 +30,7 @@ export const Recipes = () => {
   // FORMATEUR : Tips temporaire pour avoir a liste des ingrés (pour construire ton back)
   // const ingres = selectedIngredient.map(ingredient => ingredient.slug);
   // console.log(ingres);
-  
+
   /* Filtre des recettes(voir si ingrédients sélectionnés sont dedans) */
   // FORMATEUR : Objectif, viré ça ↓
   const filteredRecipes = useFilteredRecipes(recipes, selectedIngredient);
@@ -136,6 +136,17 @@ export const Recipes = () => {
               className={`text-white ${lightBoxImage ? `hidden opacity-0 invisble` : `block opacity-100 visible`}`}
               text="Mes Recettes"
             />
+
+            {selectedIngredient.length === 0 && (
+              <div className="p-4">
+                <IngredientText
+                  text="Veuillez choisir un ingrédient s'il vous plaît, pour découvrir
+                    vos recettes..."
+                  className="w-fit m-auto bg-secondary-400 text-white text-center text-xl rounded-lg mt-20 p-2 px-6 border border-white"
+                />
+              </div>
+            )}
+
             <div
               className={`w-full h-auto flex flex-col items-center ${lightBoxImage ? `hidden opacity-0 invisible` : `block opacity-100 visible`}`}
             >
@@ -160,7 +171,9 @@ export const Recipes = () => {
             <div className="w-full h-auto flex flex-col flex-1 container py-4">
               <ul className="w-fit m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                 {loading
-                  ? [...Array(8)].map((_, i) => <SkeletonCardImageNoRound key={i} />)
+                  ? [...Array(8)].map((_, i) => (
+                      <SkeletonCardImageNoRound key={i} />
+                    ))
                   : paginatedRecipes.map((recipe) => (
                       <RecipeCard
                         key={recipe._id}
@@ -170,12 +183,14 @@ export const Recipes = () => {
                     ))}
               </ul>
             </div>
-            <Pagination
-              className={`${lightBoxImage ? `hidden opacity-0` : `block opacity-100`}`}
-              totalPages={totalPages}
-              currentPage={currentPage}
-              onPageChange={setCurrentPage}
-            />
+            {selectedIngredient.length !== 0 && (
+              <Pagination
+                className={`${lightBoxImage ? `hidden opacity-0` : `block opacity-100`}`}
+                totalPages={totalPages}
+                currentPage={currentPage}
+                onPageChange={setCurrentPage}
+              />
+            )}
           </div>
         </FullScreen>
       </section>
