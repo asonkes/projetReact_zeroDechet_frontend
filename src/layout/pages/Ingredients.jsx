@@ -124,7 +124,7 @@ export const Ingredients = () => {
 
           <Title
             text="Quels ingrédients as-tu récoltés ?"
-            className={`text-white border-4 border-blue-400 ${lightBoxImage ? "opacity-0 invisible" : "opacity-100 visible"}`}
+            className={`text-white ${lightBoxImage ? "opacity-0 invisible" : "opacity-100 visible"}`}
           />
 
           {lightBoxImage && (
@@ -158,7 +158,7 @@ export const Ingredients = () => {
             <Button
               to="/recipes"
               text="Voir mes recettes"
-              className={`w-50 self-center mt-8 py-3 transition-opacity duration-500 ease-in ${hasIngredient ? `w-auto opacity-100 visible` : `w-0 opacity-0 invisible`}`}
+              className={`w-50 self-center mt-7 py-3 transition-opacity duration-500 ease-in ${hasIngredient ? `w-auto opacity-100 visible` : `w-0 opacity-0 invisible`}`}
             />
 
             <Pagination
