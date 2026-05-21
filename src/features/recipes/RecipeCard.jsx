@@ -73,12 +73,12 @@ export const RecipeCard = (props) => {
         </div>
 
         <RecipeText
-          className={`flex-1 px-3 xs:px-8 lg:px-6 2xl:px-10 pt-2 transition-all duration-500 ease-out overflow-hidden ${active ? `opacity-100 max-h-45` : `opacity-0 max-h-0`}`}
+          className={`flex-1 px-3 xs:px-10 pt-2 transition-all duration-500 ease-out overflow-hidden ${active ? `opacity-100 max-h-45` : `opacity-0 max-h-0`}`}
         >
           {recipe.description}
         </RecipeText>
 
-        <div className={`flex justify-around px-3 xs:px-8 lg:px-6 py-4`}>
+        <div className={`flex justify-around px-3 xs:px-6 py-4`}>
           <ButtonCard text="Voir plus" onClick={() => setActive(!active)} />
           <ButtonCard text="Recette" />
         </div>
