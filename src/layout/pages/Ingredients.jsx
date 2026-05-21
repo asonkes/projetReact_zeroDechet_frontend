@@ -116,7 +116,7 @@ export const Ingredients = () => {
       >
         <FullScreen
           height={`${lightBoxImage ? `h-[calc(100vh-102px)]` : `min-h-[calc(100vh-102px)]`}`}
-          className="flex flex-col"
+          className="flex flex-col border-4 border-amber-400"
         >
           <SearchBar
             className={`transition-opacity duration-500 ease-in-out ${isVisibleSearch ? "opacity-100 visible" : "opacity-0 invisible"}`}
@@ -124,7 +124,7 @@ export const Ingredients = () => {
 
           <Title
             text="Quels ingrédients as-tu récoltés ?"
-            className={`text-white ${lightBoxImage ? "opacity-0 invisible" : "opacity-100 visible"}`}
+            className={`text-white border-4 border-blue-400 ${lightBoxImage ? "opacity-0 invisible" : "opacity-100 visible"}`}
           />
 
           {lightBoxImage && (
@@ -135,14 +135,14 @@ export const Ingredients = () => {
           )}
 
           <div
-            className={`w-full h-auto flex flex-col flex-1 container py-4 ${lightBoxImage ? "opacity-0 invisible" : "opacity-100 visible"}`}
+            className={`w-full h-auto flex flex-col flex-1 container py-4 border-4 border-fuchsia-400 ${lightBoxImage ? "opacity-0 invisible" : "opacity-100 visible"}`}
           >
             <IngredientText
               className="text-xl text-white text-center p-4"
               text="Sélectionne les ingrédients que tu as dans ton potager pour
             découvrir des recettes adaptées."
             />
-            <ul className="w-fit m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            <ul className="w-fit m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 border-4 border-red-400">
               {loading
                 ? [...Array(8)].map((_, i) => <SkeletonCard key={i} />)
                 : ingredients.map((ingredient) => (
