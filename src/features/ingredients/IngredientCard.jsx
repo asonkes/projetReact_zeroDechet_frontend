@@ -75,19 +75,19 @@ export const IngredientCard = (props) => {
           {/** Si image pas téléchargé, on affiche le skeleton */}
         </div>
 
-        <div className="absolute w-full h-[71%] top-[30%] -right-[6%] md:left-0 py-4 px-3 xs:px-6 -z-2 border-4 border-orange-400">
+        <div className="absolute w-full h-[71%] top-[10%] right-0 md:top-[30%] md:left-0 py-0 md:py-4 px-1.5 md:px-4 -z-2 border-4 border-orange-400">
           <div
-            className={`h-full rounded-md origin-top transition-all duration-800 ease-out bg-special-white ${active ? `opacity-100 scale-y-100` : `opacity-0 scale-y-0`}`}
+            className={`h-full rounded-md origin-top transition-all duration-800 ease-out bg-special-white border-4 border-red-400 ${active ? `md:opacity-100 md:scale-y-100` : `md:opacity-0 md:scale-y-0`}`}
           ></div>
         </div>
 
         <IngredientText
-          className={`flex-1 px-3 md:px-8 lg:px-6 2xl:px-10 pt-2 transition-all duration-500 ease-out overflow-hidden ${active ? `opacity-100 max-h-45` : `opacity-0 max-h-0`}`}
+          className={`flex-1 px-3 absolute top-[30%] left-[43%] md:relative md:top-0 md:left-0 md:px-8 lg:px-6 2xl:px-10 pt-2 transition-all duration-500 ease-out overflow-hidden ${active ? `md:opacity-100 md:max-h-45` : `md:opacity-0 md:max-h-0`}`}
         >
           {ingredient.description}
         </IngredientText>
 
-        <div className={`flex justify-around px-3 md:px-8 lg:px-6 py-4`}>
+        <div className={`flex justify-around px-3 py-4 md:px-6`}>
           <ButtonCard
             text="Voir plus"
             onClick={() => setActive(!active)}
