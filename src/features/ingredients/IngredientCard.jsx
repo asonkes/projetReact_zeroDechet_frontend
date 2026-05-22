@@ -9,7 +9,6 @@ import { ButtonCard } from "../../shared/button/ButtonCard";
 import { IngredientImage } from "./IngredientImage";
 import { IngredientText } from "./IngredientText";
 import { SkeletonImage } from "../../shared/skeleton/SkeletonImage";
-import { IngredientLightBox } from "./IngredientLightBox";
 import { useSelectedIngredients } from "../../hook/useSelectedIngredients";
 
 export const IngredientCard = (props) => {
@@ -44,6 +43,12 @@ export const IngredientCard = (props) => {
               onClick={() => {
                 if (desktop) {
                   onClick(`/images/ingredients/${ingredient.slug}.webp`);
+                  // 2. Mettre le slug dans l’URL SANS changer de page
+                  window.history.pushState(
+                    {},
+                    "",
+                    `/ingredients_recoltes/${ingredient.slug}`,
+                  );
                 }
               }}
               className="absolute bottom-[50%] right-1 rounded-md p-0.5 bg-special-white z-40

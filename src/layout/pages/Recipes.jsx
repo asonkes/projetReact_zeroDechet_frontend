@@ -164,7 +164,10 @@ export const Recipes = () => {
             {lightBoxImage && (
               <RecipeLightBox
                 src={lightBoxImage}
-                onClose={() => setLightBoxImage(null)}
+                onClose={() => {
+                  setLightBoxImage(null);
+                  window.history.pushState({}, "", "/recipes");
+                }}
               />
             )}
 

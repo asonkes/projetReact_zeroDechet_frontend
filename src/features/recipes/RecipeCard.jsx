@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlassPlus } from "@fortawesome/free-solid-svg-icons";
 import { RecipeImage } from "./RecipeImage";
@@ -14,6 +15,7 @@ export const RecipeCard = (props) => {
   const [imgLoaded, setImgLoaded] = useState(false);
   /** Pour les media-queries */
   const desktop = window.matchMedia("(min-width: 769px)").matches;
+  const navigate = useNavigate();
 
   return (
     <li
@@ -35,6 +37,7 @@ export const RecipeCard = (props) => {
               onClick={() => {
                 if (desktop) {
                   onClick(`/images/recipes/${recipe.slug}.webp`);
+                  window.history.pushState({}, "", `/recipes/${recipe.slug}`);
                 }
               }}
               className="absolute bottom-[50%] right-1 rounded-md p-0.5 bg-special-white z-40
@@ -86,7 +89,10 @@ export const RecipeCard = (props) => {
             onClick={() => setActive(!active)}
             className="h-0 opacity-0 invisible cursor-none md:h-full md:opacity-100 md:visible md:cursor-pointer mr-2"
           />
-          <ButtonCard text="Recette" />
+          <ButtonCard
+            text="Recette"
+            onClick={() => navigate("recipes_details")}
+          />
         </div>
       </div>
     </li>
