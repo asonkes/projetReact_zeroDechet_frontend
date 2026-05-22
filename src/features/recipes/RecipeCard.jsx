@@ -17,11 +17,11 @@ export const RecipeCard = (props) => {
 
   return (
     <li
-      className={`relative flex flex-col w-19 xs:w-24 md:w-18 md:h-23 mx-auto bg-special-green rounded-lg z-1 transition-all duration-500 ease-in-out border-4 border-blue-400 ${active ? `h-18 md:h-29` : `h-10-5 md:h-23`}`}
+      className={`relative flex flex-col w-19 xs:w-24 md:w-18 md:h-23 mx-auto bg-special-green rounded-lg z-1 transition-all duration-500 ease-in-out ${active ? `h-18 md:h-29` : `h-10-5 md:h-23`}`}
     >
-      <div className="h-full flex items-start md:flex-col md:[align-items:initial] flex-1 p-4 z-3 border-4 border-red-400">
-        <div className="relative flex justify-center -ml-2 mt-0.5 md:ml-0 md:mt-0">
-          <div className="w-full absolute bottom-0 flex items-center pt-10 border-yellow-300">
+      <div className="h-full flex items-start md:flex-col md:[align-items:initial] flex-1 p-4 z-3">
+        <div className="relative flex justify-center -ml-2 mt-1.5 md:ml-0 md:mt-0">
+          <div className="w-full absolute bottom-0 flex items-center pt-10">
             <h3 className="w-full flex justify-center items-center h-16 font-montserrat font-semibold text-white text-xs md:text-base text-center bg-linear-to-t from-special-black to-transparent z-10">
               {recipe.name}
             </h3>
@@ -66,7 +66,7 @@ export const RecipeCard = (props) => {
           {/** Si image pas téléchargé, on affiche le skeleton */}
         </div>
 
-        <div className="absolute w-full h-[77%] top-[15%] xs:h-[90%] xs:top-[10%] right-0 md:h-[70%] md:top-[30%] md:left-0 py-4 px-2 -z-2 border-4 border-orange-400">
+        <div className="absolute w-full h-[80%] top-[10%] xs:h-[80%] xs:top-[10%] right-0 md:h-[70%] md:top-[30%] md:left-0 py-4 px-2 -z-2">
           <div
             className={`h-full rounded-md origin-top transition-all duration-800 ease-out bg-special-white ${active ? `md:opacity-100 md:scale-y-100` : `md:opacity-0 md:scale-y-0`}`}
           ></div>
