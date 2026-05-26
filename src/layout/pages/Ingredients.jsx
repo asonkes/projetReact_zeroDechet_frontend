@@ -165,6 +165,7 @@ export const Ingredients = () => {
             />
 
             <Pagination
+              className={`${lightBoxImage ? `hidden opacity-0` : `block opacity-100`}`}
               totalPages={totalPages}
               currentPage={currentPage}
               onPageChange={setCurrentPage}
