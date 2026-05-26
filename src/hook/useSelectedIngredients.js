@@ -18,6 +18,9 @@ export const useSelectedIngredients = () => {
   /** Voir si la tableau est composé au moins d'1 élément */
   const hasIngredient = selectedIngredient.length > 0;
 
+  /** Nombre de recettes sélectionnées */
+  const countIngredient = parseInt(selectedIngredient.length);
+
   /** On doit d'abord voir s'il l'ingredient existe */
   const isSelected = (ingredient) =>
     selectedIngredient.some((item) => item._id === ingredient._id);
@@ -51,6 +54,7 @@ export const useSelectedIngredients = () => {
 
   return {
     hasIngredient,
+    countIngredient,
     selectedIngredient,
     isSelected,
     addIngredient,

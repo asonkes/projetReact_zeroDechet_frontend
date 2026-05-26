@@ -27,7 +27,7 @@ export const Header = () => {
   const isSearchOpen = location.state?.openSearch === true;
 
   /* variable pour pouvoir mettre bouton 'voir mes recettes' visible ou pas => jootai */
-  const { hasIngredient } = useSelectedIngredients();
+  const { hasIngredient, countIngredient } = useSelectedIngredients();
 
   /* On utilise un useEffect pour agir en dehors du composant */
   useEffect(() => {
@@ -147,7 +147,7 @@ export const Header = () => {
 
         <Button
           to="/recipes"
-          text="Voir mes recettes"
+          text={`Voir mes recettes ${countIngredient}`}
           className={`absolute left-4 lg:relative flex items-center px-4 my-2 transition-opacity duration-500 ease-in ${hasIngredient ? `opacity-100 visible w-auto` : `opacity-0 w-0 invisible`}`}
         />
 
