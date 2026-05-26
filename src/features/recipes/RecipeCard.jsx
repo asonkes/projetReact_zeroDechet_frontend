@@ -91,7 +91,10 @@ export const RecipeCard = (props) => {
           />
           <ButtonCard
             text="Recette"
-            onClick={() => navigate("recipes_details")}
+            recipe={recipe}
+            onClick={() =>
+              navigate(`/recipes_details/${recipe.slug}`, { state: { recipe } })
+            }
           />
         </div>
       </div>

@@ -142,14 +142,14 @@ export const Header = () => {
 
           <li
             className={`flex items-center border-b-2 border-b-primary-600 py-4 mx-2 lg:py-0 lg:border-none transition-opacity duration-500 ease-in ${hasIngredient ? `opacity-100 visible w-auto` : `opacity-0 w-0 invisible`}`}
-          >
-            <Button
-              to="/recipes"
-              text="Voir mes recettes"
-              className="px-4 py-2"
-            />
-          </li>
+          ></li>
         </ul>
+
+        <Button
+          to="/recipes"
+          text="Voir mes recettes"
+          className={`absolute top-0 left-4 md:relative flex items-center px-4 my-2 transition-opacity duration-500 ease-in ${hasIngredient ? `opacity-100 visible w-auto` : `opacity-0 w-0 invisible`}`}
+        />
 
         <div
           onClick={(e) => {

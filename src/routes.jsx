@@ -25,7 +25,7 @@ export const routes = [
         Component: Recipes,
       },
       {
-        path: "recipes_details",
+        path: "recipes_details/:slug",
         Component: Recipes_details,
       },
       {
