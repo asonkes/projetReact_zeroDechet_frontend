@@ -20,7 +20,10 @@ export const Recipes_details = () => {
   const [recipe, setRecipe] = useState(state?.recipe || null);
   /* On le met en true => reste actif */
   const [firstLoad, setFirstLoad] = useState(true);
-  const [data, setData] = useState();
+  /* State pour insérer les informations des datas(ingredients) */
+  const [dataIngredients, setDataIngredients] = useState();
+  /* State pour insérer les informations des datas(preparation) */
+  const [dataPreparation, setDataPreparation] = useState();
 
   useEffect(() => {
     const response = async () => {
@@ -30,11 +33,14 @@ export const Recipes_details = () => {
 
         const tab = data.preparation.map(item => (
           item.split(".")
-            .map(i => i.trim())
-            .filter(s => s.length > 0)
+            .map(item => item.trim())
+            .filter(item => item.length > 0)
         ));
+        
+        setDataPreparation(tab);
 
-        setData(tab);
+        const tab2 = data.ingredients;
+        setDataIngredients(tab2);
         
         setFirstLoad(false);
       } catch (error) {
@@ -107,9 +113,12 @@ export const Recipes_details = () => {
                 <span className="pl-1">Ingrédients</span>
               </p>
               <div>
-                <p>Tags des différents ingrédients</p>
                 {/** Je dois faire un map */}
-                <ul className="border-4 border-red-500"></ul>
+                <ul className="flex border-4 border-red-500">
+                  {dataIngredients.map((item, index) => (
+                    <li key={index}>{item.name}</li>
+                  ))}
+                </ul>
               </div>
             </div>
 
@@ -119,7 +128,7 @@ export const Recipes_details = () => {
                 <span>Préparation</span>
               </p>
               <ul className="list-none px-2 py-4">
-                {data.map((item, index) => (
+                {dataPreparation.map((item, index) => (
                   <li key={index} className="py-0.5">{item}</li>
                 ))}
               </ul>
