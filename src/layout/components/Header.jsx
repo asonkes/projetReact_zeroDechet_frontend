@@ -147,9 +147,11 @@ export const Header = () => {
 
         <Button
           to="/recipes"
-          text={`Voir mes recettes ${countIngredient}`}
           className={`absolute left-4 lg:relative flex items-center px-4 my-2 transition-opacity duration-500 ease-in ${hasIngredient ? `opacity-100 visible w-auto` : `opacity-0 w-0 invisible`}`}
-        />
+        >
+          <span>Voir mes recettes</span>
+          <span className="w-10 h-10 ml-1.5 bg-special-white border border-white text-secondary-400 rounded-4xl py-2 px-3.5">{countIngredient}</span>
+        </Button>
 
         <div
           onClick={(e) => {
