@@ -68,7 +68,7 @@ export const Recipes_details = () => {
 
       <section className="w-full min-h-[calc(100vh-102px)] flex bg-primary-600">
         <FullScreen height="min-h-[calc(100vh-102px)] flex justify-center font-quicksand py-4">
-          <SplitScreen className="border border-white rounded-lg">
+          <SplitScreen className="text-white border border-white rounded-lg">
             <div className="flex justify-end">
               <p className="font-semibold text-xl text-end capitalize border border-white rounded-lg bg-secondary-400 px-2 py-1">
                 {recipe.category}
@@ -81,16 +81,15 @@ export const Recipes_details = () => {
             /> 
 
             <div className="w-1/3 h-1/4 m-auto">
-              
               <RecipeImage
                 src={`/images/recipes/${recipe.slug}.webp`}
                 alt={`Image représentant l'ingrédient '${recipe.name}' sur fond en bois foncé`}
               />
             </div>
 
-            <div className="text-white text-center border-4 border-fuchsia-400 py-4">{recipe.description}</div>
+            <div className="text-center border-4 border-fuchsia-400 py-4">{recipe.description}</div>
 
-            <div className="text-white flex justify-around py-2 border-4 border-orange-300">
+            <div className="flex justify-around font-semibold py-2 border-4 border-orange-300">
               <p>
                 <FontAwesomeIcon icon={faClock} />
                 <span className="pl-1">
@@ -120,9 +119,9 @@ export const Recipes_details = () => {
                 <FontAwesomeIcon icon={faBlender} />
                 <span>Préparation</span>
               </p>
-              <ul className="list-none">
+              <ul className="list-none px-2 py-4">
                 {data.map((item, index) => (
-                  <li key={index}>{item}</li>
+                  <li key={index} className="py-0.5">{item}</li>
                 ))}
               </ul>
             </div>
