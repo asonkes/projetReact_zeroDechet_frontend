@@ -35,7 +35,6 @@ export const Recipes_details = () => {
         ));
 
         setData(tab);
-        console.log(tab);
         
         setFirstLoad(false);
       } catch (error) {
