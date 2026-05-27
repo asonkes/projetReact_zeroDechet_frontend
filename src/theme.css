@@ -46,6 +46,7 @@
 
   /* Special color */
   --color-special-white: rgba(255, 255, 255, 0.8);
+  --color-special-white2: rgba(255, 255, 255, 0.6);
   --color-special-black: rgba(0, 0, 0, 0.8);
   --color-special-gray: rgba(0, 0, 0, 0.3);
   --color-special-green: rgb(212, 220, 140);
@@ -148,14 +149,12 @@
 
 @font-face {
   font-family: Montserrat;
-  src: url("/fonts/Montserrat/Montserrat-VariableFont_wght.ttf")
-    format("truetype");
+  src: url("/fonts/Montserrat/Montserrat-VariableFont_wght.ttf") format("truetype");
 }
 
 @font-face {
   font-family: Quicksand;
-  src: url("/fonts/Quicksand/Quicksand-VariableFont_wght.ttf")
-    format("truetype");
+  src: url("/fonts/Quicksand/Quicksand-VariableFont_wght.ttf") format("truetype");
 }
 
 @font-face {

@@ -20,6 +20,7 @@ export const Recipes_details = () => {
   const [recipe, setRecipe] = useState(state?.recipe || null);
   /* On le met en true => reste actif */
   const [firstLoad, setFirstLoad] = useState(true);
+  const [data, setData] = useState();
 
   useEffect(() => {
     const response = async () => {
@@ -27,6 +28,15 @@ export const Recipes_details = () => {
         const data = await recipeService.getBySlug(slug);
         setRecipe(data);
 
+        const tab = data.preparation.map(item => (
+          item.split(".")
+            .map(i => i.trim())
+            .filter(s => s.length > 0)
+        ));
+
+        setData(tab);
+        console.log(tab);
+        
         setFirstLoad(false);
       } catch (error) {
         console.log(error);
@@ -55,27 +65,32 @@ export const Recipes_details = () => {
         <title>Détail Recette - Potager zéro déchet</title>
         <meta name="description" content={recipe.description} />
       </Helmet>
+
       <section className="w-full min-h-[calc(100vh-102px)] flex bg-primary-600">
-        <FullScreen height="min-h-[calc(100vh-102px)] flex justify-center font-quicksand text-white py-4">
+        <FullScreen height="min-h-[calc(100vh-102px)] flex justify-center font-quicksand py-4">
           <SplitScreen className="border border-white rounded-lg">
             <div className="flex justify-end">
               <p className="font-semibold text-xl text-end capitalize border border-white rounded-lg bg-secondary-400 px-2 py-1">
                 {recipe.category}
               </p>
             </div>
-            <div className="-mt-3">
-              <Title
-                className="font-quicksand font-bold text-white text-xl border-4 border-red-400"
-                text={recipe.name}
-              />
-            </div>
-            <div className="w-1/3 h-1/3 m-auto">
+
+            <Title
+              className="font-quicksand font-bold text-white text-xl border-4 border-red-400 mt-0!"
+              text={recipe.name}
+            /> 
+
+            <div className="w-1/3 h-1/4 m-auto">
+              
               <RecipeImage
                 src={`/images/recipes/${recipe.slug}.webp`}
                 alt={`Image représentant l'ingrédient '${recipe.name}' sur fond en bois foncé`}
               />
             </div>
-            <div className="flex justify-around border-4 border-orange-300">
+
+            <div className="text-white text-center border-4 border-fuchsia-400 py-4">{recipe.description}</div>
+
+            <div className="text-white flex justify-around py-2 border-4 border-orange-300">
               <p>
                 <FontAwesomeIcon icon={faClock} />
                 <span className="pl-1">
@@ -87,19 +102,31 @@ export const Recipes_details = () => {
 
               <Price price={recipe.price} />
             </div>
+
             <div className="border-4 border-blue-400">
-              <p className="font-semibold text-xl text-center py-2">
+              <p className="font-semibold text-xl text-secondary-400 text-center py-2 bg-special-white2">
                 <FontAwesomeIcon icon={faPlateWheat} />
                 <span className="pl-1">Ingrédients</span>
               </p>
+              <div>
+                <p>Tags des différents ingrédients</p>
+                {/** Je dois faire un map */}
+                <ul className="border-4 border-red-500"></ul>
+              </div>
             </div>
+
             <div className="border-4 border-red-200">
-              <p className="font-semibold text-xl text-center py-2">
+              <p className="font-semibold text-xl text-secondary-400 text-center py-2 bg-special-white2">
                 <FontAwesomeIcon icon={faBlender} />
                 <span>Préparation</span>
               </p>
-              <p></p>
+              <ul className="list-none">
+                {data.map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))}
+              </ul>
             </div>
+
           </SplitScreen>
         </FullScreen>
       </section>
