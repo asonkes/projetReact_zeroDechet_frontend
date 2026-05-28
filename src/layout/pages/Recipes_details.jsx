@@ -13,6 +13,8 @@ import { faPlateWheat } from "@fortawesome/free-solid-svg-icons";
 import { faBlender } from "@fortawesome/free-solid-svg-icons";
 import { Difficulty } from "../../features/recipes_details/difficulty";
 import { Price } from "../../features/recipes_details/Price";
+import { RecipesDetailsText } from "../../features/recipes_details/RecipesDetailsText";
+import { IngredientMiniCard } from "../../features/ingredients/IngredientMiniCard";
 
 export const Recipes_details = () => {
   const { slug } = useParams();
@@ -20,10 +22,6 @@ export const Recipes_details = () => {
   const [recipe, setRecipe] = useState(state?.recipe || null);
   /* On le met en true => reste actif */
   const [firstLoad, setFirstLoad] = useState(true);
-  /* State pour insérer les informations des datas(ingredients) */
-  const [dataIngredients, setDataIngredients] = useState();
-  /* State pour insérer les informations des datas(preparation) */
-  const [dataPreparation, setDataPreparation] = useState();
 
   useEffect(() => {
     const response = async () => {
@@ -31,17 +29,6 @@ export const Recipes_details = () => {
         const data = await recipeService.getBySlug(slug);
         setRecipe(data);
 
-        const tab = data.preparation.map(item => (
-          item.split(".")
-            .map(item => item.trim())
-            .filter(item => item.length > 0)
-        ));
-        
-        setDataPreparation(tab);
-
-        const tab2 = data.ingredients;
-        setDataIngredients(tab2);
-        
         setFirstLoad(false);
       } catch (error) {
         console.log(error);
@@ -81,20 +68,20 @@ export const Recipes_details = () => {
             </div>
 
             <Title
-              className="font-quicksand font-bold text-white text-xl border-4 border-red-400 mt-0!"
+              className="font-quicksand font-bold text-white text-xl mt-0!"
               text={recipe.name}
-            /> 
+            />
 
-            <div className="w-1/3 h-1/4 m-auto">
+            <div className="w-1/3 h-1/5 m-auto">
               <RecipeImage
                 src={`/images/recipes/${recipe.slug}.webp`}
                 alt={`Image représentant l'ingrédient '${recipe.name}' sur fond en bois foncé`}
               />
             </div>
 
-            <div className="text-center border-4 border-fuchsia-400 py-4">{recipe.description}</div>
+            <div className="text-center py-4">{recipe.description}</div>
 
-            <div className="flex justify-around font-semibold py-2 border-4 border-orange-300">
+            <div className="flex justify-around font-semibold py-4  border border-white">
               <p>
                 <FontAwesomeIcon icon={faClock} />
                 <span className="pl-1">
@@ -107,33 +94,30 @@ export const Recipes_details = () => {
               <Price price={recipe.price} />
             </div>
 
-            <div className="border-4 border-blue-400">
-              <p className="font-semibold text-xl text-secondary-400 text-center py-2 bg-special-white2">
-                <FontAwesomeIcon icon={faPlateWheat} />
-                <span className="pl-1">Ingrédients</span>
-              </p>
-              <div>
-                {/** Je dois faire un map */}
-                <ul className="flex border-4 border-red-500">
-                  {dataIngredients.map((item, index) => (
-                    <li key={index}>{item.name}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            <div className="border-4 border-red-200">
-              <p className="font-semibold text-xl text-secondary-400 text-center py-2 bg-special-white2">
-                <FontAwesomeIcon icon={faBlender} />
-                <span>Préparation</span>
-              </p>
-              <ul className="list-none px-2 py-4">
-                {dataPreparation.map((item, index) => (
-                  <li key={index} className="py-0.5">{item}</li>
+            <RecipesDetailsText icon={faPlateWheat} text="Ingrédients">
+              <ul className="flex flex-wrap justify-center px-2 py-4">
+                {recipe.ingredients.map((item, index) => (
+                  <IngredientMiniCard
+                    key={index}
+                    className="m-1 justify-center!"
+                  >
+                    <span>{item.name}</span>
+                    <span></span>
+                    <span></span>
+                  </IngredientMiniCard>
                 ))}
               </ul>
-            </div>
+            </RecipesDetailsText>
 
+            <RecipesDetailsText icon={faBlender} text="Préparation">
+              <ul className="list-none px-2 py-4">
+                {recipe.preparation.map((item, index) => (
+                  <li key={index} className="py-0.5">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </RecipesDetailsText>
           </SplitScreen>
         </FullScreen>
       </section>

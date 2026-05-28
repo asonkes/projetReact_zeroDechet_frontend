@@ -1,27 +1,31 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { useSelectedIngredients } from "../../hook/useSelectedIngredients";
 
 export const IngredientMiniCard = (props) => {
-  const { text, ingredient, className = "" } = props;
-  const { removeIngredient } = useSelectedIngredients();
+  const { text, children, icon, onClick, className = "" } = props;
+
+  const justify = icon ? `inline-flex justify-between` : `flex justify-center`;
 
   return (
-    <li className="min-w-21 inline-flex items-center justify-between bg-special-white border border-white rounded-lg mx-1 p-1">
+    <li
+      className={`min-w-21 items-center bg-special-white border border-white rounded-lg m-1 p-1 ${justify}`}
+    >
       <p
         className={`font-quicksand font-semibold text-base text-primary-700 ${className}`}
       >
-        {text}
+        {children || text}
       </p>
-      <div
-        onClick={() => removeIngredient(ingredient)}
-        className="w-auto h-full flex items-center rounded-md ml-2"
-      >
-        <FontAwesomeIcon
-          icon={faXmark}
-          className="text-secondary-400 p-1 cursor-pointer"
-        />
-      </div>
+
+      {icon && (
+        <div
+          onClick={onClick}
+          className="w-auto h-full flex items-center rounded-md ml-2"
+        >
+          <FontAwesomeIcon
+            icon={icon}
+            className="text-secondary-400 p-1 cursor-pointer"
+          />
+        </div>
+      )}
     </li>
   );
 };

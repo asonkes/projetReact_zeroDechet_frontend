@@ -17,6 +17,7 @@ import { Pagination } from "../../shared/Pagination";
 import { Loader } from "../../shared/Loader";
 import { SkeletonCardImageNoRound } from "../../shared/skeleton/SkeletonCardImageNoRound";
 import { IngredientText } from "../../features/ingredients/IngredientText";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 export const Recipes = () => {
   // FORMATEUR : Si ingre dans l'url -> les recup et ne plus utiliser jotai pour les stocker
@@ -25,7 +26,7 @@ export const Recipes = () => {
   /* set qui permettra d'afficher les recettes */
   const [recipes, setRecipes] = useState([]);
   /* Permet d'avoir les ingrédients sélectionnés sur page ingrédients */
-  const { selectedIngredient } = useSelectedIngredients();
+  const { selectedIngredient, removeIngredient } = useSelectedIngredients();
 
   // FORMATEUR : Tips temporaire pour avoir a liste des ingrés (pour construire ton back)
   // const ingres = selectedIngredient.map(ingredient => ingredient.slug);
@@ -156,6 +157,8 @@ export const Recipes = () => {
                     key={ingredient._id}
                     text={ingredient.name}
                     ingredient={ingredient}
+                    icon={faXmark}
+                    onClick={() => removeIngredient(ingredient)}
                   />
                 ))}
               </ul>
