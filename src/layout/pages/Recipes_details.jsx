@@ -59,8 +59,8 @@ export const Recipes_details = () => {
       </Helmet>
 
       <section className="w-full min-h-[calc(100vh-102px)] flex bg-primary-600">
-        <FullScreen height="min-h-[calc(100vh-102px)] flex justify-center font-quicksand py-4">
-          <SplitScreen className="text-white border border-white rounded-lg">
+        <FullScreen height="min-h-[calc(100vh-102px)] flex justify-center font-quicksand p-4">
+          <div className="max-w-50 h-fit text-white border border-white rounded-lg my-4">
             <div className="flex justify-end">
               <p className="font-semibold text-xl text-end capitalize border border-white rounded-lg bg-secondary-400 px-2 py-1">
                 {recipe.category}
@@ -72,7 +72,7 @@ export const Recipes_details = () => {
               text={recipe.name}
             />
 
-            <div className="w-1/3 h-1/5 m-auto">
+            <div className="w-2/3 xs:w-1/2 sm:w-4/12 h-1/5 m-auto">
               <RecipeImage
                 src={`/images/recipes/${recipe.slug}.webp`}
                 alt={`Image représentant l'ingrédient '${recipe.name}' sur fond en bois foncé`}
@@ -99,18 +99,22 @@ export const Recipes_details = () => {
                 {recipe.ingredients.map((item, index) => (
                   <IngredientMiniCard
                     key={index}
-                    className="m-1 justify-center!"
+                    className="m-1 text-sm md:text-base"
                   >
-                    <span>{item.name}</span>
-                    <span></span>
-                    <span></span>
+                    <span className="flex flex-col items-center">
+                      {item.quantity_person} {item.unity}
+                    </span>
+                    <span className="text-center">{item.name}</span>
                   </IngredientMiniCard>
                 ))}
               </ul>
             </RecipesDetailsText>
 
-            <RecipesDetailsText icon={faBlender} text="Préparation">
-              <ul className="list-none px-2 py-4">
+            <RecipesDetailsText
+              icon={faBlender}
+              text={`Préparation( ${recipe.number_person} personne)`}
+            >
+              <ul className="flex flex-col list-none p-4">
                 {recipe.preparation.map((item, index) => (
                   <li key={index} className="py-0.5">
                     {item}
@@ -118,7 +122,7 @@ export const Recipes_details = () => {
                 ))}
               </ul>
             </RecipesDetailsText>
-          </SplitScreen>
+          </div>
         </FullScreen>
       </section>
     </>

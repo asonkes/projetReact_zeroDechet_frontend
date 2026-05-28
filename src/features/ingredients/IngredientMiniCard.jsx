@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export const IngredientMiniCard = (props) => {
   const { text, children, icon, onClick, className = "" } = props;
 
-  const justify = icon ? `inline-flex justify-between` : `flex justify-center`;
+  const justify = icon ? `inline-flex justify-between` : `text-center`;
 
   return (
     <li
