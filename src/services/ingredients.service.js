@@ -7,6 +7,14 @@ const ingredientService = {
     return response.data;
   },
 
+  getByName: async (name) => {
+    const response = await axios.get(
+      `http://localhost:3000/api/ingredients/name/${name}`,
+    );
+
+    return response.data;
+  },
+
   getPaginated: async (page, limit) => {
     const response = await axios.get(
       `http://localhost:3000/api/ingredients?page=${page}&limit=${limit}`,

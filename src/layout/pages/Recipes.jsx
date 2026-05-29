@@ -41,7 +41,7 @@ export const Recipes = () => {
 
   // Pour la pagination
   // Remplace : const [currentPage, setCurrentPage] = useState(1);
-  /* Permet que si on clique sur la page 2 d ela pagination => on voit 2 dans l'url */
+  /* Permet que si on clique sur la page 2 de la pagination => on voit 2 dans l'url */
   const currentPage = parseInt(searchParams.get("page"));
   const setCurrentPage = (targetPage) => {
     setSearchParams((params) => {

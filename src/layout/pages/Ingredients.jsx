@@ -31,7 +31,7 @@ export const Ingredients = () => {
 
   // Pour la pagination
   // Remplace : const [currentPage, setCurrentPage] = useState(1);
-  /* Permet que si on clique sur la page 2 d ela pagination => on voit 2 dans l'url */
+  /* Permet que si on clique sur la page 2 de la pagination => on voit 2 dans l'url */
   const currentPage = parseInt(searchParams.get("page"));
   const setCurrentPage = (targetPage) => {
     setSearchParams((params) => {
@@ -52,9 +52,11 @@ export const Ingredients = () => {
   /* Rendre la barre de recherche visible */
   const location = useLocation();
   const [isVisibleSearch, setIsVisibleSearch] = useState(false);
+  /** State pour affiche le message */
+  const [message, setMessage] = useState("");
 
   /** on reprend hasIngredient pour apparition du bouton => voir mes recettes  */
-  const { hasIngredient } = useSelectedIngredients();
+  const { addIngredient, hasIngredient } = useSelectedIngredients();
 
   useEffect(() => {
     const response = async () => {
@@ -83,6 +85,18 @@ export const Ingredients = () => {
 
     response();
   }, [currentPage]);
+
+  const handleIngredientSelect = async (name) => {
+    const ingredient = await ingredientService.getByName(name);
+
+    if (!ingredient) return;
+
+    addIngredient(ingredient);
+
+    setMessage(
+      `L'ingrédient ${ingredient.name} a bien été ajouté à votre liste !`,
+    );
+  };
 
   /* Use Effect sert à récupérer l'état envoyé par le header et à ouvrir la searchBar qd on arrive sur la loupe */
   useEffect(() => {
@@ -119,8 +133,13 @@ export const Ingredients = () => {
           className="flex flex-col"
         >
           <SearchBar
+            onIngredientSelect={handleIngredientSelect}
             className={`transition-opacity duration-500 ease-in-out ${isVisibleSearch ? "opacity-100 visible" : "opacity-0 invisible"}`}
-          />
+          >
+            <p className="font-quicksand text-secondary-400 border border-amber-400 ">
+              {message}
+            </p>
+          </SearchBar>
 
           <Title
             text="Quels ingrédients as-tu récoltés ?"
@@ -138,7 +157,7 @@ export const Ingredients = () => {
           )}
 
           <div
-            className={`w-full h-auto flex flex-col flex-1 container py-4 ${lightBoxImage ? "opacity-0 invisible" : "opacity-100 visible"}`}
+            className={`w-full h-auto flex flex-col flex-1 container py-4 ${lightBoxImage ? "opacity-0 invisible" : "opacity-100 visible"} ${isVisibleSearch ? `blur-xl` : `blur-none`}`}
           >
             <IngredientText
               className="text-xl text-white text-center p-4"

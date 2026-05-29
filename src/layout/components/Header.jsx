@@ -94,10 +94,10 @@ export const Header = () => {
   }, []);
 
   useEffect(() => {
-    if (location.hash !== '') {
-      document.querySelector(location.hash)?.scrollIntoView()
+    if (location.hash !== "") {
+      document.querySelector(location.hash)?.scrollIntoView();
     }
-  }, [location.hash])
+  }, [location.hash]);
 
   /* Gestion du clic sur la loupe */
   const handleSearchClick = () => {
@@ -125,10 +125,13 @@ export const Header = () => {
           className={`max-w-full h-[calc(100vh-60px)] absolute right-0 top-3-75 flex flex-col p-1 bg-white border border-primary-600 shadow-primary-400 shadow lg:relative lg:h-auto lg:top-0 lg:flex-row lg:border-none lg:shadow-none transition-opacity duration-300 ease-in ${isActive ? `opacity-100 visible` : `opacity-0 invisible lg:opacity-100 lg:visible`}`}
         >
           <NavItem to="/" text="Home" />
-          <NavItem to={{
-                        pathname: "/",
-                        hash: "#about",
-                      }} text="About" />
+          <NavItem
+            to={{
+              pathname: "/",
+              hash: "#about",
+            }}
+            text="About"
+          />
           <NavItem to="ingredients_recoltes" text="Ingrédients récoltés" />
           <NavItem to="/contact" text="Contact" />
           <NavItem
@@ -148,18 +151,16 @@ export const Header = () => {
               className="transition-opacity duration-500 ease-in-out"
             />
           </li>
-
-          <li
-            className={`flex items-center border-b-2 border-b-primary-600 py-4 mx-2 lg:py-0 lg:border-none transition-opacity duration-500 ease-in ${hasIngredient ? `opacity-100 visible w-auto` : `opacity-0 w-0 invisible`}`}
-          ></li>
         </ul>
 
         <Button
           to="/recipes"
-          className={`absolute left-4 lg:relative flex items-center px-4 my-2 transition-opacity duration-500 ease-in ${hasIngredient ? `opacity-100 visible w-auto` : `opacity-0 w-0 invisible`}`}
+          className={`absolute left-4 lg:relative flex items-center px-2! md:px-4 py-0.5! md:py-2 my-1.5! md:my-2 transition-opacity duration-500 ease-in ${hasIngredient ? `opacity-100 visible w-auto` : `opacity-0 w-0 invisible`}`}
         >
           <span>Voir mes recettes</span>
-          <span className="w-10 h-10 ml-1.5 bg-special-white border border-white text-secondary-400 rounded-4xl py-2 px-3.5">{countIngredient}</span>
+          <span className="w-10 h-10 ml-1.5 bg-special-white border border-white text-secondary-400 rounded-4xl py-2 px-3.5">
+            {countIngredient}
+          </span>
         </Button>
 
         <div

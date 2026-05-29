@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 export const SearchBar = (props) => {
-  const { className = "" } = props;
+  const { className = "", children, onIngredientSelect } = props;
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
@@ -11,6 +11,10 @@ export const SearchBar = (props) => {
 
       const inputValue = event.target.value.trim();
       console.log(inputValue);
+
+      if (inputValue !== "") {
+        onIngredientSelect(inputValue);
+      }
     }
   };
 
@@ -18,7 +22,7 @@ export const SearchBar = (props) => {
     <div
       className={`absolute top-3-75 w-full h-[calc(100vh-63px)] bg-special-greenLight z-50 ${className}`}
     >
-      <div className="w-full h-[80px] flex justify-center items-center bg-primary-600">
+      <div className="w-full h-[150px] flex flex-col justify-center items-center bg-primary-600">
         <input
           type="text"
           id="ingredientValue"
@@ -30,6 +34,7 @@ export const SearchBar = (props) => {
           icon={faMagnifyingGlass}
           className="text-white text-xl ml-4"
         />
+        {children}
       </div>
     </div>
   );
