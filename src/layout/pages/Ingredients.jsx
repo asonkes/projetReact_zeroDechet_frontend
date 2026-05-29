@@ -94,7 +94,7 @@ export const Ingredients = () => {
     addIngredient(ingredient);
 
     setMessage(
-      `L'ingrédient ${ingredient.name} a bien été ajouté à votre liste !`,
+      `L'ingrédient '${ingredient.name}' a bien été ajouté à votre liste !`,
     );
   };
 
@@ -136,7 +136,7 @@ export const Ingredients = () => {
             onIngredientSelect={handleIngredientSelect}
             className={`transition-opacity duration-500 ease-in-out ${isVisibleSearch ? "opacity-100 visible" : "opacity-0 invisible"}`}
           >
-            <p className="font-quicksand text-secondary-400 border border-amber-400 ">
+            <p className="font-quicksand font-semibold text-center mt-4 text-secondary-400">
               {message}
             </p>
           </SearchBar>
