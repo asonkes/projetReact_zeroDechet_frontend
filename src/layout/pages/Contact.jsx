@@ -6,8 +6,43 @@ import { IngredientLightBox } from "../../features/ingredients/IngredientLightBo
 import { FullScreen } from "../../shared/FullScreen";
 import { SplitScreen } from "../../shared/SplitScreen";
 import { Title } from "../../shared/Title";
+import { ButtonCard } from "../../shared/button/ButtonCard";
+import { useState } from "react";
 
 export const Contact = () => {
+  const [status, setStatus] = useState(null);
+
+  /** A l'envoi du form */
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    try {
+      const form = e.target;
+      const formData = new FormData(form);
+
+      const lastname = formData.get("lastname");
+      console.log(lastname);
+
+      const firstname = formData.get("firstname");
+      console.log(firstname);
+
+      const email = formData.get("email");
+      console.log(email);
+
+      const message = formData.get("message");
+      console.log(message);
+
+      setStatus("success");
+
+      setTimeout(() => setStatus(null), 3000);
+    } catch (err) {
+      console.log(err);
+
+      setStatus("error");
+      setTimeout(() => setStatus(null), 3000);
+    }
+  };
+
   return (
     <>
       <Helmet>
@@ -34,12 +69,19 @@ export const Contact = () => {
             </SplitScreen>
             <SplitScreen className="h-auto px-2 flex flex-col lg:px-0">
               <Title>Contact</Title>
-              <form className="font-quicksand flex flex-col justify-center items-center py-6">
+              <form
+                onSubmit={handleSubmit}
+                className="font-quicksand flex flex-col justify-center items-center py-6"
+              >
                 <div className="w-full flex flex-col justify-center items-center lg:flex-row p-2">
-                  <label className="w-full font-bold text-primary-600 py-1.5 underline decoration-2 underline-offset-4 sm:w-1/2 lg:w-1/6">
+                  <label
+                    htmlFor="lastname"
+                    className="w-full font-bold text-primary-600 py-1.5 underline decoration-2 underline-offset-4 sm:w-1/2 lg:w-1/6"
+                  >
                     Nom:
                   </label>
                   <input
+                    id="lastname"
                     className="w-full bg-white placeholder:text-primary-700 p-2 mt-2 lg:mt-0 rounded-lg focus:outline-none border border-primary-600 shadow-primary-400 shadow sm:w-1/2"
                     type="text"
                     name="lastname"
@@ -48,10 +90,14 @@ export const Contact = () => {
                 </div>
 
                 <div className="w-full flex flex-col justify-center items-center lg:flex-row p-2">
-                  <label className="w-full font-bold text-primary-600 py-1.5 underline decoration-2 underline-offset-4 sm:w-1/2 lg:w-1/6">
+                  <label
+                    htmlFor="firstname"
+                    className="w-full font-bold text-primary-600 py-1.5 underline decoration-2 underline-offset-4 sm:w-1/2 lg:w-1/6"
+                  >
                     Prénom:
                   </label>
                   <input
+                    id="firstname"
                     className="w-full bg-white placeholder:text-primary-600 p-2 mt-2 lg:mt-0 rounded-lg focus:outline-none border border-primary-600 shadow-primary-400 shadow sm:w-1/2"
                     type="text"
                     name="firstname"
@@ -60,29 +106,55 @@ export const Contact = () => {
                 </div>
 
                 <div className="w-full flex flex-col justify-center items-center lg:flex-row p-2">
-                  <label className="w-full font-bold text-primary-600 py-1.5 underline decoration-2 underline-offset-4 sm:w-1/2 lg:w-1/6">
+                  <label
+                    htmlFor="email"
+                    className="w-full font-bold text-primary-600 py-1.5 underline decoration-2 underline-offset-4 sm:w-1/2 lg:w-1/6"
+                  >
                     E-mail:
                   </label>
                   <input
+                    id="email"
                     className="w-full bg-white placeholder:text-primary-600 p-2 mt-2 lg:mt-0 rounded-lg focus:outline-none border border-primary-700 shadow-primary-400 shadow sm:w-1/2"
-                    type="text"
+                    type="email"
                     name="email"
                     placeholder="Veuillez indiquer votre e-mail..."
                   />
                 </div>
 
                 <div className="w-full flex flex-col items-center p-2">
-                  <label className="w-full font-bold text-primary-600 py-1.5 underline decoration-2 underline-offset-4 sm:w-1/2 lg:w-2/3">
+                  <label
+                    htmlFor="message"
+                    className="w-full font-bold text-primary-600 py-1.5 underline decoration-2 underline-offset-4 sm:w-1/2 lg:w-2/3"
+                  >
                     Message:
                   </label>
                   <textarea
+                    id="message"
                     className="w-full h-40 bg-white placeholder:text-primary-600 p-3 mt-4 rounded-lg border border-green-700 shadow-primary-400 shadow resize-none sm:w-1/2 lg:w-2/3 focus:outline-none"
-                    type="text"
                     name="message"
                     placeholder="Veuillez indiquer votre message..."
                   />
                 </div>
+
+                <button
+                  type="submit"
+                  className="font-montserrat bg-primary-800 text-white cursor-pointer py-2 px-2 hover:scale-105 hover:bg-primary-700 rounded-lg mt-3"
+                >
+                  Envoyer
+                </button>
               </form>
+
+              {status === "success" && (
+                <p className="font-quicksand font-semibold text-center text-primary-600">
+                  Votre message a bien été envoyé !
+                </p>
+              )}
+
+              {status === "error" && (
+                <p className="font-quicksand font-semibold text-center text-secondary-400">
+                  Votre message n'a pas été envoyé, veuillez rééssayer!
+                </p>
+              )}
             </SplitScreen>
           </div>
         </FullScreen>
