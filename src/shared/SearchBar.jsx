@@ -1,8 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { useEffect, useRef } from "react";
 
 export const SearchBar = (props) => {
-  const { className = "", children, onIngredientSelect } = props;
+  const { className = "", children, onIngredientSelect, onClose } = props;
+
+  /** Constante pour référence de la partie qui doit se fermer */
+  const searchRef = useRef();
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
@@ -20,11 +24,26 @@ export const SearchBar = (props) => {
     }
   };
 
+  useEffect(() => {
+    const closeSearchBar = (e) => {
+      if (searchRef.current && !searchRef.current.contains(e.target)) {
+        onClose();
+      }
+    };
+
+    document.addEventListener("click", closeSearchBar);
+
+    return () => document.removeEventListener("click", closeSearchBar);
+  }, [onClose]);
+
   return (
     <div
       className={`absolute top-3-75 w-full h-[calc(100vh-63px)] bg-special-greenLight z-45 ${className}`}
     >
-      <div className="w-full h-10-5 flex flex-col justify-center bg-primary-600">
+      <div
+        ref={searchRef}
+        className="w-full h-10-5 flex flex-col justify-center bg-primary-600"
+      >
         <div className="w-full text-center">
           <input
             type="text"

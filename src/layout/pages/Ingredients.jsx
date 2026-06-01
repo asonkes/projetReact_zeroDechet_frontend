@@ -134,6 +134,7 @@ export const Ingredients = () => {
         >
           <SearchBar
             onIngredientSelect={handleIngredientSelect}
+            onClose={() => setIsVisibleSearch(false)}
             className={`transition-opacity duration-500 ease-in-out ${isVisibleSearch ? "opacity-100 visible" : "opacity-0 invisible"}`}
           >
             <p className="font-quicksand font-semibold text-center mt-4 text-secondary-400">

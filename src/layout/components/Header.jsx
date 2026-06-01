@@ -109,7 +109,7 @@ export const Header = () => {
     }
 
     /* Si on est sur la page ingrédients → toggle réel */
-    /* naigate(".") => reste sur la même page */
+    /* navigate(".") => reste sur la même page */
     navigate("/ingredients_recoltes", { state: { openSearch: !isSearchOpen } });
     /* Et donc tu ouvre pas la barre de recherche */
     setIsActive(false);
