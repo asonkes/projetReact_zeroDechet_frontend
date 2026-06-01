@@ -9,6 +9,7 @@ import { ButtonCard } from "../../shared/button/ButtonCard";
 import { IngredientImage } from "./IngredientImage";
 import { IngredientText } from "./IngredientText";
 import { SkeletonImage } from "../../shared/skeleton/SkeletonImage";
+import { SkeletonText } from "../../shared/skeleton/SkeletonText";
 import { useSelectedIngredients } from "../../hook/useSelectedIngredients";
 
 export const IngredientCard = (props) => {
@@ -85,6 +86,11 @@ export const IngredientCard = (props) => {
             className={`h-full rounded-md origin-top transition-all duration-800 ease-out bg-special-white ${active ? `md:opacity-100 md:scale-y-100` : `md:opacity-0 md:scale-y-0`}`}
           ></div>
         </div>
+
+        {/** Skeleton de l'image */}
+        {!imgLoaded && (
+          <SkeletonText className="absolute inset-0 w-full h-full border-4 border-gray-300 rounded-t-[9.5rem] z-10" />
+        )}
 
         <IngredientText
           className={`flex-1 text-sm xs:text-base px-3 absolute top-[33%] left-[43%] xs:top-[30%] xs:left-[35%] md:relative md:top-0 md:left-0 md:px-10 pt-2 transition-all duration-500 ease-out overflow-hidden ${active ? `md:opacity-100 md:max-h-45` : `md:opacity-0 md:max-h-0`}`}

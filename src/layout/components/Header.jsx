@@ -93,6 +93,12 @@ export const Header = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (location.hash !== "") {
+      document.querySelector(location.hash)?.scrollIntoView();
+    }
+  }, [location.hash]);
+
   /* Gestion du clic sur la loupe */
   const handleSearchClick = () => {
     /* Si on n'est PAS sur la page ingrédients → redirection + ouverture*/
@@ -119,7 +125,13 @@ export const Header = () => {
           className={`max-w-full h-[calc(100vh-60px)] absolute right-0 top-3-75 flex flex-col p-1 bg-white border border-primary-600 shadow-primary-400 shadow lg:relative lg:h-auto lg:top-0 lg:flex-row lg:border-none lg:shadow-none transition-opacity duration-300 ease-in ${isActive ? `opacity-100 visible` : `opacity-0 invisible lg:opacity-100 lg:visible`}`}
         >
           <NavItem to="/" text="Home" />
-          <NavItem to="/#about" text="About" />
+          <NavItem
+            to={{
+              pathname: "/",
+              hash: "#about",
+            }}
+            text="About"
+          />
           <NavItem to="ingredients_recoltes" text="Ingrédients récoltés" />
           <NavItem to="/contact" text="Contact" />
           <NavItem
@@ -143,7 +155,7 @@ export const Header = () => {
 
         <Button
           to="/recipes"
-          text={`Voir mes recettes ${countIngredient}`}
+          text="Voir mes recettes"
           className={`absolute left-4 lg:relative flex items-center px-4 my-2 transition-opacity duration-500 ease-in ${hasIngredient ? `opacity-100 visible w-auto` : `opacity-0 w-0 invisible`}`}
         />
 

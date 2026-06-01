@@ -6,6 +6,7 @@ import { RecipeImage } from "./RecipeImage";
 import { RecipeText } from "../recipes/RecipeText";
 import { ButtonCard } from "../../shared/button/ButtonCard";
 import { SkeletonImage } from "../../shared/skeleton/SkeletonImage";
+import { SkeletonText } from "../../shared/skeleton/SkeletonText";
 
 export const RecipeCard = (props) => {
   const { recipe, onClick } = props;
@@ -24,7 +25,7 @@ export const RecipeCard = (props) => {
       <div className="h-full flex items-start md:flex-col md:[align-items:initial] flex-1 p-4 z-3">
         <div className="relative flex justify-center -ml-2 mt-1.5 md:ml-0 md:mt-0">
           <div className="w-full absolute bottom-0 flex items-center pt-10">
-            <h3 className="w-full flex justify-center items-center h-16 font-montserrat font-semibold text-white text-xs md:text-base text-center bg-linear-to-t from-special-black to-transparent z-10">
+            <h3 className="w-full flex justify-center items-center h-16 font-montserrat font-semibold text-white text-xs md:text-base text-center bg-linear-to-t from-special-black to-transparent rounded-b-lg z-10">
               {recipe.name}
             </h3>
           </div>
@@ -74,6 +75,11 @@ export const RecipeCard = (props) => {
             className={`h-full rounded-md origin-top transition-all duration-800 ease-out bg-special-white ${active ? `md:opacity-100 md:scale-y-100` : `md:opacity-0 md:scale-y-0`}`}
           ></div>
         </div>
+
+        {/** Skeleton du texte*/}
+        {!imgLoaded && (
+          <SkeletonText className="absolute inset-0 w-full h-full border-4 border-gray-300 rounded-lg z-10" />
+        )}
 
         <RecipeText
           className={`flex-1 text-sm absolute top-[38%] left-[43%] xs:top-[35%] xs:left-[35%] md:relative px-3 md:top-0 md:left-0 md:px-7 pt-2 transition-all duration-500 ease-out overflow-hidden line-clamp-3 md:line-clamp-none ${active ? `md:opacity-100 md:max-h-45` : `md:opacity-0 md:max-h-0`}`}
