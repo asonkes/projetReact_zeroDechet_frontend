@@ -3,7 +3,7 @@
 /***************************************/
 import { Helmet } from "react-helmet-async";
 import { useEffect, useState } from "react";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import ingredientService from "../../services/ingredients.service";
 import { Title } from "../../shared/Title";
 import { Pagination } from "../../shared/Pagination";
@@ -16,6 +16,9 @@ import { IngredientLightBox } from "../../features/ingredients/IngredientLightBo
 import { SearchBar } from "../../shared/SearchBar";
 import { Button } from "../../shared/button/Button";
 import { useSelectedIngredients } from "../../hook/useSelectedIngredients";
+import { Modal } from "../components/ui/Modal";
+import { useAtom } from "jotai";
+import { isSearchOpenAtom } from "../../store/searchStore";
 
 export const Ingredients = () => {
   // Pk useState()
@@ -41,22 +44,24 @@ export const Ingredients = () => {
   };
   const [totalPages, setTotalPages] = useState(1);
 
-  // Pour la lightbox
+  /* Pour la lightbox */
   const [lightBoxImage, setLightBoxImage] = useState(null);
-
   /* UseState pour le 'loader' */
   /* On le met en true => reste actif */
   const [firstLoad, setFirstLoad] = useState(true);
   /* UseState pour activer le skeleton */
   const [loading, setLoading] = useState(true);
   /* Rendre la barre de recherche visible */
-  const location = useLocation();
-  const [isVisibleSearch, setIsVisibleSearch] = useState(false);
+  const [isVisibleSearch, setIsVisibleSearch] = useAtom(isSearchOpenAtom);
   /** State pour affiche le message */
   const [message, setMessage] = useState("");
 
   /** on reprend hasIngredient pour apparition du bouton => voir mes recettes  */
-  const { addIngredient, hasIngredient } = useSelectedIngredients();
+  const { hasIngredient, trySelectIngredient } = useSelectedIngredients();
+
+  /** Etat pour voir is utilisateur authentifié ou pas **/
+  const [isAuthentificated, setIsAuthentificated] = useState(false);
+  const [isLoginModal, setIsLoginModal] = useState(false);
 
   useEffect(() => {
     const response = async () => {
@@ -64,9 +69,11 @@ export const Ingredients = () => {
       /* Avant chaque appel à l'API */
       setLoading(true);
 
+      setIsLoginModal(false);
+
       try {
-        // Appel backend pagination
-        // CurrentPage ==> num de la page que laquelle on se trouve
+        /** Appel backend pagination **/
+        /** CurrentPage ==> num de la page que laquelle on se trouve **/
         const data = await ingredientService.getPaginated(currentPage);
 
         /* Backend renvoie déjà items, page, limit, totalItems, total Pages => plus besoin */
@@ -89,19 +96,22 @@ export const Ingredients = () => {
   const handleIngredientSelect = async (name) => {
     const ingredient = await ingredientService.getByName(name);
 
-    if (!ingredient) return;
+    if (!ingredient) {
+      setMessage(`L'ingrédient '${name}' n'existe pas dans la liste !`);
+      return;
+    }
 
-    addIngredient(ingredient);
+    const success = trySelectIngredient(ingredient, isAuthentificated);
+
+    if (!success) {
+      setIsLoginModal(true);
+      return;
+    }
 
     setMessage(
       `L'ingrédient '${ingredient.name}' a bien été ajouté à votre liste !`,
     );
   };
-
-  /* Use Effect sert à récupérer l'état envoyé par le header et à ouvrir la searchBar qd on arrive sur la loupe */
-  useEffect(() => {
-    setIsVisibleSearch(location.state?.openSearch === true);
-  }, [location]);
 
   if (firstLoad && loading) {
     return (
@@ -137,7 +147,7 @@ export const Ingredients = () => {
             onClose={() => setIsVisibleSearch(false)}
             className={`transition-opacity duration-500 ease-in-out ${isVisibleSearch ? "opacity-100 visible" : "opacity-0 invisible"}`}
           >
-            <p className="font-quicksand font-semibold text-center mt-4 text-secondary-400">
+            <p className="font-quicksand font-semibold text-center mt-4 text-white">
               {message}
             </p>
           </SearchBar>
@@ -173,11 +183,13 @@ export const Ingredients = () => {
                       key={ingredient._id}
                       ingredient={ingredient}
                       onClick={(src) => setLightBoxImage(src)}
+                      isAuthenticated={isAuthentificated}
+                      onAuthRequired={() => setIsLoginModal(true)}
                     />
                   ))}
             </ul>
 
-            {/* Ajouter les ingrédiants dans l'url (optionnel -> UX partage ta recherche) */}
+            {/* Ajouter les ingrédients dans l'url */}
             <Button
               to="/recipes"
               text="Voir mes recettes"
@@ -192,6 +204,14 @@ export const Ingredients = () => {
             />
           </div>
         </FullScreen>
+        <Modal
+          isOpen={isLoginModal}
+          isClose={() => setIsLoginModal(false)}
+          onLoginSuccess={() => {
+            setIsAuthentificated(true);
+            setIsLoginModal(false);
+          }}
+        />
       </section>
     </>
   );

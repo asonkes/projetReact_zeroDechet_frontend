@@ -37,10 +37,17 @@ export const useSelectedIngredients = () => {
         },
       ];
 
-      console.log(array);
-
       return array;
     });
+  };
+
+  /** Ici on limite à 3 ingrédient, après apparaît la modal **/
+  const trySelectIngredient = (ingredient, isAuthenticated) => {
+    if (countIngredient >= 3 && !isAuthenticated) {
+      return false;
+    }
+    addIngredient(ingredient);
+    return true;
   };
 
   /** Donc là on supprime un élément */
@@ -59,5 +66,6 @@ export const useSelectedIngredients = () => {
     isSelected,
     addIngredient,
     removeIngredient,
+    trySelectIngredient,
   };
 };

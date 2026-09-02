@@ -2,44 +2,77 @@
 /** Composant pour la page Contact  */
 /************************************/
 import { Helmet } from "react-helmet-async";
-import { IngredientLightBox } from "../../features/ingredients/IngredientLightBox";
 import { FullScreen } from "../../shared/FullScreen";
 import { SplitScreen } from "../../shared/SplitScreen";
 import { Title } from "../../shared/Title";
-import { ButtonCard } from "../../shared/button/ButtonCard";
 import { useState } from "react";
 
 export const Contact = () => {
   const [status, setStatus] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isFirstnameValid, setIsFirstnameValid] = useState(true);
+  const [isLastnameValid, setIsLastnameValid] = useState(true);
+  const [isEmailValid, setIsEmailValid] = useState(true);
+  const [isMessageValid, setIsMessageValid] = useState(true);
 
   /** A l'envoi du form */
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
+    setIsEmailValid(true);
+    setIsMessageValid(true);
 
     try {
       const form = e.target;
       const formData = new FormData(form);
-
       const lastname = formData.get("lastname");
-      console.log(lastname);
-
       const firstname = formData.get("firstname");
-      console.log(firstname);
-
       const email = formData.get("email");
-      console.log(email);
-
       const message = formData.get("message");
-      console.log(message);
+
+      const nameRegex = /^[A-Za-zÀ-ÿ' -]+$/;
+      const mailregex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const firstnameValid =
+        firstname.trim() === "" || nameRegex.test(firstname.trim());
+      const lastnameValid =
+        lastname.trim() === "" || nameRegex.test(lastname.trim());
+      const emailValid = email.trim() === "" || mailregex.test(email.trim());
+      const messageValid = message.trim() === "" || message.trim().length >= 20;
+
+      setIsFirstnameValid(firstnameValid);
+      setIsLastnameValid(lastnameValid);
+      setIsEmailValid(emailValid);
+      setIsMessageValid(messageValid);
+
+      if (
+        lastname.trim() === "" &&
+        firstname.trim() === "" &&
+        email.trim() === "" &&
+        message.trim() === ""
+      ) {
+        setStatus("empty");
+        setTimeout(() => setStatus(null), 3000);
+        return;
+      }
+
+      const response = await fetch("http://localhost:3000/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ lastname, firstname, email, message }),
+      });
+
+      if (!response.ok) throw new Error("Erreur lors de l'envoi");
 
       setStatus("success");
-
+      /* Vide les champs du formulaire une fois l'envoi du message fait */
+      form.reset();
+      /* Attend 3 secondes pour enlever le message de succès */
       setTimeout(() => setStatus(null), 3000);
     } catch (err) {
       console.log(err);
-
       setStatus("error");
-      setTimeout(() => setStatus(null), 3000);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -88,6 +121,12 @@ export const Contact = () => {
                     placeholder="Veuillez indiquer votre nom..."
                   />
                 </div>
+                {!isLastnameValid && (
+                  <p className="w-full sm:w-[60%] md:w-[55%] lg:w-[70%] font-quicksand font-semibold text-center text-secondary-400 p-2">
+                    Votre nom doit contenir uniquement des lettres, pas de
+                    chiffres !
+                  </p>
+                )}
 
                 <div className="w-full flex flex-col justify-center items-center lg:flex-row p-2">
                   <label
@@ -104,6 +143,12 @@ export const Contact = () => {
                     placeholder="Veuillez indiquer votre prénom..."
                   />
                 </div>
+                {!isFirstnameValid && (
+                  <p className="w-full sm:w-[60%] md:w-[55%] lg:w-[70%] font-quicksand font-semibold text-center text-secondary-400 p-2">
+                    Votre prénom doit contenir uniquement des lettres, pas de
+                    chiffres !
+                  </p>
+                )}
 
                 <div className="w-full flex flex-col justify-center items-center lg:flex-row p-2">
                   <label
@@ -120,6 +165,11 @@ export const Contact = () => {
                     placeholder="Veuillez indiquer votre e-mail..."
                   />
                 </div>
+                {!isEmailValid && (
+                  <p className="w-full sm:w-[60%] md:w-[55%] lg:w-[70%] font-quicksand font-semibold text-center text-secondary-400 p-2">
+                    Votre adresse mail n'est pas correcte'
+                  </p>
+                )}
 
                 <div className="w-full flex flex-col items-center p-2">
                   <label
@@ -135,23 +185,36 @@ export const Contact = () => {
                     placeholder="Veuillez indiquer votre message..."
                   />
                 </div>
+                {!isMessageValid && (
+                  <p className="w-full sm:w-[60%] md:w-[55%] lg:w-[70%] font-quicksand font-semibold text-center text-secondary-400 p-2">
+                    Votre message doit au moins contenir 20 caractères !
+                  </p>
+                )}
 
                 <button
                   type="submit"
+                  disabled={isLoading}
                   className="font-montserrat bg-primary-800 text-white cursor-pointer py-2 px-2 hover:scale-105 hover:bg-primary-700 rounded-lg mt-3"
                 >
-                  Envoyer
+                  {isLoading ? "Envoi en cours..." : "Envoyer"}
                 </button>
               </form>
 
               {status === "success" && (
-                <p className="font-quicksand font-semibold text-center text-primary-600">
+                <p className="w-full sm:w-[60%] md:w-[55%] lg:w-[70%] font-quicksand font-semibold text-center text-primary-600">
                   Votre message a bien été envoyé !
                 </p>
               )}
 
+              {status === "empty" && (
+                <p className="w-full sm:w-[60%] font-quicksand font-semibold text-center text-secondary-400">
+                  Votre message ne peut pas être envoyé si un des champs est
+                  vide.
+                </p>
+              )}
+
               {status === "error" && (
-                <p className="font-quicksand font-semibold text-center text-secondary-400">
+                <p className="w-full sm:w-[60%] md:w-[55%] lg:w-[70%] m-auto font-quicksand font-semibold text-center text-secondary-400">
                   Votre message n'a pas été envoyé, veuillez rééssayer!
                 </p>
               )}

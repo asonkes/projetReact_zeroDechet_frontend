@@ -12,6 +12,8 @@ import { faCircleUser } from "@fortawesome/free-regular-svg-icons";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "../../shared/button/Button";
 import { useSelectedIngredients } from "../../hook/useSelectedIngredients";
+import { useAtom } from "jotai";
+import { isSearchOpenAtom } from "../../store/searchStore";
 
 export const Header = () => {
   const [isActive, setIsActive] = useState(false);
@@ -24,10 +26,10 @@ export const Header = () => {
   const [isScroll, setIsScroll] = useState(false);
 
   /* L'état réel de la search bar (vient de la page ingrédients) */
-  const isSearchOpen = location.state?.openSearch === true;
+  const [isSearchOpen, setIsSearchOpen] = useAtom(isSearchOpenAtom);
 
   /* variable pour pouvoir mettre bouton 'voir mes recettes' visible ou pas => jootai */
-  const { hasIngredient, countIngredient } = useSelectedIngredients();
+  const { hasIngredient } = useSelectedIngredients();
 
   /* On utilise un useEffect pour agir en dehors du composant */
   useEffect(() => {
@@ -100,18 +102,19 @@ export const Header = () => {
   }, [location.hash]);
 
   /* Gestion du clic sur la loupe */
-  const handleSearchClick = () => {
-    /* Si on n'est PAS sur la page ingrédients → redirection + ouverture*/
+  const handleSearchClick = (e) => {
+    e.stopPropagation();
+
+    /* Si on n'est PAS sur la page ingrédients → redirection + ouverture */
     if (location.pathname !== "/ingredients_recoltes") {
-      navigate("/ingredients_recoltes", { state: { openSearch: true } });
+      navigate("/ingredients_recoltes");
+      setIsSearchOpen(true);
       setIsActive(false);
       return;
     }
 
     /* Si on est sur la page ingrédients → toggle réel */
-    /* naigate(".") => reste sur la même page */
-    navigate("/ingredients_recoltes", { state: { openSearch: !isSearchOpen } });
-    /* Et donc tu ouvre pas la barre de recherche */
+    setIsSearchOpen(!isSearchOpen);
     setIsActive(false);
   };
 

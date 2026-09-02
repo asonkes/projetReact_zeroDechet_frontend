@@ -13,7 +13,7 @@ import { SkeletonText } from "../../shared/skeleton/SkeletonText";
 import { useSelectedIngredients } from "../../hook/useSelectedIngredients";
 
 export const IngredientCard = (props) => {
-  const { ingredient, onClick } = props;
+  const { ingredient, onClick, isAuthenticated, onAuthRequired } = props;
   /** Ici active/setActive ==> pour click sur le bouton */
   const [active, setActive] = useState(false);
   /** Permet de savoir si image est téléchargée */
@@ -21,7 +21,7 @@ export const IngredientCard = (props) => {
   /** Pour les media-queries */
   const desktop = window.matchMedia("(min-width: 769px)").matches;
   /** On récupère les informations JS pour ajout/suppression des éléments */
-  const { isSelected, addIngredient, removeIngredient } =
+  const { isSelected, trySelectIngredient, removeIngredient } =
     useSelectedIngredients();
 
   return (
@@ -108,9 +108,16 @@ export const IngredientCard = (props) => {
           />
           <ButtonCard
             onClick={() => {
-              isSelected(ingredient)
-                ? removeIngredient(ingredient)
-                : addIngredient(ingredient);
+              if (isSelected(ingredient)) {
+                removeIngredient(ingredient);
+                return;
+              }
+
+              const success = trySelectIngredient(ingredient, isAuthenticated);
+
+              if (!success) {
+                onAuthRequired();
+              }
             }}
             text={isSelected(ingredient) ? `Supprimer` : `Ajouter`}
             className={

@@ -47,6 +47,7 @@
   /* Special color */
   --color-special-white: rgba(255, 255, 255, 0.8);
   --color-special-white2: rgba(255, 255, 255, 0.6);
+  --color-special-white3: rgba(255, 255, 255, 0.2);
   --color-special-black: rgba(0, 0, 0, 0.8);
   --color-special-gray: rgba(0, 0, 0, 0.3);
   --color-special-green: rgb(212, 220, 140);
@@ -54,7 +55,8 @@
 
   /* Spacing */
   --spacing-2-625: 2.65rem;
-  --spacing-3-75: 3.75rem;
+  --spacing-3-75: 3.75rem; /* 60px */
+  --spacing-4-063: 4.063rem; /* 65px */
   --spacing-4-219: 4.219rem;
   --spacing-5: 5rem;
   --spacing-5-563: 5.563rem;

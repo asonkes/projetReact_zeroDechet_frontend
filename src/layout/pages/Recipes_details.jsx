@@ -60,7 +60,7 @@ export const Recipes_details = () => {
 
       <section className="w-full min-h-[calc(100vh-102px)] flex bg-primary-600">
         <FullScreen height="min-h-[calc(100vh-102px)] flex justify-center font-quicksand p-4">
-          <div className="max-w-50 h-fit text-white border border-white rounded-lg my-4">
+          <div className="max-w-50 h-fit text-white border border-white rounded-lg my-4 bg-special-white3">
             <div className="flex justify-end">
               <p className="font-semibold text-xl text-end capitalize border border-white rounded-lg bg-secondary-400 px-2 py-1">
                 {recipe.category}

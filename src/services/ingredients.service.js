@@ -8,11 +8,20 @@ const ingredientService = {
   },
 
   getByName: async (name) => {
-    const response = await axios.get(
-      `http://localhost:3000/api/ingredients/name/${name}`,
-    );
+    try {
+      const response = await axios.get(
+        `http://localhost:3000/api/ingredients/name/${name}`,
+      );
 
-    return response.data;
+      return response.data;
+    } catch (error) {
+      if (error.status === 404 || error.response?.status === 404) {
+        return null;
+      }
+
+      console.error(error);
+      return null;
+    }
   },
 
   getPaginated: async (page, limit) => {

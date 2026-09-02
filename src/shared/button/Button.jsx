@@ -1,3 +1,7 @@
+/******************************/
+/** Composant pour le bouton  */
+/******************************/
+
 import { Link } from "react-router";
 
 export const Button = (props) => {
